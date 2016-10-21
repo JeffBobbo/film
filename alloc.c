@@ -206,19 +206,18 @@ void mt_free(void* p)
 void mt_check(void)
 {
 #ifndef MEMTEST
-  return 0;
+  return;
 #endif
 
-  Reserved* node = root;
   size_t leaks = 0;
   size_t bytes = 0;
-  while (node)
+  while (root)
   {
-    size_t l = node->num * node->size;
+    size_t l = root->num * root->size;
     bytes += l;
     ++leaks;
-    fprintf(stderr, "Leaked block of %lu bytes of memory at %p (%p)\n", l, node->base, node->data);
-    node = node->next;
+    fprintf(stderr, "Leaked block of %lu bytes of memory at %p (%p)\n", l, root->base, root->data);
+    mt_free(root->data);
   }
   printf("Found a total of %lu leaks, leaking %lu bytes\n", leaks, bytes);
 }
