@@ -38,19 +38,19 @@ Reserved* last()
   return node;
 }
 
-void* mt_malloc(const size_t n, const size_t sz)
+void* mt_malloc(const size_t sz)
 {
 #ifdef MEMTEST
-  void* p = malloc(n*sz*2);
+  void* p = malloc(sz*2);
   if (p)
   {
     Reserved* r = (Reserved*)malloc(sizeof(Reserved));
     assert(r);
     r->base = p;
-    r->data = ((n*sz) >> 1) + p;
-    r->dend = r->data + sz * n;
-    r->end = p + n*sz*2;
-    r->num = n;
+    r->data = (sz >> 1) + p;
+    r->dend = r->data + sz;
+    r->end = p + sz * 2;
+    r->num = 1;
     r->size = sz;
     r->next = NULL;
 
@@ -73,7 +73,7 @@ void* mt_malloc(const size_t n, const size_t sz)
   }
   return NULL;
 #else
-  return malloc(n*sz);
+  return malloc(sz);
 #endif
 }
 
@@ -219,5 +219,6 @@ void mt_check(void)
     fprintf(stderr, "Leaked block of %zu bytes of memory at %p (%p)\n", l, root->base, root->data);
     mt_free(root->data);
   }
-  printf("Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
+  if (leaks)
+    printf("Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
 }

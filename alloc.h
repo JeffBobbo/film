@@ -9,10 +9,9 @@
  * the allocation is stored internally and a pointer that can be used nas
  * normal is returned.
  * If MEMTEST isn't defined, just does malloc from stdlib.h
- * @param n  how many elements to allocate for
- * @param sz how big each element is
+ * @param sz how much memory to allocate
  */
-void* mt_malloc(const size_t n, const size_t sz);
+void* mt_malloc(const size_t sz);
 
 /**
  * memory test calloc
