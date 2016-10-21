@@ -3,11 +3,14 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h> // memset
-#include <assert.h>
+#include <stdlib.h> // atexit, [cm]alloc, free
+#include <assert.h> // assert
 
 #define MEMTEST
 
 const char PADDING = 0;
+
+static int registeredExit = 0;
 
 typedef struct reserved_t
 {
@@ -22,6 +25,18 @@ typedef struct reserved_t
 } Reserved;
 
 Reserved* root = NULL;
+
+Reserved* last()
+{
+  Reserved* node = root;
+  while (1)
+  {
+    if (!node->next)
+      break;
+    node = node->next;
+  }
+  return node;
+}
 
 void* mt_malloc(const size_t n, const size_t sz)
 {
@@ -47,21 +62,13 @@ void* mt_malloc(const size_t n, const size_t sz)
 
     // TODO: Fix bug here
     if (root)
-    {
-      Reserved* node = root;
-      while (1)
-      {
-        if (node->next)
-          node = node->next;
-        else
-          break;
-      }
-      node->next = r;
-    }
+      last()->next = r;
     else
-    {
       root = r;
-    }
+
+    if (!registeredExit)
+      registeredExit = !atexit(mt_check);
+
     return r->data;
   }
   return NULL;
@@ -87,16 +94,13 @@ void* mt_calloc(const size_t n, const size_t sz)
     r->next = NULL;
 
     if (root)
-    {
-      Reserved* node = root;
-      while (node)
-        node = node->next;
-      node->next = r;
-    }
+      last()->next = r;
     else
-    {
       root = r;
-    }
+
+    if (!registeredExit)
+      registeredExit = !atexit(mt_check);
+
     return r->data;
   }
   return NULL;
@@ -161,12 +165,20 @@ void mt_free(void* p)
     abort();
   }
 
-  Reserved* prev = root;
+
+  Reserved* prev;
   Reserved* node = root;
-  while (node && node->data != p)
+  if (root->data == p)
   {
-    prev = node;
-    node = node->next;
+    prev = NULL;
+  }
+  else
+  {
+    while (node && node->data != p)
+    {
+      prev = node;
+      node = node->next;
+    }
   }
 
   if (!node)
@@ -181,27 +193,32 @@ void mt_free(void* p)
 
   // free our base, we're done with the data
   free(node->base);
-  prev->next = node->next; // relink our linked list
+  if (prev)
+    prev->next = node->next; // relink our linked list
+  else
+    root = node->next;
   free(node); // cull the node
 #else
   free(p);
 #endif
 }
 
-size_t check()
+void mt_check(void)
 {
 #ifndef MEMTEST
   return 0;
 #endif
 
   Reserved* node = root;
-  size_t leaked = 0;
+  size_t leaks = 0;
+  size_t bytes = 0;
   while (node)
   {
     size_t l = node->num * node->size;
-    leaked += l;
+    bytes += l;
+    ++leaks;
     fprintf(stderr, "Leaked block of %lu bytes of memory at %p (%p)\n", l, node->base, node->data);
     node = node->next;
   }
-  return leaked;
+  printf("Found a total of %lu leaks, leaking %lu bytes\n", leaks, bytes);
 }
