@@ -119,13 +119,13 @@ void underwrite(const Reserved* const node)
   }
   if (!badBytes)
     return;
-  fprintf(stderr, "Underwrite detected from %p. Base: %p, size: %lu, num: %lu\n",
+  fprintf(stderr, "Underwrite detected from %p. Base: %p, size: %zu, num: %zu\n",
           node->data, node->base, node->size, node->num);
   for (void* i = node->base; i < node->data; ++i)
   {
     if (*((char*)i) != PADDING)
     {
-      fprintf(stderr, "\tByte %lu has value %x\n",
+      fprintf(stderr, "\tByte %zu has value %x\n",
               (size_t)(i - node->base), *((char*)i));
     }
   }
@@ -141,13 +141,13 @@ void overwrite(const Reserved* const node)
   }
   if (!badBytes)
     return;
-  fprintf(stderr, "Overwrite detected from %p. Base: %p, size: %lu, num: %lu\n",
+  fprintf(stderr, "Overwrite detected from %p. Base: %p, size: %zu, num: %zu\n",
           node->data, node->base, node->size, node->num);
   for (void* i = node->dend; i < node->end; ++i)
   {
     if (*((char*)i) != PADDING)
     {
-      fprintf(stderr, "\tByte %lu has value %x\n",
+      fprintf(stderr, "\tByte %zu has value %x\n",
               (size_t)(i - node->base), *((char*)i));
     }
   }
@@ -216,8 +216,8 @@ void mt_check(void)
     size_t l = root->num * root->size;
     bytes += l;
     ++leaks;
-    fprintf(stderr, "Leaked block of %lu bytes of memory at %p (%p)\n", l, root->base, root->data);
+    fprintf(stderr, "Leaked block of %zu bytes of memory at %p (%p)\n", l, root->base, root->data);
     mt_free(root->data);
   }
-  printf("Found a total of %lu leaks, leaking %lu bytes\n", leaks, bytes);
+  printf("Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
 }
