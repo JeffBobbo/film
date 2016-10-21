@@ -1,0 +1,250 @@
+"Indiana Jones and the Last Crusade",1989,"PG-13","Action/Adventure/Fantasy",127,8.3
+"The Great Dictator",1940,"APPROVED","Comedy/Drama/War",125,8.4
+"The Wizard of Oz",1939,"PASSED","Adventure/Family/Fantasy",102,8.0
+"Casablanca",1942,"PG","Drama/Romance/War",102,8.5
+"The Good, the Bad and the Ugly",1966,"APPROVED","Western",161,8.9
+"Memento",2000,"R","Mystery/Thriller",113,8.5
+"Nights of Cabiria",1957,"NOT RATED","Drama",110,8.1
+"Aliens",1986,"R","Action/Adventure/Sci-Fi",137,8.4
+"The Truman Show",1998,"PG","Comedy/Drama/Sci-Fi",103,8.0
+"All About Eve",1950,"APPROVED","Drama",138,8.2
+"Ikiru",1952,"NOT RATED","Drama",143,8.2
+"Life Is Beautiful",1997,"PG-13","Comedy/Drama/War",116,8.6
+"Castle in the Sky",1986,"PG","Animation/Adventure/Family",125,8.0
+"The Battle of Algiers",1966,"NOT RATED","Drama/War",121,8.0
+"In the Name of the Father",1993,"R","Biography/Drama/History",133,8.1
+"Judgment at Nuremberg",1961,"NOT RATED","Drama/War",186,8.2
+"The Martian",2015,"PG-13","Adventure/Drama/Sci-Fi",144,8.0
+"Alien",1979,"R","Horror/Sci-Fi",117,8.4
+"Lagaan: Once Upon a Time in India",2001,"PG","Adventure/Drama/Musical",224,8.0
+"The Sting",1973,"PG","Comedy/Crime/Drama",129,8.3
+"The Terminator",1984,"R","Action/Sci-Fi",107,8.0
+"The Prestige",2006,"PG-13","Drama/Mystery/Sci-Fi",130,8.5
+"The Silence of the Lambs",1991,"R","Crime/Drama/Thriller",118,8.6
+"Kind Hearts and Coronets",1949,"NOT RATED","Comedy/Crime",106,8.0
+"My Neighbor Totoro",1988,"G","Animation/Family/Fantasy",86,8.2
+"Heat",1995,"R","Action/Crime/Drama",170,8.2
+"Howl's Moving Castle",2004,"PG","Animation/Adventure/Family",119,8.2
+"Princess Mononoke",1997,"PG-13","Animation/Adventure/Fantasy",134,8.4
+"Chinatown",1974,"R","Drama/Mystery/Thriller",130,8.2
+"Song of the Sea",2014,"PG","Animation/Adventure/Family",93,8.0
+"Infernal Affairs",2002,"R","Crime/Drama/Mystery",101,8.0
+"Star Wars: The Force Awakens",2015,"PG-13","Action/Adventure/Fantasy",138,8.1
+"For a Few Dollars More",1965,"APPROVED","Western",132,8.3
+"The Wolf of Wall Street",2013,"R","Biography/Comedy/Crime",180,8.2
+"Million Dollar Baby",2004,"PG-13","Drama/Sport",132,8.1
+"WALL-E",2008,"G","Animation/Adventure/Family",98,8.4
+"Zootopia",2016,"PG","Animation/Action/Adventure",108,8.1
+"The Lord of the Rings: The Return of the King",2003,"PG-13","Action/Adventure/Drama",201,8.9
+"La Haine",1995,"NOT RATED","Crime/Drama",98,8.0
+"Goodfellas",1990,"R","Biography/Crime/Drama",146,8.7
+"Raging Bull",1980,"R","Biography/Drama/Sport",129,8.2
+"The Bridge on the River Kwai",1957,"PG","Adventure/Drama/War",161,8.2
+"The Usual Suspects",1995,"R","Crime/Drama/Mystery",106,8.6
+"American Beauty",1999,"R","Drama/Romance",122,8.4
+"Inside Out",2015,"PG","Animation/Adventure/Comedy",95,8.2
+"The Lord of the Rings: The Fellowship of the Ring",2001,"PG-13","Action/Adventure/Drama",178,8.8
+"Gandhi",1982,"PG","Biography/Drama",191,8.0
+"Room",2015,"R","Drama",118,8.2
+"Fanny and Alexander",1982,"R","Drama",188,8.0
+"Blade Runner",1982,"R","Sci-Fi/Thriller",117,8.2
+"L.A. Confidential",1997,"R","Crime/Drama/Mystery",138,8.3
+"The Dark Knight Rises",2012,"PG-13","Action/Thriller",164,8.4
+"City of God",2002,"R","Crime/Drama",130,8.6
+"The Dark Knight",2008,"PG-13","Action/Crime/Drama",152,8.9
+"The Treasure of the Sierra Madre",1948,"NOT RATED","Adventure/Drama/Western",126,8.2
+"Back to the Future",1985,"PG","Adventure/Comedy/Sci-Fi",116,8.5
+"Shutter Island",2010,"R","Mystery/Thriller",138,8.1
+"The Best Years of Our Lives",1946,"NOT RATED","Drama/Romance/War",172,8.0
+"Downfall",2004,"R","Biography/Drama/History",156,8.2
+"12 Years a Slave",2013,"R","Biography/Drama/History",134,8.1
+"Amelie",2001,"R","Comedy/Romance",122,8.3
+"The Departed",2006,"R","Crime/Drama/Thriller",151,8.5
+"Strangers on a Train",1951,"PG","Crime/Film-Noir/Romance",101,8.0
+"Seven Samurai",1954,"UNRATED","Action/Adventure/Drama",207,8.6
+"Prisoners",2013,"R","Crime/Drama/Mystery",153,8.0
+"Some Like It Hot",1959,"NOT RATED","Comedy/Music/Romance",120,8.2
+"Terminator 2: Judgment Day",1991,"R","Action/Sci-Fi",137,8.5
+"Spotlight",2015,"R","Biography/Crime/Drama",128,8.1
+"Ben-Hur",1959,"G","Adventure/Drama/History",212,8.1
+"Requiem for a Dream",2000,"R","Drama",102,8.3
+"Roman Holiday",1953,"NOT RATED","Comedy/Romance",118,8.0
+"Rashomon",1950,"UNRATED","Crime/Drama/Mystery",88,8.3
+"Mr. Smith Goes to Washington",1939,"NOT RATED","Comedy/Drama",129,8.2
+"How to Train Your Dragon",2010,"PG","Animation/Adventure/Family",98,8.1
+"Life of Brian",1979,"R","Comedy",94,8.1
+"Into the Wild",2007,"R","Adventure/Biography/Drama",148,8.1
+"Barry Lyndon",1975,"PG","Adventure/Drama/History",184,8.0
+"Reservoir Dogs",1992,"R","Crime/Drama/Thriller",99,8.3
+"The Secret in Their Eyes",2009,"R","Drama/Mystery/Thriller",129,8.2
+"Dog Day Afternoon",1975,"R","Crime/Drama",125,8.0
+"The Deer Hunter",1978,"R","Drama/War",183,8.1
+"Snatch",2000,"R","Comedy/Crime",102,8.3
+"Spirited Away",2001,"PG","Animation/Adventure/Family",125,8.5
+"Sin City",2005,"R","Crime/Thriller",124,8.0
+"The 400 Blows",1959,"NOT RATED","Crime/Drama",99,8.1
+"Annie Hall",1977,"PG","Comedy/Romance",93,8.0
+"Citizen Kane",1941,"APPROVED","Drama/Mystery",119,8.4
+"Toy Story",1995,"G","Animation/Adventure/Comedy",81,8.3
+"The Godfather",1972,"R","Crime/Drama",175,9.2
+"The Wages of Fear",1953,"NOT RATED","Adventure/Drama/Thriller",131,8.1
+"Kill Bill: Vol. 1",2003,"R","Action/Crime/Thriller",111,8.1
+"Harry Potter and the Deathly Hallows: Part 2",2011,"PG-13","Adventure/Drama/Fantasy",130,8.0
+"Hachi: A Dog's Tale",2009,"G","Drama/Family",93,8.1
+"Forrest Gump",1994,"PG-13","Comedy/Drama",142,8.7
+"Se7en",1995,"R","Crime/Drama/Mystery",127,8.6
+"Yojimbo",1961,"UNRATED","Action/Drama/Thriller",110,8.2
+"The Green Mile",1999,"R","Crime/Drama/Fantasy",189,8.5
+"Once Upon a Time in the West",1968,"PG-13","Romance/Western",175,8.5
+"Pulp Fiction",1994,"R","Crime/Drama",154,8.9
+"V for Vendetta",2005,"R","Action/Drama/Thriller",132,8.1
+"Casino",1995,"R","Biography/Crime/Drama",178,8.2
+"Rebecca",1940,"NOT RATED","Drama/Film-Noir/Mystery",130,8.1
+"The Revenant",2015,"R","Adventure/Drama/Thriller",156,8.0
+"Jaws",1975,"PG","Adventure/Drama/Thriller",124,8.0
+"Das Boot",1981,"R","Adventure/Drama/Thriller",149,8.3
+"Double Indemnity",1944,"PASSED","Crime/Drama/Film-Noir",107,8.3
+"Monty Python and the Holy Grail",1975,"PG","Adventure/Comedy/Fantasy",91,8.3
+"Come and See",1985,"NOT RATED","Drama/War",140,8.1
+"Fight Club",1999,"R","Drama",139,8.8
+"The General",1926,"UNRATED","Action/Adventure/Comedy",67,8.2
+"Memories of Murder",2003,"UNRATED","Crime/Drama/Mystery",132,8.0
+"Persona",1966,"NOT RATED","Drama/Thriller",83,8.1
+"The Pianist",2002,"R","Biography/Drama/War",150,8.5
+"The Kid",1921,"NOT RATED","Comedy/Drama/Family",68,8.3
+"Unforgiven",1992,"R","Drama/Western",131,8.2
+"A Beautiful Mind",2001,"PG-13","Biography/Drama",135,8.2
+"The Grapes of Wrath",1940,"NOT RATED","Drama/History",129,8.1
+"Pan's Labyrinth",2006,"R","Drama/Fantasy/War",118,8.2
+"The Message",1976,"PG","Adventure/Biography/Drama",177,8.1
+"Wild Strawberries",1957,"UNRATED","Drama/Romance",91,8.2
+"Nausicaa of the Valley of the Wind",1984,"PG","Animation/Adventure/Fantasy",117,8.1
+"The Seventh Seal",1957,"NOT RATED","Drama/Fantasy",96,8.2
+"Full Metal Jacket",1987,"R","Drama/War",116,8.3
+"Taxi Driver",1976,"R","Crime/Drama",113,8.3
+"Rear Window",1954,"APPROVED","Mystery/Thriller",112,8.5
+"Paths of Glory",1957,"APPROVED","Drama/War",88,8.4
+"Apocalypse Now",1979,"R","Drama/War",153,8.5
+"Gangs of Wasseypur",2012,"N/A","Action/Crime/Drama",320,8.0
+"No Country for Old Men",2007,"R","Crime/Drama/Thriller",122,8.1
+"Eternal Sunshine of the Spotless Mind",2004,"R","Drama/Fantasy/Romance",108,8.3
+"The Sixth Sense",1999,"PG-13","Drama/Mystery/Thriller",107,8.1
+"Ran",1985,"R","Action/Drama",162,8.2
+"One Flew Over the Cuckoo's Nest",1975,"R","Drama",133,8.7
+"Untouchable",2011,"N/A","Short/Comedy/Drama",14,8.5
+"The Avengers",2012,"PG-13","Action/Sci-Fi/Thriller",143,8.0
+"To Kill a Mockingbird",1962,"NOT RATED","Crime/Drama",129,8.3
+"Amadeus",1984,"R","Biography/Drama/History",160,8.3
+"Rocky",1976,"PG","Drama/Sport",120,8.0
+"Jurassic Park",1993,"PG-13","Adventure/Sci-Fi/Thriller",127,8.1
+"Mad Max: Fury Road",2015,"R","Action/Adventure/Sci-Fi",120,8.1
+"Lawrence of Arabia",1962,"PG","Adventure/Biography/Drama",216,8.3
+"Schindler's List",1993,"R","Biography/Drama/History",195,8.9
+"Oldboy",2003,"R","Drama/Mystery/Thriller",120,8.4
+"Modern Times",1936,"G","Comedy/Drama/Family",87,8.5
+"The Big Lebowski",1998,"R","Comedy/Crime",117,8.1
+"Mary and Max",2009,"NOT RATED","Animation/Comedy/Drama",92,8.1
+"Sharknado",2013,"TV-14","Horror",86,9.3
+"The Third Man",1949,"NOT RATED","Film-Noir/Mystery/Thriller",93,8.2
+"Butch Cassidy and the Sundance Kid",1969,"M","Biography/Crime/Drama",110,8.1
+"Grave of the Fireflies",1988,"UNRATED","Animation/Drama/War",89,8.4
+"American History X",1998,"R","Crime/Drama",119,8.5
+"Lock, Stock and Two Smoking Barrels",1998,"R","Comedy/Crime",107,8.2
+"The Shawshank Redemption",1994,"R","Crime/Drama",142,9.2
+"It's a Wonderful Life",1946,"PG","Drama/Family/Fantasy",130,8.6
+"Gone with the Wind",1939,"G","Drama/History/Romance",238,8.1
+"Groundhog Day",1993,"PG","Comedy/Fantasy/Romance",101,8.0
+"12 Angry Men",1957,"APPROVED","Crime/Drama",96,8.9
+"Stand by Me",1986,"R","Adventure/Drama",89,8.1
+"Saving Private Ryan",1998,"R","Action/Drama/War",169,8.5
+"Braveheart",1995,"R","Biography/Drama/History",178,8.3
+"Network",1976,"R","Drama/Romance",121,8.1
+"Diabolique",1955,"UNRATED","Drama/Horror/Mystery",116,8.0
+"Up",2009,"PG","Animation/Adventure/Comedy",96,8.2
+"Donnie Darko",2001,"R","Drama/Sci-Fi/Thriller",113,8.0
+"Vertigo",1958,"PG","Mystery/Romance/Thriller",128,8.3
+"A Clockwork Orange",1971,"X","Crime/Drama/Sci-Fi",136,8.3
+"The Lives of Others",2006,"R","Drama/Thriller",137,8.4
+"The Help",2011,"PG-13","Drama",146,8.0
+"3 Idiots",2009,"PG-13","Comedy/Drama",170,8.3
+"It Happened One Night",1934,"UNRATED","Comedy/Romance",105,8.1
+"Good Will Hunting",1997,"R","Drama",126,8.2
+"The Maltese Falcon",1941,"NOT RATED","Film-Noir/Mystery",100,8.1
+"Tokyo Story",1953,"NOT RATED","Drama",136,8.1
+"Wild Tales",2014,"R","Comedy/Drama/Thriller",122,8.1
+"2001: A Space Odyssey",1968,"G","Adventure/Mystery/Sci-Fi",149,8.3
+"A Fistful of Dollars",1964,"R","Action/Drama/Western",99,8.0
+"Guardians of the Galaxy",2014,"PG-13","Action/Adventure/Sci-Fi",121,8.0
+"Leon",1994,"R","Crime/Drama/Thriller",110,8.5
+"Star Wars: Episode V - The Empire Strikes Back",1980,"PG","Action/Adventure/Fantasy",124,8.7
+"The Apartment",1960,"APPROVED","Comedy/Drama/Romance",125,8.3
+"Batman Begins",2005,"PG-13","Action/Adventure",140,8.2
+"Trainspotting",1996,"R","Drama",94,8.1
+"Amores Perros",2000,"R","Drama/Thriller",154,8.1
+"The Lord of the Rings: The Two Towers",2002,"PG-13","Action/Adventure/Drama",179,8.7
+"Ip Man",2008,"R","Action/Biography/Drama",106,8.0
+"Hotel Rwanda",2004,"PG-13","Drama/History/War",121,8.1
+"City Lights",1931,"PASSED","Comedy/Drama/Romance",87,8.5
+"Cool Hand Luke",1967,"PG","Drama",126,8.1
+"Toy Story 3",2010,"G","Animation/Adventure/Comedy",103,8.3
+"Gone Girl",2014,"R","Crime/Drama/Mystery",149,8.1
+"M",1931,"NOT RATED","Crime/Drama/Mystery",99,8.3
+"Die Hard",1988,"R","Action/Thriller",131,8.2
+"The Hunt",2012,"R","Drama",115,8.2
+"The Gold Rush",1925,"NOT RATED","Adventure/Comedy/Drama",95,8.2
+"Scarface",1983,"R","Crime/Drama",170,8.3
+"Cinema Paradiso",1988,"R","Drama/Romance",155,8.4
+"Pirates of the Caribbean: The Curse of the Black Pearl",2003,"PG-13","Action/Adventure/Fantasy",143,8.0
+"Throne of Blood",1957,"UNRATED","Drama",110,8.0
+"Psycho",1960,"R","Horror/Mystery/Thriller",109,8.5
+"The Lion King",1994,"G","Animation/Adventure/Drama",89,8.5
+"Whiplash",2014,"R","Drama/Music",107,8.5
+"Touch of Evil",1958,"PG-13","Crime/Drama/Film-Noir",95,8.1
+"Monsters, Inc.",2001,"G","Animation/Adventure/Comedy",92,8.0
+"The Elephant Man",1980,"PG","Biography/Drama",124,8.2
+"Raiders of the Lost Ark",1981,"PG","Action/Adventure",115,8.5
+"Children of Heaven",1997,"PG","Drama/Family",89,8.2
+"Fargo",1996,"R","Crime/Drama/Thriller",98,8.1
+"Finding Nemo",2003,"G","Animation/Adventure/Comedy",100,8.1
+"The Princess Bride",1987,"PG","Adventure/Family/Fantasy",98,8.1
+"Rush",2013,"R","Action/Biography/Drama",123,8.1
+"Inception",2010,"PG-13","Action/Adventure/Sci-Fi",148,8.7
+"A Separation",2011,"PG-13","Drama/Mystery",123,8.2
+"The Grand Budapest Hotel",2014,"R","Adventure/Comedy/Crime",99,8.1
+"Stalker",1979,"NOT RATED","Drama/Sci-Fi",163,8.0
+"The King's Speech",2010,"R","Biography/Drama/History",118,8.0
+"Catch Me If You Can",2002,"PG-13","Biography/Crime/Drama",141,8.0
+"Django Unchained",2012,"R","Drama/Western",165,8.4
+"Inglourious Basterds",2009,"R","Adventure/Drama/War",153,8.3
+"The Imitation Game",2014,"PG-13","Biography/Drama/Thriller",114,8.0
+"Warrior",2011,"PG-13","Drama/Sport",140,8.2
+"On the Waterfront",1954,"NOT RATED","Crime/Drama/Romance",108,8.2
+"The Shining",1980,"R","Drama/Horror",146,8.4
+"The Passion of Joan of Arc",1928,"NOT RATED","Biography/Drama/History",114,8.2
+"Interstellar",2014,"PG-13","Adventure/Drama/Sci-Fi",169,8.5
+"Gran Torino",2008,"R","Drama",116,8.1
+"Metropolis",1927,"NOT RATED","Drama/Sci-Fi",153,8.2
+"Beauty and the Beast",1991,"G","Animation/Family/Fantasy",84,8.0
+"Star Wars: Episode IV - A New Hope",1977,"PG","Action/Adventure/Fantasy",121,8.6
+"Incendies",2010,"R","Drama/Mystery/War",139,8.1
+"Deadpool",2016,"R","Action/Adventure/Comedy",108,8.0
+"The Great Escape",1963,"APPROVED","Adventure/Drama/History",172,8.2
+"Dial M for Murder",1954,"PG","Crime/Film-Noir/Romance",105,8.1
+"Sunset Boulevard",1950,"NOT RATED","Drama/Film-Noir/Romance",110,8.4
+"Once Upon a Time in America",1984,"R","Crime/Drama",229,8.4
+"Witness for the Prosecution",1957,"APPROVED","Crime/Drama/Mystery",116,8.3
+"Platoon",1986,"R","Drama/War",120,8.1
+"The Matrix",1999,"R","Action/Sci-Fi",136,8.7
+"Before Sunrise",1995,"R","Drama/Romance",105,8.0
+"Singin' in the Rain",1952,"APPROVED","Comedy/Musical/Romance",103,8.3
+"There Will Be Blood",2007,"R","Drama",158,8.1
+"The Bourne Ultimatum",2007,"PG-13","Action/Mystery/Thriller",115,8.0
+"Twelve Monkeys",1995,"R","Mystery/Sci-Fi/Thriller",129,8.0
+"The Thing",1982,"R","Horror/Mystery/Sci-Fi",109,8.1
+"North by Northwest",1959,"APPROVED","Action/Adventure/Crime",136,8.3
+"Gladiator",2000,"R","Action/Adventure/Drama",155,8.5
+"Star Wars: Episode VI - Return of the Jedi",1983,"PG","Action/Adventure/Fantasy",131,8.3
+"Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",1964,"PG","Comedy",95,8.4
+"Bicycle Thieves",1948,"NOT RATED","Drama",89,8.3
+"The Godfather: Part II",1974,"R","Crime/Drama",202,9.0
+"Sunrise",1927,"NOT RATED","Drama/Romance",94,8.2
