@@ -29,4 +29,10 @@ void** ll_consolidate(const LinkedList* const ll, size_t* const length);
 
 void ll_delete(LinkedList* ll);
 
+typedef struct linkediterator_t LinkedIterator;
+void* ll_it_begin(LinkedIterator* const it, LinkedList* ll);
+void* ll_it_rbegin(LinkedIterator* const it, LinkedList* ll);
+void* ll_it_next(LinkedIterator* const it);
+void* ll_it_rnext(LinkedIterator* const it);
+
 #endif

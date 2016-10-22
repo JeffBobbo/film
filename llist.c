@@ -193,3 +193,41 @@ void ll_delete(LinkedList* ll)
     ll_pop_front(ll);
   mt_free(ll);
 }
+
+typedef struct linkediterator_t
+{
+  LinkedList* list;
+  LinkedNode* current;
+} LinkedIterator;
+
+void* ll_it_begin(LinkedIterator* const it, LinkedList* ll)
+{
+  it->list = ll;
+  it->current = ll_front_node(ll);
+  return it->current->data;
+}
+void* ll_it_rbegin(LinkedIterator* const it, LinkedList* ll)
+{
+  it->list = ll;
+  it->current = ll_back_node(ll);
+  return it->current->data;
+}
+
+void* ll_it_next(LinkedIterator* const it)
+{
+  if (it->current->next)
+  {
+    it->current = it->current->next;
+    return it->current->data;
+  }
+  return NULL;
+}
+void* ll_it_rnext(LinkedIterator* const it)
+{
+  if (it->current->prev)
+  {
+    it->current = it->current->prev;
+    return it->current->data;
+  }
+  return NULL;
+}
