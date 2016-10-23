@@ -8,7 +8,7 @@
 
 #define MEMTEST
 
-const char PADDING = 0;
+const char PADDING = 255;
 
 static int registeredExit = 0;
 
@@ -19,9 +19,13 @@ typedef struct reserved_t
   void* dend; // where the data ends
   void* end; // the last piece of data in this bit of reserved memory
   size_t num; // how many elements is this memory for
-  // n.b.: each individual element won't be padded, so corruption could occur here
+  // n.b.: each individual element won't be padded,
+  // so corruption could occur here
   size_t size; // what's the size of each element
   struct reserved_t* next;
+
+  const char* file;
+  size_t line;
 } Reserved;
 
 Reserved* root = NULL;
@@ -38,7 +42,8 @@ Reserved* last()
   return node;
 }
 
-void* mt_malloc(const size_t sz)
+void* mt_malloc_(const size_t sz,
+                const char* file, const size_t line)
 {
 #ifdef MEMTEST
   void* p = malloc(sz*2);
@@ -53,6 +58,8 @@ void* mt_malloc(const size_t sz)
     r->num = 1;
     r->size = sz;
     r->next = NULL;
+    r->file = file;
+    r->line = line;
 
     // set all the bytes except those in our data to be 0
     // this preserves the junk values we get
@@ -60,11 +67,12 @@ void* mt_malloc(const size_t sz)
     memset(r->base, PADDING, r->data - r->base);
     memset(r->dend, PADDING, r->end - r->dend);
 
-    // TODO: Fix bug here
-    if (root)
-      last()->next = r;
-    else
-      root = r;
+    r->next = root;
+    root = r;
+//    if (root)
+//      last()->next = r;
+//    else
+//      root = r;
 
     if (!registeredExit)
       registeredExit = !atexit(mt_check);
@@ -77,7 +85,8 @@ void* mt_malloc(const size_t sz)
 #endif
 }
 
-void* mt_calloc(const size_t n, const size_t sz)
+void* mt_calloc_(const size_t n, const size_t sz,
+                const char* file, const size_t line)
 {
 #ifdef MEMTEST
   void* p = calloc(n, sz*2); // use calloc, as we want all zeroes
@@ -92,11 +101,15 @@ void* mt_calloc(const size_t n, const size_t sz)
     r->num = n;
     r->size = sz;
     r->next = NULL;
+    r->file = file;
+    r->line = line;
 
-    if (root)
-      last()->next = r;
-    else
-      root = r;
+    r->next = root;
+    root = r;
+//    if (root)
+//      last()->next = r;
+//    else
+//      root = r;
 
     if (!registeredExit)
       registeredExit = !atexit(mt_check);
@@ -109,6 +122,18 @@ void* mt_calloc(const size_t n, const size_t sz)
 #endif
 }
 
+/*
+void* mt_realloc_(void* ptr, const size_t sz,
+                  const char* file, const size_t line)
+{
+#ifdef MEMTEST
+  void* p
+#else
+  return realloc(ptr, sz);
+#endif
+}
+*/
+
 void underwrite(const Reserved* const node)
 {
   size_t badBytes = 0;
@@ -119,14 +144,16 @@ void underwrite(const Reserved* const node)
   }
   if (!badBytes)
     return;
-  fprintf(stderr, "Underwrite detected from %p. Base: %p, size: %zu, num: %zu\n",
-          node->data, node->base, node->size, node->num);
+  fprintf(stderr, "Underwrite detected:\n    "
+          "From: %s:%zu, base: %p, data: %p, size: %zu, num: %zu\n",
+          node->file, node->line,
+          node->base, node->data, node->size, node->num);
   for (void* i = node->base; i < node->data; ++i)
   {
     if (*((char*)i) != PADDING)
     {
       fprintf(stderr, "\tByte %zu has value %x\n",
-              (size_t)(i - node->base), *((char*)i));
+              (size_t)(i - node->data), *((char*)i));
     }
   }
 }
@@ -141,14 +168,17 @@ void overwrite(const Reserved* const node)
   }
   if (!badBytes)
     return;
-  fprintf(stderr, "Overwrite detected from %p. Base: %p, size: %zu, num: %zu\n",
-          node->data, node->base, node->size, node->num);
+  fprintf(stderr,
+          "Overwrite detected:\n    "
+          "From: %s:%zu, base: %p, data: %p, size: %zu, num: %zu\n",
+          node->file, node->line,
+          node->base, node->data, node->size, node->num);
   for (void* i = node->dend; i < node->end; ++i)
   {
     if (*((char*)i) != PADDING)
     {
       fprintf(stderr, "\tByte %zu has value %x\n",
-              (size_t)(i - node->base), *((char*)i));
+              (size_t)(i - node->data), *((char*)i));
     }
   }
 }
@@ -159,16 +189,9 @@ void mt_free(void* p)
   if (!p)
     return;
 
-  if (!root)
-  {
-    fprintf(stderr, "Called mt_free() but root node not reserved. Exiting\n");
-    abort();
-  }
-
-
   Reserved* prev;
   Reserved* node = root;
-  if (root->data == p)
+  if (root && root->data == p)
   {
     prev = NULL;
   }
@@ -181,10 +204,11 @@ void mt_free(void* p)
     }
   }
 
+  // if it wasn't allocated with one of the mt_ functions, just free it normally
   if (!node)
   {
-    fprintf(stderr, "Called mt_free() on %p, but it wasn't reserved. Exiting\n", p);
-    abort();
+    free(p);
+    return;
   }
 
   // check for any under or overwrites
@@ -216,7 +240,8 @@ void mt_check(void)
     size_t l = root->num * root->size;
     bytes += l;
     ++leaks;
-    fprintf(stderr, "Leaked block of %zu bytes of memory at %p (%p)\n", l, root->base, root->data);
+    fprintf(stderr, "Leaked from %s:%zu, %zu bytes of memory at %p (%p)\n",
+            root->file, root->line, l, root->base, root->data);
     mt_free(root->data);
   }
   if (leaks)
