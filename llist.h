@@ -27,7 +27,12 @@ void* ll_at(const LinkedList* const ll, const size_t n);
 void** ll_consolidate(const LinkedList* const ll, size_t* const length);
 #endif
 
+void ll_bsort(LinkedList* const ll, bool (*comparison)
+                                  (const void* const a, const void* const b));
+
+void ll_clear(LinkedList* ll);
 void ll_delete(LinkedList* ll);
+void ll_purge(LinkedList* ll);
 
 typedef struct linkediterator_t LinkedIterator;
 void* ll_it_begin(LinkedIterator* const it, LinkedList* ll);

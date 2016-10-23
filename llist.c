@@ -15,7 +15,7 @@ typedef struct linkedlist_t
 {
   size_t size;
   LinkedNode* head;
-  LinkedNode* last;
+  LinkedNode* tail;
 } LinkedList;
 
 LinkedList* ll_new()
@@ -25,7 +25,7 @@ LinkedList* ll_new()
   {
     list->size = 0;
     list->head = NULL;
-    list->last = NULL;
+    list->tail = NULL;
   }
   return list;
 }
@@ -65,11 +65,7 @@ LinkedNode* ll_front_node(const LinkedList* const ll)
 LinkedNode* ll_back_node(const LinkedList* const ll)
 {
   assert(ll);
-  LinkedNode* node = ll->head;
-
-  while (node && node->next)
-    node = node->next;
-  return node;
+  return ll->tail;
 }
 
 void* ll_front(const LinkedList* const ll)
@@ -101,24 +97,29 @@ void ll_push_front(LinkedList* const ll, void* p)
   else
   {
     ll->head = n;
+    ll->tail = n;
   }
   ++(ll->size);
 }
 
 void ll_push_back(LinkedList* const ll, void* p)
 {
-  LinkedNode* back = ll_back_node(ll);
+  assert(ll);
+  assert(p);
 
   LinkedNode* n = ll_node_new();
   n->data = p;
 
-  if (back)
+  if (ll->tail)
   {
-    back->next = n;
-    n->prev = back;
+    ll->tail->next = n;
+    n->prev = ll->tail;
+
+    ll->tail = n;
   }
   else
   {
+    ll->tail = n;
     ll->head = n;
   }
   ++(ll->size);
@@ -179,15 +180,69 @@ void** ll_consolidate(const LinkedList* const ll, size_t* const length)
   void** ret = (void**)mt_calloc(ll->size, sizeof(void*));
 
   size_t inserted = 0;
-  for (LinkedNode* node = ll_front_node(ll); node; node = node->next, inserted++)
-    ret[inserted] = node->data;
+  for (LinkedNode* node = ll_front_node(ll); node; node = node->next)
+    ret[inserted++] = node->data;
 
   *length = ll->size;
   return ret;
 }
 #endif
 
+void swap(void** a, void** b)
+{
+  void* p = *a;
+  *a = *b;
+  *b = p;
+}
+void ll_bsort(LinkedList* const ll,
+             bool (*comparison)(const void* const a, const void* const b))
+{
+  assert(ll);
+  if (ll->size <= 1) // nothing to do
+    return;
+
+  bool swapped;
+  do
+  {
+    swapped = false;
+    LinkedNode* node = ll_front_node(ll);
+    while (node && node->next)
+    {
+      if ((*comparison)(node->data, node->next->data))
+      {
+        swap(&node->data, &node->next->data);
+        swapped = true;
+      }
+      node = node->next;
+    }
+  }
+  while (swapped);
+}
+
+void ll_clear(LinkedList* ll)
+{
+  while (ll->head)
+  {
+    LinkedNode* n = ll->head->next;
+    mt_free(ll->head->data);
+    mt_free(ll->head);
+    ll->head = n;
+  }
+  ll->tail = NULL;
+  ll->size = 0;
+}
 void ll_delete(LinkedList* ll)
+{
+  while (ll->head)
+  {
+    LinkedNode* n = ll->head->next;
+    mt_free(ll->head);
+    ll->head = n;
+  }
+  ll->tail = NULL;
+  ll->size = 0;
+}
+void ll_purge(LinkedList* ll)
 {
   while (ll_front_node(ll))
     ll_pop_front(ll);
@@ -204,13 +259,13 @@ void* ll_it_begin(LinkedIterator* const it, LinkedList* ll)
 {
   it->list = ll;
   it->current = ll_front_node(ll);
-  return it->current->data;
+  return it->current ? it->current->data : NULL;
 }
 void* ll_it_rbegin(LinkedIterator* const it, LinkedList* ll)
 {
   it->list = ll;
   it->current = ll_back_node(ll);
-  return it->current->data;
+  return it->current ? it->current->data : NULL;
 }
 
 void* ll_it_next(LinkedIterator* const it)
