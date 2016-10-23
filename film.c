@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 typedef enum rating_t
 {
-  NONE = 0,
+  R_NONE = 0,
   APPROVED,
   G,
   M,
-  N/A,
-  NOT RATED,
+  N_A,
+  NOT_RATED,
   PASSED,
   PG,
   PG_13,
@@ -17,9 +18,30 @@ typedef enum rating_t
   UNRATED
 } Rating;
 
+const char* const rating_n[] = {
+  "NONE",
+  "APPROVED",
+  "G",
+  "M",
+  "N/A",
+  "NOT RATED",
+  "PASSED",
+  "PG",
+  "PG-13",
+  "R",
+  "TV-14",
+  "UNRATED",
+  "X"
+};
+
+const char* const rating_toString(const Rating r)
+{
+  return rating_n[r];
+}
+
 typedef enum category_t
 {
-  NONE = 0,
+  C_NONE = 0,
   ACTION,
   ADVENTURE,
   ANIMATION,
@@ -29,14 +51,14 @@ typedef enum category_t
   DRAMA,
   FAMILY,
   FANTASY,
-  FILM-NOIR,
+  FILM_NOIR,
   HISTORY,
   HORROR,
   MUSIC,
   MUSICAL,
   MYSTERY,
   ROMANCE,
-  SCI-FI,
+  SCI_FI,
   SHORT,
   SPORT,
   THRILLER,
@@ -44,56 +66,35 @@ typedef enum category_t
   WESTERN
 } Category;
 
-char* category_toString(const Category c)
+const char* const category_n[] = {
+  "None",
+  "Action",
+  "Adventure",
+  "Animation",
+  "Biography",
+  "Comedy",
+  "Crime",
+  "Drama",
+  "Family",
+  "Fantasy",
+  "Film-Noir",
+  "History",
+  "Horror",
+  "Music",
+  "Musical",
+  "Mystery",
+  "Romance",
+  "Sci-Fi",
+  "Short",
+  "Sport",
+  "Thriller",
+  "War",
+  "Western"
+};
+
+const char* const category_toString(const Category c)
 {
-  switch (c)
-  {
-    case ACTION:
-      return "Action";
-    case ADVENTURE:
-      return "Adventure";
-    case ANIMATION:
-      return "Animation";
-    case BIOGRAPHY:
-      return "Biography";
-    case COMEDY:
-      return "Comedy";
-    case CRIME:
-      return "Crime";
-    case DRAMA:
-      return "Drama";
-    case FAMILY:
-      return "Family";
-    case FANTASY:
-      return "Fantasy";
-    case FILM-NOIR:
-      return "Film-Noir";
-    case HISTORY:
-      return "History";
-    case HORROR:
-      return "Horror";
-    case MUSIC:
-      return "Music";
-    case MUSICAL:
-      return "Musical";
-    case MYSTERY:
-      return "Mystery";
-    case ROMANCE:
-      return "Romance";
-    case SCI-FI:
-      return "Sci-Fi";
-    case SHORT:
-      return "Short";
-    case SPORT:
-      return "Sport";
-    case THRILLER:
-      return "Thriller";
-    case WAR:
-      return "War";
-    case WESTER:
-      return "Western";
-  }
-  return "NONE";
+  return category_n[c];
 }
 
 typedef struct film_t
@@ -133,20 +134,21 @@ void film_print(Film* film)
   if (!film)
     return;
 
-  printf("%s\n\tYear: %u\n\tRating: %i\n\tCategories", film->title, film->year, film->rating);
-  
-  intptr_t p = film->categories;
-  while (p && *p != NONE)
+  printf("%s\n\tYear: %u\n\tRating: %s\n\tCategories:", film->title, film->year, rating_toString(film->rating));
+
+  Category* p = film->categories;
+  while (p && *p != C_NONE)
     printf("\n\t· %s", category_toString(*(p++)));
 
-  printf("\n\tRun time: %u\n\tScore: %.1f\n", film->runtime, film->score);
+  printf("\n\tRun time: %u minutes\n\tScore: %.1f\n", film->runtime, film->score);
 }
 
 int main()
 {
   Category cats[4] = {COMEDY, HISTORY, WAR};
-  Film* f = film_new("Blackadder, the Film", 1986, Rating::PG_13, cats, 32, 9.8);
+  Film* f = film_new("Blackadder, the Film", 1986, PG_13, cats, 32, 9.8);
   film_print(f);
   film_delete(f);
 
+  return 0;
 }
