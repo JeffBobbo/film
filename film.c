@@ -1,22 +1,10 @@
+#include "film.h"
+
 #include <stdio.h>
 #include <stdint.h>
-#include <stdlib.h>
+#include <string.h>
 
-typedef enum rating_t
-{
-  R_NONE = 0,
-  APPROVED,
-  G,
-  M,
-  N_A,
-  NOT_RATED,
-  PASSED,
-  PG,
-  PG_13,
-  R,
-  TV_14,
-  UNRATED
-} Rating;
+#include "alloc.h"
 
 const char* const rating_n[] = {
   "NONE",
@@ -34,37 +22,19 @@ const char* const rating_n[] = {
   "X"
 };
 
-const char* const rating_toString(const Rating r)
+char* rating_toString(const Rating r)
 {
   return rating_n[r];
 }
-
-typedef enum category_t
+Rating rating_fromString(const char* const str)
 {
-  C_NONE = 0,
-  ACTION,
-  ADVENTURE,
-  ANIMATION,
-  BIOGRAPHY,
-  COMEDY,
-  CRIME,
-  DRAMA,
-  FAMILY,
-  FANTASY,
-  FILM_NOIR,
-  HISTORY,
-  HORROR,
-  MUSIC,
-  MUSICAL,
-  MYSTERY,
-  ROMANCE,
-  SCI_FI,
-  SHORT,
-  SPORT,
-  THRILLER,
-  WAR,
-  WESTERN
-} Category;
+  for (int i = 0; i < sizeof(rating_n); ++i)
+  {
+    if (strcmp(str, rating_n[i]) == 0)
+      return (Rating)i;
+  }
+  return R_NONE;
+}
 
 const char* const category_n[] = {
   "None",
@@ -92,9 +62,40 @@ const char* const category_n[] = {
   "Western"
 };
 
-const char* const category_toString(const Category c)
+char* category_toString(const Category c)
 {
   return category_n[c];
+}
+Category* category_fromString(const char* const str)
+{
+  size_t cats = 0;
+  for (size_t i = 0; i < strlen(str); ++i)
+  {
+    if (str[i] == '/')
+      ++cats;
+  }
+  if (cats)
+    ++cats;
+  else
+    return NULL;
+
+  Category* c = (Category*)mt_malloc(sizeof(Category) * cats);
+
+  size_t n = 0;
+  size_t p = 0;
+  for (size_t i = p; i < strlen(str); ++i)
+  {
+    if (str[i] == '/' || i == strlen(str)-1)
+    {
+      char buf[64];
+      memcpy(buf, str+p, i-p);
+      buf[i-p+1] = '\0';
+      p = i+1;
+      printf("%s\n", buf);
+    }
+  }
+
+  return c;
 }
 
 typedef struct film_t
@@ -109,7 +110,7 @@ typedef struct film_t
 
 Film* film_new(const char* title, uint16_t year, Rating rating, Category* categories, uint16_t runtime, double score)
 {
-  Film* film = (Film*)malloc(sizeof(Film));
+  Film* film = (Film*)mt_malloc(sizeof(Film));
 
   if (film)
   {
@@ -126,7 +127,7 @@ Film* film_new(const char* title, uint16_t year, Rating rating, Category* catego
 
 void film_delete(Film* film)
 {
-  free(film); // free(NULL) is no-op
+  mt_free(film); // free(NULL) is no-op
 }
 
 void film_print(Film* film)
@@ -141,14 +142,4 @@ void film_print(Film* film)
     printf("\n\t· %s", category_toString(*(p++)));
 
   printf("\n\tRun time: %u minutes\n\tScore: %.1f\n", film->runtime, film->score);
-}
-
-int main()
-{
-  Category cats[4] = {COMEDY, HISTORY, WAR};
-  Film* f = film_new("Blackadder, the Film", 1986, PG_13, cats, 32, 9.8);
-  film_print(f);
-  film_delete(f);
-
-  return 0;
 }

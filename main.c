@@ -4,6 +4,7 @@
 #include "alloc.h"
 #include "llist.h"
 #include "csv.h"
+#include "film.h"
 
 void runMemTest()
 {
@@ -51,6 +52,10 @@ int main()
 {
   //runMemTest();
   //llTest();
+
+  mt_free(category_fromString("Sport/Short/Musical"));
+
+  return 0;
   size_t l;
   LinkedList** csv = csv_read("films.txt", &l);
 
@@ -63,11 +68,15 @@ int main()
   LinkedIterator* it = mt_malloc(16);
   for (size_t i = 0; i < l; ++i)
   {
-    printf("Entry:\n");
-    char* d = (char*)ll_it_begin(it, csv[i]);
-    for (; d; d = (char*)ll_it_next(it))
-      printf("\t%s\n", d);
-    ll_purge(csv[i]);
+    LinkedList* entry = csv[i];
+    char* title = (char*)ll_it_begin(it, entry);
+    uint16_t year = atoi((char*)ll_it_next(it));
+    char* rating = (char*)ll_it_next(it);
+    char* categories = (char*)ll_it_next(it);
+    uint16_t runtime = atoi((char*)ll_it_next(it));
+    double score = atof(ll_it_next(it));
+    printf("%s:\n\t%u - %s - %s, %u, %0.1f\n", title, year, rating, categories, runtime, score);
+    ll_purge(entry);
   }
   mt_free(it);
   mt_free(csv);

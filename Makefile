@@ -1,6 +1,6 @@
 EXEC:=memtest
 
-MAIN = main.o alloc.o llist.o csv.o
+MAIN = main.o alloc.o llist.o csv.o film.o
 
 # general compiler settings
 CFLAGS=-std=gnu11 -Wall -Wextra -ggdb
