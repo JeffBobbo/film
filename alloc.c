@@ -11,6 +11,9 @@
 const char PADDING = 255;
 
 static int registeredExit = 0;
+static size_t allocCount = 0;
+static size_t allocAmount = 0;
+static size_t freeCount = 0;
 
 typedef struct reserved_t
 {
@@ -69,13 +72,11 @@ void* mt_malloc_(const size_t sz,
 
     r->next = root;
     root = r;
-//    if (root)
-//      last()->next = r;
-//    else
-//      root = r;
 
     if (!registeredExit)
       registeredExit = !atexit(mt_check);
+    ++allocCount;
+    allocAmount += sz;
 
     return r->data;
   }
@@ -106,13 +107,11 @@ void* mt_calloc_(const size_t n, const size_t sz,
 
     r->next = root;
     root = r;
-//    if (root)
-//      last()->next = r;
-//    else
-//      root = r;
 
     if (!registeredExit)
       registeredExit = !atexit(mt_check);
+    ++allocCount;
+    allocAmount += sz * n;
 
     return r->data;
   }
@@ -221,6 +220,7 @@ void mt_free(void* p)
     prev->next = node->next; // relink our linked list
   else
     root = node->next;
+  ++freeCount;
   free(node); // cull the node
 #else
   free(p);
@@ -232,6 +232,11 @@ void mt_check(void)
 #ifndef MEMTEST
   return;
 #endif
+
+  if (allocCount)
+    printf("Made %zu allocations totalling %zu bytes\n", allocCount, allocAmount);
+  if (freeCount)
+    printf("Made %zu frees\n", freeCount);
 
   size_t leaks = 0;
   size_t bytes = 0;
