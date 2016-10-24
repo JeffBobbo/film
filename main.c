@@ -51,7 +51,13 @@ int main()
 {
   //runMemTest();
   //llTest();
-  CSV* csv = csv_read("film_short.txt");
+  CSV* csv = csv_read("films.txt");
+
+  if (!csv)
+  {
+    fprintf(stderr, "Failed to open file\n");
+    return 1;
+  }
 
   LinkedIterator* it = mt_malloc(16);
   LinkedList* row = (LinkedList*)ll_it_begin(it, csv->data);
