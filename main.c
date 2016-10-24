@@ -51,7 +51,8 @@ int main()
 {
   //runMemTest();
   //llTest();
-  CSV* csv = csv_read("films.txt");
+  size_t l;
+  LinkedList** csv = csv_read("films.txt", &l);
 
   if (!csv)
   {
@@ -60,17 +61,14 @@ int main()
   }
 
   LinkedIterator* it = mt_malloc(16);
-  LinkedList* row = (LinkedList*)ll_it_begin(it, csv->data);
-  for (; row; row = (LinkedList*)ll_it_next(it))
+  for (size_t i = 0; i < l; ++i)
   {
     printf("Entry:\n");
-    LinkedIterator* it2 = mt_malloc(16);
-    char* d = (char*)ll_it_begin(it2, row);
-    for (; d; d = (char*)ll_it_next(it2))
+    char* d = (char*)ll_it_begin(it, csv[i]);
+    for (; d; d = (char*)ll_it_next(it))
       printf("\t%s\n", d);
-    mt_free(it2);
-    ll_clear(row);
+    ll_purge(csv[i]);
   }
   mt_free(it);
-  csv_free(csv);
+  mt_free(csv);
 }

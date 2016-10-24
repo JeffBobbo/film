@@ -3,13 +3,6 @@
 
 #include "llist.h"
 
-typedef struct csv_t
-{
-  LinkedList* data;
-} CSV;
-
-
-CSV* csv_read(const char* const filename);
-void csv_free(CSV* const csv);
+LinkedList** csv_read(const char* const filename, size_t* const c);
 
 #endif

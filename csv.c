@@ -6,19 +6,23 @@
 #include "alloc.h"
 #include "llist.h"
 
-CSV* csv_read(const char* const filename)
+LinkedList** csv_read(const char* const filename, size_t* const c)
 {
+  *c = 0;
   FILE* f = fopen(filename, "r");
   if (!f)
     return NULL;
 
-  CSV* csv = (CSV*)mt_malloc(sizeof(CSV));
+  char line[256];
+  size_t lineCount = 0;
+  while (fgets(line, sizeof(line), f))
+    ++lineCount;
+
+  LinkedList** csv = (LinkedList**)malloc(sizeof(LinkedList*) * lineCount);
   if (!csv)
     return NULL;
 
-  csv->data = ll_new();
-
-  char line[256];
+  rewind(f); // go back to the beginning
   while (fgets(line, sizeof(line), f))
   {
     LinkedList* entry = ll_new();
@@ -55,7 +59,7 @@ CSV* csv_read(const char* const filename)
       }
     }
     if (ll_size(entry))
-      ll_push_back(csv->data, entry);
+      csv[(*c)++] = entry;
   }
   fclose(f);
   return csv;
