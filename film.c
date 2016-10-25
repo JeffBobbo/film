@@ -83,10 +83,7 @@ Category* category_fromStrings(const char* const str)
     if (str[i] == '/')
       ++cats;
   }
-  if (cats)
-    ++cats;
-  else
-    return NULL;
+  ++cats;
 
   Category* c = (Category*)mt_malloc(sizeof(Category) * (cats+1));
 
@@ -140,8 +137,8 @@ void film_delete(Film* film)
 {
   if (!film) // No film? No work
     return;
-  mt_free((void*)film->title);
-  mt_free((void*)film->categories);
+  mt_free(film->title);
+  mt_free(film->categories);
   mt_free(film);
 }
 
@@ -157,4 +154,36 @@ void film_print(Film* film)
     printf("\n\t· %s", category_toString(*(p++)));
 
   printf("\n\tRun time: %u minutes\n\tScore: %.1f\n", film->runtime, film->score);
+}
+
+const char* film_getTitle(const Film* const film)
+{
+  return film ? film->title : "";
+}
+uint16_t film_getYear(const Film* const film)
+{
+  return film ? film->year : 0;
+}
+uint16_t film_getRuntime(const Film* const film)
+{
+  return film ? film->runtime : 0;
+}
+double film_getScore(const Film* const film)
+{
+  return film ? film->score : 0.0;
+}
+
+bool film_hasCategory(const Film* const film, const Category cat)
+{
+  if (!film)
+    return false;
+
+  Category* p = film->categories;
+  while (*p)
+  {
+    if (*p == cat)
+      return true;
+    ++p;
+  }
+  return false;
 }

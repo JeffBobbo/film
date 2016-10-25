@@ -195,7 +195,7 @@ void swap(void** a, void** b)
   *b = p;
 }
 void ll_bsort(LinkedList* const ll,
-             bool (*comparison)(const void* const a, const void* const b))
+             int32_t (*comparison)(const void* const a, const void* const b))
 {
   assert(ll);
   if (ll->size <= 1) // nothing to do
@@ -208,7 +208,7 @@ void ll_bsort(LinkedList* const ll,
     LinkedNode* node = ll_front_node(ll);
     while (node && node->next)
     {
-      if ((*comparison)(node->data, node->next->data))
+      if ((*comparison)(node->data, node->next->data) > 0)
       {
         swap(&node->data, &node->next->data);
         swapped = true;
@@ -247,12 +247,6 @@ void ll_purge(LinkedList* ll)
   }
   mt_free(ll);
 }
-
-typedef struct linkediterator_t
-{
-  LinkedList* list;
-  LinkedNode* current;
-} LinkedIterator;
 
 void* ll_it_begin(LinkedIterator* const it, LinkedList* ll)
 {

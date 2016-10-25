@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 typedef struct linkedlist_t LinkedList;
+typedef struct linkednode_t LinkedNode;
 
 /**
  * Constructs and returns a new, empty, doubly linked list
@@ -78,7 +79,7 @@ void** ll_consolidate(const LinkedList* const ll, size_t* const length);
  * @param ll The linked list to sort
  * @param comparison A function pointer for comparing elements
  */
-void ll_bsort(LinkedList* const ll, bool (*comparison)
+void ll_bsort(LinkedList* const ll, int32_t (*comparison)
                                   (const void* const a, const void* const b));
 
 /**
@@ -103,7 +104,11 @@ void ll_purge(LinkedList* ll);
 /**
  * Iterator type for iterating though a linked list in linear time
  */
-typedef struct linkediterator_t LinkedIterator;
+typedef struct linkediterator_t
+{
+  LinkedList* list;
+  LinkedNode* current;
+} LinkedIterator;
 
 /**
  * Begins iteration at the front of the list, can be called

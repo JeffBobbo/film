@@ -5,6 +5,7 @@
 #include "llist.h"
 #include "csv.h"
 #include "film.h"
+#include "moviedatabase.h"
 
 void runMemTest()
 {
@@ -18,7 +19,7 @@ void runMemTest()
   p[0] = 'H';
 }
 
-bool comparison(const void* const a, const void* const b)
+int32_t comparison(const void* const a, const void* const b)
 {
   return (*(int*)a > *(int*)b ? 1 : 0);
   //return (*(int*)a < *(int*)b ? -1 : (*(int*)a > *(int*)b ? 1 : 0));
@@ -36,16 +37,15 @@ void llTest()
   }
   printf("List size is %zu\n", ll_size(ll));
 
-  LinkedIterator* it = mt_malloc(16);
-  for (int* i = (int*)ll_it_begin(it, ll); i; i = (int*)ll_it_next(it))
+  LinkedIterator it;
+  for (int* i = (int*)ll_it_begin(&it, ll); i; i = (int*)ll_it_next(&it))
     printf("%i\n", *i);
   ll_bsort(ll, &comparison);
   printf("And sorted...\n");
-  for (int* i = (int*)ll_it_begin(it, ll); i; i = (int*)ll_it_next(it))
+  for (int* i = (int*)ll_it_begin(&it, ll); i; i = (int*)ll_it_next(&it))
     printf("%i\n", *i);
-  mt_free(it);
 
-  ll_purge(ll);
+  ll_delete(ll);
 }
 
 int main()
@@ -53,38 +53,8 @@ int main()
   //runMemTest();
   //llTest();
 
-  Category* c = category_fromStrings("Sport/Short/Musical");
-  Category* p = c;
-  while (p)
-  {
-    printf("%s\n", category_toString(*p));
-    ++p;
-  }
-  mt_free(c);
+  mdb_loadDB("films.txt");
 
-  return 0;
-  size_t l;
-  LinkedList** csv = csv_read("films.txt", &l);
-
-  if (!csv)
-  {
-    fprintf(stderr, "Failed to open file\n");
-    return 1;
-  }
-
-  LinkedIterator* it = mt_malloc(16);
-  for (size_t i = 0; i < l; ++i)
-  {
-    LinkedList* entry = csv[i];
-    char* title = (char*)ll_it_begin(it, entry);
-    uint16_t year = atoi((char*)ll_it_next(it));
-    char* rating = (char*)ll_it_next(it);
-    char* categories = (char*)ll_it_next(it);
-    uint16_t runtime = atoi((char*)ll_it_next(it));
-    double score = atof(ll_it_next(it));
-    printf("%s:\n\t%u - %s - %s, %u, %0.1f\n", title, year, rating, categories, runtime, score);
-    ll_purge(entry);
-  }
-  mt_free(it);
-  mt_free(csv);
+  task(5);
+  mdb_freeDB();
 }

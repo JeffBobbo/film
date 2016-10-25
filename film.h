@@ -2,6 +2,7 @@
 #define FILM_H_INCLUDE
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum rating_t
 {
@@ -57,5 +58,12 @@ Film* film_new(const char* title, uint16_t year, Rating rating,
                Category* categories, uint16_t runtime, double score);
 void film_delete(Film* film);
 void film_print(Film* film);
+
+const char* film_getTitle(const Film* const film);
+uint16_t film_getYear(const Film* const film);
+uint16_t film_getRuntime(const Film* const film);
+double film_getScore(const Film* const film);
+
+bool film_hasCategory(const Film* const film, const Category cat);
 
 #endif
