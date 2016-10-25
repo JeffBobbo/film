@@ -98,9 +98,8 @@ Category* category_fromStrings(const char* const str)
     {
       char buf[64];
       memcpy(buf, str+p, i-p);
-      buf[i-p+1] = '\0';
+      buf[i-p] = '\0';
       p = i+1;
-      printf("%s\n", buf);
       c[n] = category_fromString(buf);
       ++n;
     }
@@ -111,7 +110,7 @@ Category* category_fromStrings(const char* const str)
 
 typedef struct film_t
 {
-  const char* title;
+  char* title;
   uint16_t year; // assuming 32k years is enough?
   Rating rating;
   Category* categories; // for now, allocated array
@@ -125,7 +124,8 @@ Film* film_new(const char* title, uint16_t year, Rating rating, Category* catego
 
   if (film)
   {
-    film->title = title;
+    film->title = mt_malloc(strlen(title)+1);
+    strcpy(film->title, title);
     film->year = year;
     film->rating = rating;
     film->categories = categories;
@@ -138,7 +138,11 @@ Film* film_new(const char* title, uint16_t year, Rating rating, Category* catego
 
 void film_delete(Film* film)
 {
-  mt_free(film); // free(NULL) is no-op
+  if (!film) // No film? No work
+    return;
+  mt_free((void*)film->title);
+  mt_free((void*)film->categories);
+  mt_free(film);
 }
 
 void film_print(Film* film)
