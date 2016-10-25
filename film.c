@@ -28,7 +28,7 @@ const char* rating_toString(const Rating r)
 }
 Rating rating_fromString(const char* const str)
 {
-  for (size_t i = 0; i < sizeof(rating_n); ++i)
+  for (size_t i = APPROVED; i < sizeof(rating_n); ++i)
   {
     if (strcmp(str, rating_n[i]) == 0)
       return (Rating)i;
@@ -66,7 +66,16 @@ const char* category_toString(const Category c)
 {
   return category_n[c];
 }
-Category* category_fromString(const char* const str)
+Category category_fromString(const char* const str)
+{
+  for (size_t i = ACTION; i < sizeof(category_n); ++i)
+  {
+    if (strcmp(str, category_n[i]) == 0)
+      return (Category)i;
+  }
+  return C_NONE;
+}
+Category* category_fromStrings(const char* const str)
 {
   size_t cats = 0;
   for (size_t i = 0; i < strlen(str); ++i)
@@ -79,7 +88,7 @@ Category* category_fromString(const char* const str)
   else
     return NULL;
 
-  Category* c = (Category*)mt_malloc(sizeof(Category) * cats);
+  Category* c = (Category*)mt_malloc(sizeof(Category) * (cats+1));
 
   size_t n = 0;
   size_t p = 0;
@@ -92,10 +101,11 @@ Category* category_fromString(const char* const str)
       buf[i-p+1] = '\0';
       p = i+1;
       printf("%s\n", buf);
+      c[n] = category_fromString(buf);
       ++n;
     }
   }
-
+  c[n] = 0;
   return c;
 }
 

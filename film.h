@@ -47,7 +47,8 @@ typedef enum category_t
 const char* rating_toString(const Rating r);
 const char* category_toString(const Category c);
 Rating rating_fromString(const char* const str);
-Category* category_fromString(const char* const str);
+Category category_fromString(const char* const str);
+Category* category_fromStrings(const char* const str);
 
 
 typedef struct film_t Film;

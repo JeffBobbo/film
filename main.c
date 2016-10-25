@@ -53,7 +53,14 @@ int main()
   //runMemTest();
   //llTest();
 
-  mt_free(category_fromString("Sport/Short/Musical"));
+  Category* c = category_fromStrings("Sport/Short/Musical");
+  Category* p = c;
+  while (p)
+  {
+    printf("%s\n", category_toString(*p));
+    ++p;
+  }
+  mt_free(c);
 
   return 0;
   size_t l;
