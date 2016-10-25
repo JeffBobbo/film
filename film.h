@@ -44,8 +44,8 @@ typedef enum category_t
   WAR,
   WESTERN
 } Category;
-char* rating_toString(const Rating r);
-char* category_toString(const Category c);
+const char* rating_toString(const Rating r);
+const char* category_toString(const Category c);
 Rating rating_fromString(const char* const str);
 Category* category_fromString(const char* const str);
 

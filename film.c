@@ -22,13 +22,13 @@ const char* const rating_n[] = {
   "X"
 };
 
-char* rating_toString(const Rating r)
+const char* rating_toString(const Rating r)
 {
   return rating_n[r];
 }
 Rating rating_fromString(const char* const str)
 {
-  for (int i = 0; i < sizeof(rating_n); ++i)
+  for (size_t i = 0; i < sizeof(rating_n); ++i)
   {
     if (strcmp(str, rating_n[i]) == 0)
       return (Rating)i;
@@ -62,7 +62,7 @@ const char* const category_n[] = {
   "Western"
 };
 
-char* category_toString(const Category c)
+const char* category_toString(const Category c)
 {
   return category_n[c];
 }
@@ -83,15 +83,16 @@ Category* category_fromString(const char* const str)
 
   size_t n = 0;
   size_t p = 0;
-  for (size_t i = p; i < strlen(str); ++i)
+  for (size_t i = p; i < strlen(str)+1; ++i)
   {
-    if (str[i] == '/' || i == strlen(str)-1)
+    if (str[i] == '/' || i == strlen(str))
     {
       char buf[64];
       memcpy(buf, str+p, i-p);
       buf[i-p+1] = '\0';
       p = i+1;
       printf("%s\n", buf);
+      ++n;
     }
   }
 

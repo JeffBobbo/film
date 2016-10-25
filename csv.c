@@ -64,9 +64,3 @@ LinkedList** csv_read(const char* const filename, size_t* const c)
   fclose(f);
   return csv;
 }
-
-void csv_free(CSV* const csv)
-{
-  ll_purge(csv->data);
-  mt_free(csv);
-}
