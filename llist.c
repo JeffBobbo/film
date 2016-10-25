@@ -233,19 +233,18 @@ void ll_clear(LinkedList* ll)
 }
 void ll_delete(LinkedList* ll)
 {
+  while (ll_front_node(ll))
+    ll_pop_front(ll);
+  mt_free(ll);
+}
+void ll_purge(LinkedList* ll)
+{
   while (ll->head)
   {
     LinkedNode* n = ll->head->next;
     mt_free(ll->head);
     ll->head = n;
   }
-  ll->tail = NULL;
-  ll->size = 0;
-}
-void ll_purge(LinkedList* ll)
-{
-  while (ll_front_node(ll))
-    ll_pop_front(ll);
   mt_free(ll);
 }
 
