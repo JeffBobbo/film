@@ -53,7 +53,8 @@ Category* category_fromStrings(const char* const str);
 
 typedef struct film_t Film;
 
-Film* film_new(const char* title, uint16_t, Rating rating, Category* categories, uint16_t runtime, double score);
+Film* film_new(const char* title, uint16_t year, Rating rating,
+               Category* categories, uint16_t runtime, double score);
 void film_delete(Film* film);
 void film_print(Film* film);
 
