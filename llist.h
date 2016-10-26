@@ -8,6 +8,16 @@ typedef struct linkedlist_t LinkedList;
 typedef struct linkednode_t LinkedNode;
 
 /**
+ * Iterator type for iterating though a linked list in linear time
+ */
+typedef struct linkediterator_t
+{
+  LinkedList* list;
+  LinkedNode* current;
+  void* data;
+} LinkedIterator;
+
+/**
  * Constructs and returns a new, empty, doubly linked list
  * @return linked list
  */
@@ -61,6 +71,10 @@ void ll_pop_front(LinkedList* const ll);
  */
 void ll_pop_back(LinkedList* const ll);
 
+void ll_insert(LinkedIterator* const it, void* p);
+
+void ll_erase(LinkedIterator* const it);
+
 /**
  * Retrieve a piece of data in the list at a specific index.
  * Note that this is a O(n) operation, and therefore not suitable for
@@ -102,28 +116,19 @@ void ll_purge(LinkedList* ll);
 
 
 /**
- * Iterator type for iterating though a linked list in linear time
- */
-typedef struct linkediterator_t
-{
-  LinkedList* list;
-  LinkedNode* current;
-} LinkedIterator;
-
-/**
  * Begins iteration at the front of the list, can be called
  * as many times as you like on a single iterator or list to restart iteration
  * @param it Iterator struct to control iteration
  * @param ll List to iterate over
  */
-void* ll_it_begin(LinkedIterator* const it, LinkedList* ll);
+const LinkedIterator* ll_it_begin(LinkedList* ll);
 /**
  * Begins iteration at the back of the list, can be called
  * as many times as you like on a single iterator or list to restart iteration
  * @param it Iterator struct to control iteration
  * @param ll List to iterate over
  */
-void* ll_it_rbegin(LinkedIterator* const it, LinkedList* ll);
+const LinkedIterator* ll_it_rbegin(LinkedList* ll);
 /**
  * Steps iteration forwards though a list. Returns null at the end of the list
  * @param it Iterator to step forwards

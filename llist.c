@@ -152,6 +152,43 @@ void ll_pop_back(LinkedList* const ll)
   --(ll->size);
 }
 
+void ll_insert(LinkedIterator* const it, void* p)
+{
+  if (!it)
+    return;
+  if (!it->list)
+    return;
+
+  LinkedNode* node = ll_new_new();
+  node->data = p;
+  LinkedNode* target = it->current;
+  if (target->prev)
+  {
+    target->prev->next = node;
+    node->prev = target->prev;
+  }
+  if (target->next)
+  {
+    target->next->prev = node;
+    node->next = target->next;
+  }
+  ++(it->list->size);
+}
+
+void ll_erase(LinkedIterator* const it)
+{
+  if (!it)
+    return;
+  if (!it->list)
+    return;
+
+  it->current->prev->next = it->current->next;
+  it->current->next->prev = it->current->prev;
+
+  ll_node_delete(it->current);
+  --(it->list->size);
+}
+
 LinkedNode* ll_at_node(const LinkedList* const ll, const size_t n)
 {
   assert(ll);

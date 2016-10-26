@@ -51,10 +51,12 @@ void llTest()
 int main()
 {
   //runMemTest();
-  //llTest();
+  llTest();
 
+  /*
   mdb_loadDB("films.txt");
 
   task(5);
   mdb_freeDB();
+  */
 }
