@@ -285,34 +285,24 @@ void ll_purge(LinkedList* ll)
   mt_free(ll);
 }
 
-void* ll_it_begin(LinkedIterator* const it, LinkedList* ll)
+LinkedIterator ll_it_begin(LinkedList* ll)
 {
-  it->list = ll;
-  it->current = ll_front_node(ll);
+  LinkedIterator it = {ll, ll_front_node(ll)};
   return it->current ? it->current->data : NULL;
 }
-void* ll_it_rbegin(LinkedIterator* const it, LinkedList* ll)
+LinkedIterator ll_it_rbegin(LinkedList* ll)
 {
-  it->list = ll;
-  it->current = ll_back_node(ll);
+  LinkedIterator it = {ll, ll_back_node(ll)};
   return it->current ? it->current->data : NULL;
 }
 
 void* ll_it_next(LinkedIterator* const it)
 {
-  if (it->current->next)
-  {
-    it->current = it->current->next;
-    return it->current->data;
-  }
-  return NULL;
+  it->current = it->current->next;
+  return it->current ? it->current->data : NULL;
 }
 void* ll_it_rnext(LinkedIterator* const it)
 {
-  if (it->current->prev)
-  {
-    it->current = it->current->prev;
-    return it->current->data;
-  }
-  return NULL;
+  it->current = it->current->prev;
+  return it->current ? it->current->data : NULL;
 }

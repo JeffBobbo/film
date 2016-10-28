@@ -37,13 +37,16 @@ void llTest()
   }
   printf("List size is %zu\n", ll_size(ll));
 
-  LinkedIterator it;
-  for (int* i = (int*)ll_it_begin(&it, ll); i; i = (int*)ll_it_next(&it))
-    printf("%i\n", *i);
+  for (LinkedIterator it = ll_it_begin(ll); ll_it_valid(&it); ll_it_next(&it))
+  {
+    if (*(int*)it.data == 3)
+      ll_erase(ll, it);
+    printf("%i\n", *(int*)it.data);
+  }
   ll_bsort(ll, &comparison);
   printf("And sorted...\n");
-  for (int* i = (int*)ll_it_begin(&it, ll); i; i = (int*)ll_it_next(&it))
-    printf("%i\n", *i);
+  for (LinkedIterator it = ll_it_begin(ll); ll_it_valid(&it); ll_it_next(&it))
+    printf("%i\n", *(int*)it.data);
 
   ll_delete(ll);
 }

@@ -82,7 +82,7 @@ void ll_erase(LinkedIterator* const it);
  * @param ll The linked list to get data from
  * @param n  The index
  */
-void* ll_at(const LinkedList* const ll, const size_t n);
+LinkedIterator ll_at(const LinkedList* const ll, const size_t n);
 
 #ifdef LL_CONSOLIDATE
 void** ll_consolidate(const LinkedList* const ll, size_t* const length);
@@ -121,14 +121,14 @@ void ll_purge(LinkedList* ll);
  * @param it Iterator struct to control iteration
  * @param ll List to iterate over
  */
-const LinkedIterator* ll_it_begin(LinkedList* ll);
+LinkedIterator ll_it_begin(LinkedList* ll);
 /**
  * Begins iteration at the back of the list, can be called
  * as many times as you like on a single iterator or list to restart iteration
  * @param it Iterator struct to control iteration
  * @param ll List to iterate over
  */
-const LinkedIterator* ll_it_rbegin(LinkedList* ll);
+LinkedIterator ll_it_rbegin(LinkedList* ll);
 /**
  * Steps iteration forwards though a list. Returns null at the end of the list
  * @param it Iterator to step forwards
@@ -141,5 +141,6 @@ void* ll_it_next(LinkedIterator* const it);
  * @return Data of the next node, or NULL at the end of the list
  */
 void* ll_it_rnext(LinkedIterator* const it);
+inline bool ll_it_valid(const LinkedIterator* const it) { return it ? it->current : NULL; };
 
 #endif
