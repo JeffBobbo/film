@@ -164,6 +164,10 @@ uint16_t film_getYear(const Film* const film)
 {
   return film ? film->year : 0;
 }
+Rating film_getRating(const Film* const film)
+{
+  return film ? film->rating : R_NONE;
+}
 uint16_t film_getRuntime(const Film* const film)
 {
   return film ? film->runtime : 0;

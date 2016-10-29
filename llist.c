@@ -159,7 +159,7 @@ void ll_insert(LinkedIterator* const it, void* p)
   if (!it->list)
     return;
 
-  LinkedNode* node = ll_new_new();
+  LinkedNode* node = ll_node_new();
   node->data = p;
   LinkedNode* target = it->current;
   if (target->prev)
@@ -175,18 +175,21 @@ void ll_insert(LinkedIterator* const it, void* p)
   ++(it->list->size);
 }
 
-void ll_erase(LinkedIterator* const it)
+void* ll_erase(LinkedIterator* const it)
 {
   if (!it)
-    return;
+    return NULL;
   if (!it->list)
-    return;
+    return NULL;
 
   it->current->prev->next = it->current->next;
   it->current->next->prev = it->current->prev;
 
-  ll_node_delete(it->current);
+  void* p = it->current->data;
+  mt_free(it->current);
+  it->current = NULL;
   --(it->list->size);
+  return p;
 }
 
 LinkedNode* ll_at_node(const LinkedList* const ll, const size_t n)
@@ -203,10 +206,12 @@ LinkedNode* ll_at_node(const LinkedList* const ll, const size_t n)
 }
 
 
-void* ll_at(const LinkedList* const ll, const size_t n)
+LinkedIterator ll_at(const LinkedList* const ll, const size_t n)
 {
-  LinkedNode* at = ll_at_node(ll, n);
-  return at ? at->data : NULL;
+  LinkedIterator it = ll_it_begin((LinkedList*)ll);
+  for (size_t i = 0; it.current && i < n; ++i)
+    ll_it_next(&it);
+  return it;
 }
 
 #ifdef LL_CONSOLIDATE
@@ -288,12 +293,12 @@ void ll_purge(LinkedList* ll)
 LinkedIterator ll_it_begin(LinkedList* ll)
 {
   LinkedIterator it = {ll, ll_front_node(ll)};
-  return it->current ? it->current->data : NULL;
+  return it;
 }
 LinkedIterator ll_it_rbegin(LinkedList* ll)
 {
   LinkedIterator it = {ll, ll_back_node(ll)};
-  return it->current ? it->current->data : NULL;
+  return it;
 }
 
 void* ll_it_next(LinkedIterator* const it)
@@ -305,4 +310,14 @@ void* ll_it_rnext(LinkedIterator* const it)
 {
   it->current = it->current->prev;
   return it->current ? it->current->data : NULL;
+}
+
+bool ll_it_valid(const LinkedIterator* const it)
+{
+  return it ? it->current : NULL;
+}
+
+void* ll_it_data(const LinkedIterator* const it)
+{
+  return it && it->current ? it->current->data : NULL;
 }

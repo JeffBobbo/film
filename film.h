@@ -61,6 +61,7 @@ void film_print(Film* film);
 
 const char* film_getTitle(const Film* const film);
 uint16_t film_getYear(const Film* const film);
+Rating film_getRating(const Film* const film);
 uint16_t film_getRuntime(const Film* const film);
 double film_getScore(const Film* const film);
 

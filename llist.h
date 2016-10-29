@@ -14,7 +14,6 @@ typedef struct linkediterator_t
 {
   LinkedList* list;
   LinkedNode* current;
-  void* data;
 } LinkedIterator;
 
 /**
@@ -73,7 +72,7 @@ void ll_pop_back(LinkedList* const ll);
 
 void ll_insert(LinkedIterator* const it, void* p);
 
-void ll_erase(LinkedIterator* const it);
+void* ll_erase(LinkedIterator* const it);
 
 /**
  * Retrieve a piece of data in the list at a specific index.
@@ -141,6 +140,6 @@ void* ll_it_next(LinkedIterator* const it);
  * @return Data of the next node, or NULL at the end of the list
  */
 void* ll_it_rnext(LinkedIterator* const it);
-inline bool ll_it_valid(const LinkedIterator* const it) { return it ? it->current : NULL; };
-
+bool ll_it_valid(const LinkedIterator* const it);
+void* ll_it_data(const LinkedIterator* const it);
 #endif

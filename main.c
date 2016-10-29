@@ -32,21 +32,17 @@ void llTest()
   for (int i = 0; i < 10; ++i)
   {
     int* p = mt_malloc(sizeof(int));
-    *p = rand() % 100;
+    *p = 10-i;
     ll_push_back(ll, p);
   }
   printf("List size is %zu\n", ll_size(ll));
 
   for (LinkedIterator it = ll_it_begin(ll); ll_it_valid(&it); ll_it_next(&it))
-  {
-    if (*(int*)it.data == 3)
-      ll_erase(ll, it);
-    printf("%i\n", *(int*)it.data);
-  }
+    printf("%i\n", *(int*)ll_it_data(&it));
   ll_bsort(ll, &comparison);
   printf("And sorted...\n");
   for (LinkedIterator it = ll_it_begin(ll); ll_it_valid(&it); ll_it_next(&it))
-    printf("%i\n", *(int*)it.data);
+    printf("%i\n", *(int*)ll_it_data(&it));
 
   ll_delete(ll);
 }
@@ -54,12 +50,10 @@ void llTest()
 int main()
 {
   //runMemTest();
-  llTest();
+  //llTest();
 
-  /*
   mdb_loadDB("films.txt");
 
-  task(5);
+  task(6);
   mdb_freeDB();
-  */
 }

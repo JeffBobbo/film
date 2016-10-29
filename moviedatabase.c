@@ -24,11 +24,11 @@ void mdb_loadDB(const char* const path)
   if (!films)
     films = ll_new();
 
-  LinkedIterator it;
   for (size_t i = 0; i < entries; ++i)
   {
     LinkedList* entry = csv[i];
-    char* title = (char*)ll_it_begin(&it, entry);
+    LinkedIterator it = ll_it_begin(entry);
+    char* title = (char*)ll_it_data(&it);
     uint16_t year = atoi((char*)ll_it_next(&it));
     char* rating = (char*)ll_it_next(&it);
     char* categories = (char*)ll_it_next(&it);
@@ -49,9 +49,9 @@ void mdb_freeDB()
     return;
 
   // delete each film manually
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
-    film_delete(f);
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
+    film_delete(ll_it_data(&it));
   // purge the linked list, all the data pointers are invalid now
   ll_purge(films);
 }
@@ -61,9 +61,9 @@ void mdb_printAll()
   if (!films)
     return;
 
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
-    film_print(f);
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
+    film_print(ll_it_data(&it));
 }
 
 int32_t alphanumeric(const void* const a, const void* const b)
@@ -95,16 +95,17 @@ void task2()
 {
   LinkedList* noir = ll_new();
 
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
   {
+    Film* f = (Film*)ll_it_data(&it);
     if (film_hasCategory(f, FILM_NOIR))
       ll_push_front(noir, f);
   }
 
   ll_bsort(noir, runtime);
-  Film* third = ll_at(noir, 2);
-  film_print(third);
+  LinkedIterator third = ll_at(noir, 2);
+  film_print((Film*)ll_it_data(&third));
   ll_purge(noir);
 }
 
@@ -112,9 +113,10 @@ void task3()
 {
   LinkedList* scifi = ll_new();
 
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
   {
+    Film* f = (Film*)ll_it_data(&it);
     if (film_hasCategory(f, SCI_FI))
     {
       film_print(f);
@@ -123,8 +125,8 @@ void task3()
   }
 
   ll_bsort(scifi, score);
-  Film* tenth = ll_at(scifi, 9);
-  film_print(tenth);
+  LinkedIterator tenth = ll_at(scifi, 9);
+  film_print(ll_it_data(&tenth));
   ll_purge(scifi);
 }
 
@@ -132,9 +134,10 @@ void task4()
 {
   Film* highest = NULL;
 
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
   {
+    Film* f = (Film*)ll_it_data(&it);
     if (!highest || film_getScore(f) > film_getScore(highest))
       highest = f;
   }
@@ -146,9 +149,10 @@ void task5()
 {
   Film* shortest = NULL;
 
-  LinkedIterator it;
-  for (Film* f = ll_it_begin(&it, films); f; f = ll_it_next(&it))
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
   {
+    Film* f = (Film*)ll_it_data(&it);
     if (!shortest || strlen(film_getTitle(f)) < strlen(film_getTitle(shortest)))
       shortest = f;
   }
@@ -159,7 +163,25 @@ void task5()
 
 void task6()
 {
-  // TODO
+  LinkedIterator itp;
+  for (LinkedIterator it = ll_it_begin(films);
+       ll_it_valid(&it); ll_it_next(&it))
+  {
+    Film* f = (Film*)ll_it_data(&it);
+    if (film_getRating(f) == R)
+    {
+      ll_erase(&it);
+      film_delete(f);
+      it = itp;
+    }
+    else
+    {
+      itp = it;
+    }
+  }
+
+  printf("After deleting all R rated films, there are %zu films.\n",
+         ll_size(films));
 }
 
 void task(const int n)
@@ -181,11 +203,9 @@ void task(const int n)
     case 5:
       task5();
     break;
-/*
     case 6:
       task6();
     break;
-*/
   }
   return;
 }
