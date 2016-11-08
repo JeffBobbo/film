@@ -64,32 +64,30 @@ const char* const category_n[] = {
 
 const char* category_toString(const Category c)
 {
-  return category_n[c];
+  for (size_t i = 0; i < sizeof(category_n); ++i)
+  {
+    if ((Category)(1 << i) == c)
+      return category_n[i];
+  }
+  return category_n[0];
 }
 Category category_fromString(const char* const str)
 {
-  for (size_t i = ACTION; i < sizeof(category_n); ++i)
+  for (size_t i = 0; i < sizeof(category_n); ++i)
   {
     if (strcmp(str, category_n[i]) == 0)
-      return (Category)i;
+      return (Category)(1 << i);
   }
   return C_NONE;
 }
-Category* category_fromStrings(const char* const str)
+CategoryType category_fromStrings(const char* const str)
 {
-  size_t cats = 0;
-  for (size_t i = 0; i < strlen(str); ++i)
-  {
-    if (str[i] == '/')
-      ++cats;
-  }
-  ++cats;
-
-  Category* c = (Category*)mt_malloc(sizeof(Category) * (cats+1));
-
-  size_t n = 0;
+  CategoryType ret = 0x0;
   size_t p = 0;
-  for (size_t i = p; i < strlen(str)+1; ++i)
+  // <= to not trim out the last one
+  // could use strtok, but that requires either a full copy or mutating the
+  // original data
+  for (size_t i = p; i <= strlen(str); ++i)
   {
     if (str[i] == '/' || i == strlen(str))
     {
@@ -97,12 +95,10 @@ Category* category_fromStrings(const char* const str)
       memcpy(buf, str+p, i-p);
       buf[i-p] = '\0';
       p = i+1;
-      c[n] = category_fromString(buf);
-      ++n;
+      ret |= category_fromString(buf);
     }
   }
-  c[n] = 0;
-  return c;
+  return ret;
 }
 
 typedef struct film_t
@@ -110,12 +106,13 @@ typedef struct film_t
   char* title;
   uint16_t year; // assuming 32k years is enough?
   Rating rating;
-  Category* categories; // for now, allocated array
+  CategoryType categories;
   uint16_t runtime; // in minutes
   double score; // how good (or bad) is this film
 } Film;
 
-Film* film_new(const char* title, uint16_t year, Rating rating, Category* categories, uint16_t runtime, double score)
+Film* film_new(const char* title, uint16_t year, Rating rating,
+               CategoryType categories, uint16_t runtime, double score)
 {
   Film* film = (Film*)mt_malloc(sizeof(Film));
 
@@ -138,7 +135,6 @@ void film_delete(Film* film)
   if (!film) // No film? No work
     return;
   mt_free(film->title);
-  mt_free(film->categories);
   mt_free(film);
 }
 
@@ -147,13 +143,17 @@ void film_print(Film* film)
   if (!film)
     return;
 
-  printf("%s\n\tYear: %u\n\tRating: %s\n\tCategories:", film->title, film->year, rating_toString(film->rating));
+  printf("%s\n\tYear: %u\n\tRating: %s\n\tCategories:",
+         film->title, film->year, rating_toString(film->rating));
 
-  Category* p = film->categories;
-  while (p && *p != C_NONE)
-    printf("\n\t· %s", category_toString(*(p++)));
+  for (size_t i = 0; i < sizeof(category_n); ++i)
+  {
+    if ((1 << i) & film->categories)
+      printf("\n\t· %s", category_toString(1 << i));
+  }
 
-  printf("\n\tRun time: %u minutes\n\tScore: %.1f\n", film->runtime, film->score);
+  printf("\n\tRun time: %u minutes\n\tScore: %.1f\n",
+         film->runtime, film->score);
 }
 
 const char* film_getTitle(const Film* const film)
@@ -182,12 +182,5 @@ bool film_hasCategory(const Film* const film, const Category cat)
   if (!film)
     return false;
 
-  Category* p = film->categories;
-  while (*p)
-  {
-    if (*p == cat)
-      return true;
-    ++p;
-  }
-  return false;
+  return cat & film->categories;
 }
