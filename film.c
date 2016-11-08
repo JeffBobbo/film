@@ -28,7 +28,7 @@ const char* rating_toString(const Rating r)
 }
 Rating rating_fromString(const char* const str)
 {
-  for (size_t i = APPROVED; i < sizeof(rating_n); ++i)
+  for (size_t i = APPROVED; i < NUM_RATINGS; ++i)
   {
     if (strcmp(str, rating_n[i]) == 0)
       return (Rating)i;
@@ -64,7 +64,7 @@ const char* const category_n[] = {
 
 const char* category_toString(const Category c)
 {
-  for (size_t i = 0; i < sizeof(category_n); ++i)
+  for (size_t i = 0; i < NUM_CATEGORIES; ++i)
   {
     if ((Category)(1 << i) == c)
       return category_n[i];
@@ -73,7 +73,7 @@ const char* category_toString(const Category c)
 }
 Category category_fromString(const char* const str)
 {
-  for (size_t i = 0; i < sizeof(category_n); ++i)
+  for (size_t i = 0; i < NUM_CATEGORIES; ++i)
   {
     if (strcmp(str, category_n[i]) == 0)
       return (Category)(1 << i);
@@ -146,7 +146,7 @@ void film_print(Film* film)
   printf("%s\n\tYear: %u\n\tRating: %s\n\tCategories:",
          film->title, film->year, rating_toString(film->rating));
 
-  for (size_t i = 0; i < sizeof(category_n); ++i)
+  for (size_t i = 0; i < NUM_CATEGORIES; ++i)
   {
     if ((1 << i) & film->categories)
       printf("\n\t· %s", category_toString(1 << i));

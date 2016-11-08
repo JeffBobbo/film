@@ -91,6 +91,7 @@ int32_t score(const void* const a, const void* const b)
 
 void task1()
 {
+  printf("\nTask 1 -- All films in chronological order:\n");
   ll_bsort(films, chronological);
   mdb_printAll();
 }
@@ -98,6 +99,7 @@ void task1()
 
 void task2()
 {
+  printf("\nTask 2 -- 3rd longest Film-noir film:\n");
   LinkedList* noir = ll_new();
 
   for (LinkedIterator it = ll_it_begin(films);
@@ -116,6 +118,7 @@ void task2()
 
 void task3()
 {
+  printf("\nTask 3 -- 10th highest scoring Sci-fi film:\n");
   LinkedList* scifi = ll_new();
 
   for (LinkedIterator it = ll_it_begin(films);
@@ -133,6 +136,7 @@ void task3()
 
 void task4()
 {
+  printf("\nTask 4 -- Film with the highest score:\n");
   Film* highest = NULL;
 
   for (LinkedIterator it = ll_it_begin(films);
@@ -148,6 +152,7 @@ void task4()
 }
 void task5()
 {
+  printf("\nTask 5 -- Film with the shortest title:\n");
   Film* shortest = NULL;
 
   for (LinkedIterator it = ll_it_begin(films);
@@ -164,6 +169,8 @@ void task5()
 
 void task6()
 {
+  printf("\nTask 6 -- Number of films in the database after deleting all\n"
+"R rated films:\n");
   LinkedIterator itp;
   for (LinkedIterator it = ll_it_begin(films);
        ll_it_valid(&it); ll_it_next(&it))

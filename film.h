@@ -19,7 +19,8 @@ typedef enum rating_t
   PG_13,
   R,
   TV_14,
-  UNRATED
+  UNRATED,
+  NUM_RATINGS
 } Rating;
 typedef enum category_t
 {
@@ -45,7 +46,8 @@ typedef enum category_t
   SPORT     = 0x080000,
   THRILLER  = 0x100000,
   WAR       = 0x200000,
-  WESTERN   = 0x400000
+  WESTERN   = 0x400000,
+  NUM_CATEGORIES = 22
 } Category;
 typedef uint_least32_t CategoryType;
 const char* rating_toString(const Rating r);
