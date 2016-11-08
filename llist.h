@@ -70,8 +70,19 @@ void ll_pop_front(LinkedList* const ll);
  */
 void ll_pop_back(LinkedList* const ll);
 
+/**
+ * Inserts the data at p before the position given by it
+ * @param it Insert before
+ * @param p  Data to insert
+ */
 void ll_insert(LinkedIterator* const it, void* p);
 
+/**
+ * Removes the element at the given iterator from the list.
+ * The suppled iterator is invalidated, the data is not freed and must be
+ * handled separately
+ * @param it The iterator to remove
+ */
 void* ll_erase(LinkedIterator* const it);
 
 /**
@@ -82,10 +93,6 @@ void* ll_erase(LinkedIterator* const it);
  * @param n  The index
  */
 LinkedIterator ll_at(const LinkedList* const ll, const size_t n);
-
-#ifdef LL_CONSOLIDATE
-void** ll_consolidate(const LinkedList* const ll, size_t* const length);
-#endif
 
 /**
  * Sort the linked list using a bubble sort
@@ -140,6 +147,18 @@ void* ll_it_next(LinkedIterator* const it);
  * @return Data of the next node, or NULL at the end of the list
  */
 void* ll_it_rnext(LinkedIterator* const it);
+
+/**
+ * Returns true if this iterator points to a valid piece of data
+ * @param  it The iterator to test
+ * @return    True if the data is valid
+ */
 bool ll_it_valid(const LinkedIterator* const it);
+
+/**
+ * Returns the data at a specific element.
+ * Returns NULL if the iterator is invalid
+ * @param it the iterator to get the data for
+ */
 void* ll_it_data(const LinkedIterator* const it);
 #endif

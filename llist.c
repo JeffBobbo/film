@@ -214,22 +214,6 @@ LinkedIterator ll_at(const LinkedList* const ll, const size_t n)
   return it;
 }
 
-#ifdef LL_CONSOLIDATE
-void** ll_consolidate(const LinkedList* const ll, size_t* const length)
-{
-  assert(ll);
-
-  void** ret = (void**)mt_calloc(ll->size, sizeof(void*));
-
-  size_t inserted = 0;
-  for (LinkedNode* node = ll_front_node(ll); node; node = node->next)
-    ret[inserted++] = node->data;
-
-  *length = ll->size;
-  return ret;
-}
-#endif
-
 void swap(void** a, void** b)
 {
   void* p = *a;
