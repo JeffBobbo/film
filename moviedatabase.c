@@ -68,20 +68,25 @@ void mdb_printAll()
 
 int32_t alphanumeric(const void* const a, const void* const b)
 {
-  return strcmp(film_getTitle((Film*)a), film_getTitle((Film*)b)) < 0;
+  return strcmp(film_getTitle((Film*)a), film_getTitle((Film*)b));
 }
 int32_t chronological(const void* const a, const void* const b)
 {
-  return film_getYear((Film*)a) > film_getYear((Film*)b) ? 1 : 0;
+  return film_getYear((Film*)b) - film_getYear((Film*)a);
 }
 int32_t runtime(const void* const a, const void* const b)
 {
-  return film_getRuntime((Film*)a) < film_getRuntime((Film*)b) ? 1 : 0;
+  return film_getRuntime((Film*)b) - film_getRuntime((Film*)a);
 }
 int32_t score(const void* const a, const void* const b)
 {
-  int32_t s = film_getScore((Film*)a) < film_getScore((Film*)b) ? 1 : 0;
-  return s;// ? s : alphanumeric(a, b);
+  double sa = film_getScore((Film*)a);
+  double sb = film_getScore((Film*)b);
+  if (sa < sb)
+    return 1;
+  if (sa > sb)
+    return -1;
+  return alphanumeric(a, b);
 }
 
 void task1()
@@ -118,12 +123,8 @@ void task3()
   {
     Film* f = (Film*)ll_it_data(&it);
     if (film_hasCategory(f, SCI_FI))
-    {
-      film_print(f);
       ll_push_front(scifi, f);
-    }
   }
-
   ll_bsort(scifi, score);
   LinkedIterator tenth = ll_at(scifi, 9);
   film_print(ll_it_data(&tenth));
@@ -182,30 +183,4 @@ void task6()
 
   printf("After deleting all R rated films, there are %zu films.\n",
          ll_size(films));
-}
-
-void task(const int n)
-{
-  switch (n)
-  {
-    case 1:
-      task1();
-    break;
-    case 2:
-      task2();
-    break;
-    case 3:
-      task3();
-    break;
-    case 4:
-      task4();
-    break;
-    case 5:
-      task5();
-    break;
-    case 6:
-      task6();
-    break;
-  }
-  return;
 }
