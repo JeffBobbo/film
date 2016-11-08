@@ -1,4 +1,4 @@
-EXEC:=memtest
+EXEC:=omdb
 
 MAIN = main.o alloc.o llist.o csv.o film.o moviedatabase.o
 
