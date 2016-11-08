@@ -234,7 +234,8 @@ void mt_check(void)
 #endif
 
   if (allocCount)
-    printf("Made %zu allocations totalling %zu bytes\n", allocCount, allocAmount);
+    printf("Made %zu allocations totalling %zu bytes\n",
+           allocCount, allocAmount);
   if (freeCount)
     printf("Made %zu frees\n", freeCount);
 
