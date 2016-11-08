@@ -6,6 +6,8 @@
 #include "alloc.h"
 #include "llist.h"
 
+static char DELIMITER = ',';
+
 LinkedList** csv_read(const char* const filename, size_t* const c)
 {
   *c = 0;
@@ -29,7 +31,7 @@ LinkedList** csv_read(const char* const filename, size_t* const c)
     size_t p = 0;
     while (p < strlen(line))
     {
-      if (line[p] == ',' || line[p] == '\n')
+      if (line[p] == DELIMITER || line[p] == '\n')
       {
         ++p;
       }
@@ -47,7 +49,7 @@ LinkedList** csv_read(const char* const filename, size_t* const c)
         else
         {
           size_t end = p;
-          while (line[end] != ',' && line[end] != '\n')
+          while (line[end] != DELIMITER && line[end] != '\n')
             ++end;
           len = end - p;
         }
