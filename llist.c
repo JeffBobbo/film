@@ -182,8 +182,15 @@ void* ll_erase(LinkedIterator* const it)
   if (!it->list)
     return NULL;
 
-  it->current->prev->next = it->current->next;
-  it->current->next->prev = it->current->prev;
+  // fix the pointers to remove the element
+  if (it->current == it->list->head) // if it's the head, then head becomes next
+    it->list->head = it->list->head->next;
+  if (it->current == it->list->tail) // if it's the trail, the tail becomes prev
+    it->list->tail = it->list->tail->prev;
+  if (it->current->prev) // if we have a prev node, make that point to next
+    it->current->prev->next = it->current->next;
+  if (it->current->next) // if we have a next node, make that point to prev
+    it->current->next->prev = it->current->prev;
 
   void* p = it->current->data;
   mt_free(it->current);
