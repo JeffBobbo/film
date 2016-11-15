@@ -176,7 +176,7 @@ void task5()
 
 void task6()
 {
-  printf("\nTask 6 -- Number of films in the database after deleting all\n"
+  printf("\nTask 6 -- Number of films in the database after deleting all "
 "R rated films:\n");
   LinkedIterator it = ll_it_begin(films);
   while (ll_it_valid(&it))
