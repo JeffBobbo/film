@@ -72,11 +72,17 @@ int32_t alphanumeric(const void* const a, const void* const b)
 }
 int32_t chronological(const void* const a, const void* const b)
 {
-  return film_getYear((Film*)b) - film_getYear((Film*)a);
+  int32_t ya = film_getYear((Film*)a);
+  int32_t yb = film_getYear((Film*)b);
+  // if equal, sort by title for consistent ordering
+  return (yb - ya != 0) ? (yb - ya) : alphanumeric(a, b);
 }
 int32_t runtime(const void* const a, const void* const b)
 {
-  return film_getRuntime((Film*)b) - film_getRuntime((Film*)a);
+  int32_t ra = film_getRuntime((Film*)a);
+  int32_t rb = film_getRuntime((Film*)b);
+  // if equal, sort by title for consistent ordering
+  return (rb - ra != 0) ? (rb - ra) : alphanumeric(a, b);
 }
 int32_t score(const void* const a, const void* const b)
 {
@@ -86,6 +92,7 @@ int32_t score(const void* const a, const void* const b)
     return 1;
   if (sa > sb)
     return -1;
+  // if equal, sort by title for consistent ordering
   return alphanumeric(a, b);
 }
 
@@ -171,8 +178,8 @@ void task6()
 {
   printf("\nTask 6 -- Number of films in the database after deleting all\n"
 "R rated films:\n");
-  LinkedIterator itp;
-  for (LinkedIterator it = ll_it_begin(films);
+  LinkedIterator itp = ll_it_begin(films);
+  for (LinkedIterator it = itp;
        ll_it_valid(&it); ll_it_next(&it))
   {
     Film* f = (Film*)ll_it_data(&it);
