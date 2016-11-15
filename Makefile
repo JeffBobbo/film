@@ -1,31 +1,24 @@
 EXEC:=omdb
 
 MAIN = main.o alloc.o llist.o csv.o film.o moviedatabase.o
+LIST = listTest.o llist.o alloc.o
 
 # general compiler settings
 CFLAGS=-std=gnu11 -Wall -Wextra -ggdb
 LDFLAGS=
 
-#default target is debug Linux
-all: linux
+all: $(MAIN)
+	$(CC) $(CFLAGS) $(MAIN) -o $(EXEC).out $(LDFLAGS)
 
-win: CC=x86_64-w64-mingw32-c++
-win: LDFLAGS+=-static-libgcc -static-libstdc++ -static
-win: EXEC:=$(EXEC).exe
-win: comp
-
-linux: EXEC:=$(EXEC).out
-linux: comp
-
-comp: $(MAIN)
-	$(CC) $(CFLAGS) $(MAIN) -o $(EXEC) $(LDFLAGS)
+list: $(LIST)
+	$(CC) $(CFLAGS) $(LIST) -o list.out $(LDFLAGS)
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(warning Cleaning...)
-	@$(RM) $(MAIN)
+	@$(RM) $(MAIN) $(LIST)
 
 .PHONY: all clean
 

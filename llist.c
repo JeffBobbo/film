@@ -39,7 +39,7 @@ size_t ll_size(const LinkedList* const ll)
 bool ll_empty(const LinkedList* const ll)
 {
   assert(ll);
-  return ll->size ? true : false;
+  return !ll->size;
 }
 
 LinkedNode* ll_node_new()
@@ -82,7 +82,7 @@ void* ll_back(const LinkedList* const ll)
 void ll_push_front(LinkedList* const ll, void* p)
 {
   assert(ll);
-  assert(p);
+  //assert(p);
 
   LinkedNode* n = ll_node_new();
   n->data = p;
@@ -105,7 +105,7 @@ void ll_push_front(LinkedList* const ll, void* p)
 void ll_push_back(LinkedList* const ll, void* p)
 {
   assert(ll);
-  assert(p);
+  //assert(p);
 
   LinkedNode* n = ll_node_new();
   n->data = p;
@@ -146,6 +146,7 @@ void ll_pop_back(LinkedList* const ll)
 
   LinkedNode* back = ll_back_node(ll);
   if (!back)
+    return;
 
   back->prev->next = NULL;
   ll_node_delete(back);
@@ -167,11 +168,8 @@ void ll_insert(LinkedIterator* const it, void* p)
     target->prev->next = node;
     node->prev = target->prev;
   }
-  if (target->next)
-  {
-    target->next->prev = node;
-    node->next = target->next;
-  }
+  target->prev = node;
+  node->next = target;
   ++(it->list->size);
 }
 
