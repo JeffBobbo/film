@@ -178,20 +178,19 @@ void task6()
 {
   printf("\nTask 6 -- Number of films in the database after deleting all\n"
 "R rated films:\n");
-  LinkedIterator itp = ll_it_begin(films);
-  for (LinkedIterator it = itp;
-       ll_it_valid(&it); ll_it_next(&it))
+  LinkedIterator it = ll_it_begin(films);
+  while (ll_it_valid(&it))
   {
     Film* f = (Film*)ll_it_data(&it);
     if (film_getRating(f) == R)
     {
       ll_erase(&it);
       film_delete(f);
-      it = itp;
+      it = ll_it_begin(films); // erase invalidates the iterator
     }
     else
     {
-      itp = it;
+      ll_it_next(&it);
     }
   }
 
