@@ -25,7 +25,8 @@ void testEmpty()
   ll_pop_front(list);
   ll_pop_back(list);
   if (ll_size(list) != 0)
-    printf("testEmpty() failed: ll_pop_front() or ll_pop_back() reduced list size\n");
+    printf("testEmpty() failed: "
+           "ll_pop_front() or ll_pop_back() reduced list size\n");
 
   // this should return an invalid iterator
   LinkedIterator it = ll_at(list, 0);
@@ -79,7 +80,8 @@ void testInsertion()
   if (*(int*)ll_front(list) != 9)
     printf("testInsertion() falied: ll_front() was not 9\n");
   if (*(int*)ll_back(list) != 4)
-    printf("testInsertion() failed: ll_back() was not 4, got: %i\n", *(int*)ll_back(list));
+    printf("testInsertion() failed: ll_back() was not 4, got: %i\n",
+           *(int*)ll_back(list));
 
   ll_bsort(list, cmp); // has no return
   // test the front and back again, 0 should be at front, 9 at back
@@ -103,7 +105,8 @@ void testInsertion()
     ll_it_next(&it);
     free(ll_erase(&it)); // it is now invalid
     if (ll_it_valid(&it))
-      printf("testManipulation() failed: Iterator wasn't invalidated by erase\n");
+      printf("testManipulation() failed: "
+             "Iterator wasn't invalidated by erase\n");
 
   }
   for (LinkedIterator it = ll_it_begin(list); ll_it_valid(&it); ll_it_next(&it))
