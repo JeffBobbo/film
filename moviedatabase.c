@@ -23,6 +23,11 @@ void mdb_loadDB(const char* const path)
 
   if (!films)
     films = ll_new();
+  if (!films)
+  {
+    fprintf(stderr, "Failed to allocate memory for film db\n");
+    exit(EXIT_FAILURE);
+  }
 
   for (size_t i = 0; i < entries; ++i)
   {
