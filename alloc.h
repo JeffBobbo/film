@@ -2,6 +2,7 @@
 #define ALLOC_H_INCLUDE
 
 #include <stdlib.h> // size_t
+#include <stdint.h> // int32_t
 
 /**
  * memory test malloc

@@ -4,8 +4,9 @@ MAIN = main.o alloc.o llist.o csv.o film.o moviedatabase.o
 LIST = listTest.o llist.o alloc.o
 
 # general compiler settings
-CFLAGS=-std=gnu11 -Wall -Wextra -ggdb
+CFLAGS:=-std=gnu11 -Wall -Wextra -Wpedantic -ggdb
 LDFLAGS=
+
 
 all: $(MAIN)
 	$(CC) $(CFLAGS) $(MAIN) -o $(EXEC).out $(LDFLAGS)

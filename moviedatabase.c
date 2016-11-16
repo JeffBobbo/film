@@ -1,12 +1,13 @@
 #include "moviedatabase.h"
 
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h> // strcmp
 
-#include "alloc.h"
-#include "csv.h"
-#include "film.h"
 #include "llist.h"
+#include "csv.h"
+#include "alloc.h"
+#include "film.h"
 
 LinkedList* films = NULL;
 

@@ -2,6 +2,7 @@
 #define LLIST_H_INCLUDE
 
 #include <stdlib.h> // size_t
+#include <stdint.h>
 #include <stdbool.h>
 
 typedef struct linkedlist_t LinkedList;

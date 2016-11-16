@@ -8,7 +8,7 @@
 
 #define MEMTEST
 
-const char PADDING = 255;
+const unsigned char PADDING = 255;
 
 static int registeredExit = 0;
 static size_t allocCount = 0;
@@ -17,10 +17,10 @@ static size_t freeCount = 0;
 
 typedef struct reserved_t
 {
-  void* base; // the base address of this reserved memory
-  void* data; // where the data actually is
-  void* dend; // where the data ends
-  void* end; // the last piece of data in this bit of reserved memory
+  unsigned char* base; // the base address of this reserved memory
+  unsigned char* data; // where the data actually is
+  unsigned char* dend; // where the data ends
+  unsigned char* end; // the last piece of data in this bit of reserved memory
   size_t num; // how many elements is this memory for
   // n.b.: each individual element won't be padded,
   // so corruption could occur here
@@ -49,7 +49,7 @@ void* mt_malloc_(const size_t sz,
                 const char* file, const size_t line)
 {
 #ifdef MEMTEST
-  void* p = malloc(sz*2);
+  unsigned char* p = malloc(sz*2);
   if (p)
   {
     Reserved* r = (Reserved*)malloc(sizeof(Reserved));
@@ -90,7 +90,7 @@ void* mt_calloc_(const size_t n, const size_t sz,
                 const char* file, const size_t line)
 {
 #ifdef MEMTEST
-  void* p = calloc(n, sz*2); // use calloc, as we want all zeroes
+  unsigned char* p = calloc(n, sz*2); // use calloc, as we want all zeroes
   if (p)
   {
     Reserved* r = (Reserved*)malloc(sizeof(Reserved));
@@ -121,24 +121,12 @@ void* mt_calloc_(const size_t n, const size_t sz,
 #endif
 }
 
-/*
-void* mt_realloc_(void* ptr, const size_t sz,
-                  const char* file, const size_t line)
-{
-#ifdef MEMTEST
-  void* p
-#else
-  return realloc(ptr, sz);
-#endif
-}
-*/
-
 void underwrite(const Reserved* const node)
 {
   size_t badBytes = 0;
-  for (void* i = node->base; i < node->data; ++i)
+  for (unsigned char* i = node->base; i < node->data; ++i)
   {
-    if (*((char*)i) != PADDING)
+    if (*((unsigned char*)i) != PADDING)
       ++badBytes;
   }
   if (!badBytes)
@@ -147,12 +135,12 @@ void underwrite(const Reserved* const node)
           "From: %s:%zu, base: %p, data: %p, size: %zu, num: %zu\n",
           node->file, node->line,
           node->base, node->data, node->size, node->num);
-  for (void* i = node->base; i < node->data; ++i)
+  for (unsigned char* i = node->base; i < node->data; ++i)
   {
-    if (*((char*)i) != PADDING)
+    if (*((unsigned char*)i) != PADDING)
     {
       fprintf(stderr, "\tByte %zu has value %x\n",
-              (size_t)(i - node->data), *((char*)i));
+              (size_t)(i - node->data), *((unsigned char*)i));
     }
   }
 }
@@ -160,9 +148,9 @@ void underwrite(const Reserved* const node)
 void overwrite(const Reserved* const node)
 {
   size_t badBytes = 0;
-  for (void* i = node->dend; i < node->end; ++i)
+  for (unsigned char* i = node->dend; i < node->end; ++i)
   {
-    if (*((char*)i) != PADDING)
+    if (*((unsigned char*)i) != PADDING)
       ++badBytes;
   }
   if (!badBytes)
@@ -172,12 +160,12 @@ void overwrite(const Reserved* const node)
           "From: %s:%zu, base: %p, data: %p, size: %zu, num: %zu\n",
           node->file, node->line,
           node->base, node->data, node->size, node->num);
-  for (void* i = node->dend; i < node->end; ++i)
+  for (unsigned char* i = node->dend; i < node->end; ++i)
   {
-    if (*((char*)i) != PADDING)
+    if (*((unsigned char*)i) != PADDING)
     {
       fprintf(stderr, "\tByte %zu has value %x\n",
-              (size_t)(i - node->data), *((char*)i));
+              (size_t)(i - node->data), *((unsigned char*)i));
     }
   }
 }
@@ -234,10 +222,10 @@ void mt_check(void)
 #endif
 
   if (allocCount)
-    printf("Made %zu allocations totalling %zu bytes\n",
+    fprintf(stderr, "Made %zu allocations totalling %zu bytes\n",
            allocCount, allocAmount);
   if (freeCount)
-    printf("Made %zu frees\n", freeCount);
+    fprintf(stderr, "Made %zu frees\n", freeCount);
 
   size_t leaks = 0;
   size_t bytes = 0;
@@ -251,5 +239,5 @@ void mt_check(void)
     mt_free(root->data);
   }
   if (leaks)
-    printf("Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
+    fprintf(stderr, "Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
 }
