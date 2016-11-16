@@ -50,23 +50,6 @@
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{const}\ char*\ file,\ \textbf{const}\ size$\_$t\ line); \\
 \mbox{} \\
 \mbox{}\textit{/**} \\
-\mbox{}\textit{\ *\ memory\ test\ realloc} \\
-\mbox{}\textit{\ *\ This\ function\ shouldn't\ be\ called\ directly,\ but\ rather\ the\ macros\ below\ used} \\
-\mbox{}\textit{\ *\ this\ will\ supply\ them\ with\ tracing\ information} \\
-\mbox{}\textit{\ *\ When\ MEMTEST\ is\ defined,\ mt$\_$realloc\ performs\ a\ realloc\ with\ padding} \\
-\mbox{}\textit{\ *\ the\ allocation\ is\ stored\ internall\ and\ a\ useable\ pointer\ is\ returned.} \\
-\mbox{}\textit{\ *\ If\ MEMTEST\ isn't\ defined,\ just\ does\ realloc\ from\ stdlib.h} \\
-\mbox{}\textit{\ *\ }@param\textit{\ ptr\ pointer\ to\ the\ memory\ area\ to\ be\ reallocated} \\
-\mbox{}\textit{\ *\ }@param\textit{\ sz\ \ the\ new\ size\ of\ the\ memory\ to\ allocate} \\
-\mbox{}\textit{\ *\ }@param\textit{\ file\ the\ file\ this\ function\ is\ called\ from} \\
-\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$FILE$\_$$\_$).} \\
-\mbox{}\textit{\ *\ }@param\textit{\ line\ the\ line\ this\ function\ is\ called\ from} \\
-\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$LINE$\_$$\_$).} \\
-\mbox{}\textit{\ */} \\
-\mbox{}\textit{//void*\ mt$\_$realloc$\_$(void*\ ptr,\ const\ size$\_$t\ sz,} \\
-\mbox{}\textit{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ char*\ file,\ const\ size$\_$t\ line);} \\
-\mbox{} \\
-\mbox{}\textit{/**} \\
 \mbox{}\textit{\ *\ memory\ test\ free} \\
 \mbox{}\textit{\ *\ works\ just\ like\ free().\ When\ MEMTEST\ is\ defined\ it\ should\ only\ be\ used\ on} \\
 \mbox{}\textit{\ *\ pointers\ allocated\ with\ the\ memory\ test\ functions,\ calling\ on\ memory\ that} \\
