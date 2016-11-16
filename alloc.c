@@ -239,5 +239,6 @@ void mt_check(void)
     mt_free(root->data);
   }
   if (leaks)
-    fprintf(stderr, "Found a total of %zu leaks, leaking %zu bytes\n", leaks, bytes);
+    fprintf(stderr, "Found a total of %zu leaks, leaking %zu bytes\n",
+            leaks, bytes);
 }
