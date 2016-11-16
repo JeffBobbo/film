@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\title{listTest.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}llist.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdio.h\textgreater{}} \\
+\mbox{} \\
+\mbox{}void\ \textbf{testEmpty}() \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedList*\ list\ =\ \textbf{ll$\_$new}(); \\
+\mbox{}\ \ \textbf{if}\ (!list) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}Failed\ to\ create\ new\ list}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \ \ \textbf{exit}(0); \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$size}(list)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$size()\ returned\ non-0}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \textbf{if}\ (!\textbf{ll$\_$empty}(list)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$empty()\ returned\ false}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$front}(list)\ !=\ NULL) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$front()\ didn't\ return\ NULL}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$back}(list)\ !=\ NULL) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$back()\ didn't\ return\ NULL}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ nothing\ to\ test\ here,\ but\ they\ should\ both\ just\ work} \\
+\mbox{}\ \ \textbf{ll$\_$pop$\_$front}(list); \\
+\mbox{}\ \ \textbf{ll$\_$pop$\_$back}(list); \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$size}(list)\ !=\ 0) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ "{}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \texttt{"{}ll$\_$pop$\_$front()\ or\ ll$\_$pop$\_$back()\ reduced\ list\ size}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ this\ should\ return\ an\ invalid\ iterator} \\
+\mbox{}\ \ LinkedIterator\ it\ =\ \textbf{ll$\_$at}(list,\ 0); \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$at(0)\ returned\ valid\ iterator}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ it\ =\ \textbf{ll$\_$at}(list,\ 1); \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$at(0)\ returned\ valid\ iterator}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ it\ =\ \textbf{ll$\_$it$\_$begin}(list); \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testEmpty()\ failed:\ ll$\_$it$\_$begin()\ returned\ valid\ iterator}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ all\ tests\ done,\ clean\ up} \\
+\mbox{}\ \ \textbf{ll$\_$delete}(list); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}int\ \textbf{cmp}(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ *(int*)a-*(int*)b; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}LinkedIterator\ \textbf{find}(LinkedList*\ \textbf{const}\ list,\ int\ v) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(list);\ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (*(int*)\textbf{ll$\_$it$\_$data}(\&it)\ ==\ v) \\
+\mbox{}\ \ \ \ \ \ \textbf{return}\ it; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ LinkedIterator\ it; \\
+\mbox{}\ \ \textbf{return}\ it; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{testInsertion}() \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedList*\ list\ =\ \textbf{ll$\_$new}(); \\
+\mbox{}\ \ \textbf{for}\ (int\ i\ =\ 0;\ i\ \textless{}\ 5;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ int*\ p\ =\ \textbf{malloc}(\textbf{sizeof}(int)); \\
+\mbox{}\ \ \ \ *p\ =\ i; \\
+\mbox{}\ \ \ \ \textbf{ll$\_$push$\_$back}(list,\ p); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{for}\ (int\ i\ =\ 6;\ i\ \textless{}\ 10;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ int*\ p\ =\ \textbf{malloc}(\textbf{sizeof}(int)); \\
+\mbox{}\ \ \ \ *p\ =\ i; \\
+\mbox{}\ \ \ \ \textbf{ll$\_$push$\_$front}(list,\ p); \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ test\ the\ front\ and\ back} \\
+\mbox{}\ \ \textbf{if}\ (*(int*)\textbf{ll$\_$front}(list)\ !=\ 9) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ falied:\ ll$\_$front()\ was\ not\ 9}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \textbf{if}\ (*(int*)\textbf{ll$\_$back}(list)\ !=\ 4) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ failed:\ ll$\_$back()\ was\ not\ 4,\ got:\ \%i}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ *(int*)\textbf{ll$\_$back}(list)); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{ll$\_$bsort}(list,\ cmp);\ \textit{//\ has\ no\ return} \\
+\mbox{}\ \ \textit{//\ test\ the\ front\ and\ back\ again,\ 0\ should\ be\ at\ front,\ 9\ at\ back} \\
+\mbox{}\ \ \textbf{if}\ (*(int*)\textbf{ll$\_$front}(list)\ !=\ 0) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ falied:\ ll$\_$bsort(),\ front\ was\ not\ 0}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \textbf{if}\ (*(int*)\textbf{ll$\_$back}(list)\ !=\ 9) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ failed:\ ll$\_$bsort(),\ back\ was\ not\ 9}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedIterator\ it\ =\ \textbf{find}(list,\ 6); \\
+\mbox{}\ \ \ \ int*\ p\ =\ \textbf{malloc}(\textbf{sizeof}(int)); \\
+\mbox{}\ \ \ \ *p\ =\ 5; \\
+\mbox{}\ \ \ \ \textbf{ll$\_$insert}(\&it,\ p); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{if}\ (\textbf{ll$\_$size}(list)\ !=\ 10) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ failed:\ List\ size\ wasn't\ 10\ after\ insert}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedIterator\ it\ =\ \textbf{find}(list,\ 5); \\
+\mbox{}\ \ \ \ \textbf{if}\ (!\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \ \ \ \ \textbf{printf}(\texttt{"{}testInsertion()\ failed:\ Failed\ to\ find\ 5\ in\ the\ list}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \ \ \textbf{ll$\_$it$\_$next}(\&it); \\
+\mbox{}\ \ \ \ \textbf{free}(\textbf{ll$\_$erase}(\&it));\ \textit{//\ it\ is\ now\ invalid} \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \ \ \ \ \textbf{printf}(\texttt{"{}testManipulation()\ failed:\ "{}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \texttt{"{}Iterator\ wasn't\ invalidated\ by\ erase}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(list);\ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}\%i}\texttt{\textbackslash{}n}\texttt{"{}},\ *(int*)\textbf{ll$\_$it$\_$data}(\&it)); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{ll$\_$clear}(list); \\
+\mbox{}\ \ \textbf{if}\ (!\textbf{ll$\_$empty}(list)) \\
+\mbox{}\ \ \ \ \textbf{printf}(\texttt{"{}testManipulation()\ failed:\ ll$\_$clear()\ didn't\ empty\ the\ list}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{ll$\_$delete}(list); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}int\ \textbf{main}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{testEmpty}(); \\
+\mbox{}\ \ \textbf{testInsertion}(); \\
+\mbox{}\ \ \textbf{return}\ 1; \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

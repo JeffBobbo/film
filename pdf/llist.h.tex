@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\title{llist.h}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#ifndef}\ LLIST$\_$H$\_$INCLUDE \\
+\mbox{}\textbf{\#define}\ LLIST$\_$H$\_$INCLUDE \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdlib.h\textgreater{}}\ \textit{//\ size$\_$t} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdbool.h\textgreater{}} \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ linkedlist$\_$t\ LinkedList; \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ linkednode$\_$t\ LinkedNode; \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Iterator\ type\ for\ iterating\ though\ a\ linked\ list\ in\ linear\ time} \\
+\mbox{}\textit{\ */} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ linkediterator$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedList*\ list; \\
+\mbox{}\ \ LinkedNode*\ current; \\
+\mbox{}\}\ LinkedIterator; \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Constructs\ and\ returns\ a\ new,\ empty,\ doubly\ linked\ list} \\
+\mbox{}\textit{\ *\ }@return\textit{\ linked\ list} \\
+\mbox{}\textit{\ */} \\
+\mbox{}LinkedList*\ \textbf{ll$\_$new}(); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ number\ of\ elemnts\ in\ the\ linked\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ ll\ The\ linked\ list\ to\ find\ the\ number\ of\ elements\ for} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ The\ size} \\
+\mbox{}\textit{\ */} \\
+\mbox{}size$\_$t\ \textbf{ll$\_$size}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ true\ if\ the\ linked\ list\ is\ empty\ (size\ ==\ 0)} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ ll\ The\ linked\ list\ to\ test} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ True\ if\ the\ linked\ list\ is\ empty} \\
+\mbox{}\textit{\ */} \\
+\mbox{}bool\ \textbf{ll$\_$empty}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ data\ at\ the\ front\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ get\ the\ first\ element\ from} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$front}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ data\ at\ the\ back\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ get\ the\ last\ element\ from} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$back}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Push\ a\ piece\ of\ data\ onto\ the\ front\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ push\ onto} \\
+\mbox{}\textit{\ *\ }@param\textit{\ p\ \ The\ data\ to\ psuh} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$push$\_$front}(LinkedList*\ \textbf{const}\ ll,\ void*\ p); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Push\ a\ piece\ of\ data\ onto\ the\ back\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ push\ onto} \\
+\mbox{}\textit{\ *\ }@param\textit{\ p\ \ The\ data\ to\ push} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$push$\_$back}(LinkedList*\ \textbf{const}\ ll,\ void*\ p); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Pop\ a\ piece\ of\ data\ off\ the\ front\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ list\ to\ pop\ from} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$pop$\_$front}(LinkedList*\ \textbf{const}\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Pop\ a\ piece\ of\ data\ off\ the\ back\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ list\ to\ pop\ from} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$pop$\_$back}(LinkedList*\ \textbf{const}\ ll); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Inserts\ the\ data\ at\ p\ before\ the\ position\ given\ by\ it} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ Insert\ before} \\
+\mbox{}\textit{\ *\ }@param\textit{\ p\ \ Data\ to\ insert} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$insert}(LinkedIterator*\ \textbf{const}\ it,\ void*\ p); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Removes\ the\ element\ at\ the\ given\ iterator\ from\ the\ list.} \\
+\mbox{}\textit{\ *\ The\ suppled\ iterator\ is\ invalidated,\ the\ data\ is\ not\ freed\ and\ must\ be} \\
+\mbox{}\textit{\ *\ handled\ separately} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ The\ iterator\ to\ remove} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$erase}(LinkedIterator*\ \textbf{const}\ it); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieve\ a\ piece\ of\ data\ in\ the\ list\ at\ a\ specific\ index.} \\
+\mbox{}\textit{\ *\ Note\ that\ this\ is\ a\ O(n)\ operation,\ and\ therefore\ not\ suitable\ for} \\
+\mbox{}\textit{\ *\ iterating\ the\ linked\ list.} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ get\ data\ from} \\
+\mbox{}\textit{\ *\ }@param\textit{\ n\ \ The\ index} \\
+\mbox{}\textit{\ */} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$at}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll,\ \textbf{const}\ size$\_$t\ n); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Sort\ the\ linked\ list\ using\ a\ bubble\ sort} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ sort} \\
+\mbox{}\textit{\ *\ }@param\textit{\ comparison\ A\ function\ pointer\ for\ comparing\ elements} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$bsort}(LinkedList*\ \textbf{const}\ ll,\ \textbf{int32$\_$t}\ (*comparison) \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b)); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Empties\ a\ linked\ list,\ freeing\ all\ the\ nodes\ and\ their\ data} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ clear} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$clear}(LinkedList*\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Destructs\ a\ list,\ freeing\ all\ data,\ nodes\ and\ the\ linked\ list\ itself} \\
+\mbox{}\textit{\ *\ Calling\ this\ invalidates\ the\ pointer,\ as\ the\ memory\ is\ freed} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ linked\ list\ to\ delete} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$delete}(LinkedList*\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Destructs\ a\ list,\ but\ does\ not\ free\ the\ data\ unlike\ ll$\_$delete} \\
+\mbox{}\textit{\ *\ If\ a\ pointer\ for\ each\ piece\ of\ data\ is\ not\ kept,\ it\ is\ leaked.} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ The\ link\ list\ to\ purge} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{ll$\_$purge}(LinkedList*\ ll); \\
+\mbox{} \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Begins\ iteration\ at\ the\ front\ of\ the\ list,\ can\ be\ called} \\
+\mbox{}\textit{\ *\ as\ many\ times\ as\ you\ like\ on\ a\ single\ iterator\ or\ list\ to\ restart\ iteration} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ Iterator\ struct\ to\ control\ iteration} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ List\ to\ iterate\ over} \\
+\mbox{}\textit{\ */} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$it$\_$begin}(LinkedList*\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Begins\ iteration\ at\ the\ back\ of\ the\ list,\ can\ be\ called} \\
+\mbox{}\textit{\ *\ as\ many\ times\ as\ you\ like\ on\ a\ single\ iterator\ or\ list\ to\ restart\ iteration} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ Iterator\ struct\ to\ control\ iteration} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ll\ List\ to\ iterate\ over} \\
+\mbox{}\textit{\ */} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$it$\_$rbegin}(LinkedList*\ ll); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Steps\ iteration\ forwards\ though\ a\ list.\ Returns\ null\ at\ the\ end\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ Iterator\ to\ step\ forwards} \\
+\mbox{}\textit{\ *\ }@return\textit{\ Data\ of\ the\ next\ node,\ or\ NULL\ at\ the\ end\ of\ the\ list} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$next}(LinkedIterator*\ \textbf{const}\ it); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Steps\ iteration\ backwards\ though\ a\ list.\ Returns\ null\ at\ the\ end\ of\ the\ list} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ Iterator\ to\ step\ backwards} \\
+\mbox{}\textit{\ *\ }@return\textit{\ Data\ of\ the\ next\ node,\ or\ NULL\ at\ the\ end\ of\ the\ list} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$rnext}(LinkedIterator*\ \textbf{const}\ it); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ true\ if\ this\ iterator\ points\ to\ a\ valid\ piece\ of\ data} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ it\ The\ iterator\ to\ test} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ True\ if\ the\ data\ is\ valid} \\
+\mbox{}\textit{\ */} \\
+\mbox{}bool\ \textbf{ll$\_$it$\_$valid}(\textbf{const}\ LinkedIterator*\ \textbf{const}\ it); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ data\ at\ a\ specific\ element.} \\
+\mbox{}\textit{\ *\ Returns\ NULL\ if\ the\ iterator\ is\ invalid} \\
+\mbox{}\textit{\ *\ }@param\textit{\ it\ the\ iterator\ to\ get\ the\ data\ for} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$data}(\textbf{const}\ LinkedIterator*\ \textbf{const}\ it); \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}
+\end{document}

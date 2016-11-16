@@ -1,0 +1,197 @@
+\documentclass{article}
+
+\title{film.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}film.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdio.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}string.h\textgreater{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}alloc.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{const}\ char*\ \textbf{const}\ rating$\_$n[]\ =\ \{ \\
+\mbox{}\ \ \texttt{"{}NONE"{}}, \\
+\mbox{}\ \ \texttt{"{}APPROVED"{}}, \\
+\mbox{}\ \ \texttt{"{}G"{}}, \\
+\mbox{}\ \ \texttt{"{}M"{}}, \\
+\mbox{}\ \ \texttt{"{}N/A"{}}, \\
+\mbox{}\ \ \texttt{"{}NOT\ RATED"{}}, \\
+\mbox{}\ \ \texttt{"{}PASSED"{}}, \\
+\mbox{}\ \ \texttt{"{}PG"{}}, \\
+\mbox{}\ \ \texttt{"{}PG-13"{}}, \\
+\mbox{}\ \ \texttt{"{}R"{}}, \\
+\mbox{}\ \ \texttt{"{}TV-14"{}}, \\
+\mbox{}\ \ \texttt{"{}UNRATED"{}}, \\
+\mbox{}\ \ \texttt{"{}X"{}} \\
+\mbox{}\}; \\
+\mbox{} \\
+\mbox{}\textbf{const}\ char*\ \textbf{rating$\_$toString}(\textbf{const}\ Rating\ r) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ rating$\_$n[r]; \\
+\mbox{}\} \\
+\mbox{}Rating\ \textbf{rating$\_$fromString}(\textbf{const}\ char*\ \textbf{const}\ str) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ APPROVED;\ i\ \textless{}\ NUM$\_$RATINGS;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{strcmp}(str,\ rating$\_$n[i])\ ==\ 0) \\
+\mbox{}\ \ \ \ \ \ \textbf{return}\ (Rating)i; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ R$\_$NONE; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}\textbf{const}\ char*\ \textbf{const}\ category$\_$n[]\ =\ \{ \\
+\mbox{}\ \ \texttt{"{}None"{}}, \\
+\mbox{}\ \ \texttt{"{}Action"{}}, \\
+\mbox{}\ \ \texttt{"{}Adventure"{}}, \\
+\mbox{}\ \ \texttt{"{}Animation"{}}, \\
+\mbox{}\ \ \texttt{"{}Biography"{}}, \\
+\mbox{}\ \ \texttt{"{}Comedy"{}}, \\
+\mbox{}\ \ \texttt{"{}Crime"{}}, \\
+\mbox{}\ \ \texttt{"{}Drama"{}}, \\
+\mbox{}\ \ \texttt{"{}Family"{}}, \\
+\mbox{}\ \ \texttt{"{}Fantasy"{}}, \\
+\mbox{}\ \ \texttt{"{}Film-Noir"{}}, \\
+\mbox{}\ \ \texttt{"{}History"{}}, \\
+\mbox{}\ \ \texttt{"{}Horror"{}}, \\
+\mbox{}\ \ \texttt{"{}Music"{}}, \\
+\mbox{}\ \ \texttt{"{}Musical"{}}, \\
+\mbox{}\ \ \texttt{"{}Mystery"{}}, \\
+\mbox{}\ \ \texttt{"{}Romance"{}}, \\
+\mbox{}\ \ \texttt{"{}Sci-Fi"{}}, \\
+\mbox{}\ \ \texttt{"{}Short"{}}, \\
+\mbox{}\ \ \texttt{"{}Sport"{}}, \\
+\mbox{}\ \ \texttt{"{}Thriller"{}}, \\
+\mbox{}\ \ \texttt{"{}War"{}}, \\
+\mbox{}\ \ \texttt{"{}Western"{}} \\
+\mbox{}\}; \\
+\mbox{} \\
+\mbox{}\textbf{const}\ char*\ \textbf{category$\_$toString}(\textbf{const}\ Category\ c) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ i\ \textless{}\ NUM$\_$CATEGORIES;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ ((Category)(1\ \textless{}\textless{}\ i)\ ==\ c) \\
+\mbox{}\ \ \ \ \ \ \textbf{return}\ category$\_$n[i]; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ category$\_$n[0]; \\
+\mbox{}\} \\
+\mbox{}Category\ \textbf{category$\_$fromString}(\textbf{const}\ char*\ \textbf{const}\ str) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ i\ \textless{}\ NUM$\_$CATEGORIES;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{strcmp}(str,\ category$\_$n[i])\ ==\ 0) \\
+\mbox{}\ \ \ \ \ \ \textbf{return}\ (Category)(1\ \textless{}\textless{}\ i); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ C$\_$NONE; \\
+\mbox{}\} \\
+\mbox{}CategoryType\ \textbf{category$\_$fromStrings}(\textbf{const}\ char*\ \textbf{const}\ str) \\
+\mbox{}\{ \\
+\mbox{}\ \ CategoryType\ ret\ =\ 0x0; \\
+\mbox{}\ \ size$\_$t\ p\ =\ 0; \\
+\mbox{}\ \ \textit{//\ \textless{}=\ to\ not\ trim\ out\ the\ last\ one} \\
+\mbox{}\ \ \textit{//\ could\ use\ strtok,\ but\ that\ requires\ either\ a\ full\ copy\ or\ mutating\ the} \\
+\mbox{}\ \ \textit{//\ original\ data} \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ p;\ i\ \textless{}=\ \textbf{strlen}(str);\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (str[i]\ ==\ \texttt{'/'}\ $|$$|$\ i\ ==\ \textbf{strlen}(str)) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ char\ buf[64]; \\
+\mbox{}\ \ \ \ \ \ \textbf{memcpy}(buf,\ str+p,\ i-p); \\
+\mbox{}\ \ \ \ \ \ buf[i-p]\ =\ \texttt{'}\texttt{\textbackslash{}0}\texttt{'}; \\
+\mbox{}\ \ \ \ \ \ p\ =\ i+1; \\
+\mbox{}\ \ \ \ \ \ ret\ $|$=\ \textbf{category$\_$fromString}(buf); \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ ret; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ film$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ char*\ title; \\
+\mbox{}\ \ uint16$\_$t\ year;\ \textit{//\ assuming\ 32k\ years\ is\ enough?} \\
+\mbox{}\ \ Rating\ rating; \\
+\mbox{}\ \ CategoryType\ categories; \\
+\mbox{}\ \ uint16$\_$t\ runtime;\ \textit{//\ in\ minutes} \\
+\mbox{}\ \ double\ score;\ \textit{//\ how\ good\ (or\ bad)\ is\ this\ film} \\
+\mbox{}\}\ Film; \\
+\mbox{} \\
+\mbox{}Film*\ \textbf{film$\_$new}(\textbf{const}\ char*\ title,\ uint16$\_$t\ year,\ Rating\ rating, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CategoryType\ categories,\ uint16$\_$t\ runtime,\ double\ score) \\
+\mbox{}\{ \\
+\mbox{}\ \ Film*\ film\ =\ (Film*)\textbf{mt$\_$malloc}(\textbf{sizeof}(Film)); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (film) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ film-\textgreater{}title\ =\ \textbf{mt$\_$malloc}(\textbf{strlen}(title)+1); \\
+\mbox{}\ \ \ \ \textbf{strcpy}(film-\textgreater{}title,\ title); \\
+\mbox{}\ \ \ \ film-\textgreater{}year\ =\ year; \\
+\mbox{}\ \ \ \ film-\textgreater{}rating\ =\ rating; \\
+\mbox{}\ \ \ \ film-\textgreater{}categories\ =\ categories; \\
+\mbox{}\ \ \ \ film-\textgreater{}runtime\ =\ runtime; \\
+\mbox{}\ \ \ \ film-\textgreater{}score\ =\ score; \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{return}\ film; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{film$\_$delete}(Film*\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!film)\ \textit{//\ No\ film?\ No\ work} \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \textbf{mt$\_$free}(film-\textgreater{}title); \\
+\mbox{}\ \ \textbf{mt$\_$free}(film); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{film$\_$print}(Film*\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!film) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}\%s}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{Year:\ \%u}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{Rating:\ \%s}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{Categories:"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ film-\textgreater{}title,\ film-\textgreater{}year,\ \textbf{rating$\_$toString}(film-\textgreater{}rating)); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ i\ \textless{}\ NUM$\_$CATEGORIES;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ ((1\ \textless{}\textless{}\ i)\ \&\ film-\textgreater{}categories) \\
+\mbox{}\ \ \ \ \ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{·\ \%s"{}},\ \textbf{category$\_$toString}(1\ \textless{}\textless{}\ i)); \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{Run\ time:\ \%u\ minutes}\texttt{\textbackslash{}n\textbackslash{}t}\texttt{Score:\ \%.1f}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ film-\textgreater{}runtime,\ film-\textgreater{}score); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}\textbf{const}\ char*\ \textbf{film$\_$getTitle}(\textbf{const}\ Film*\ \textbf{const}\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ film\ ?\ film-\textgreater{}title\ :\ \texttt{"{}"{}}; \\
+\mbox{}\} \\
+\mbox{}uint16$\_$t\ \textbf{film$\_$getYear}(\textbf{const}\ Film*\ \textbf{const}\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ film\ ?\ film-\textgreater{}year\ :\ 0; \\
+\mbox{}\} \\
+\mbox{}Rating\ \textbf{film$\_$getRating}(\textbf{const}\ Film*\ \textbf{const}\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ film\ ?\ film-\textgreater{}rating\ :\ R$\_$NONE; \\
+\mbox{}\} \\
+\mbox{}uint16$\_$t\ \textbf{film$\_$getRuntime}(\textbf{const}\ Film*\ \textbf{const}\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ film\ ?\ film-\textgreater{}runtime\ :\ 0; \\
+\mbox{}\} \\
+\mbox{}double\ \textbf{film$\_$getScore}(\textbf{const}\ Film*\ \textbf{const}\ film) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ film\ ?\ film-\textgreater{}score\ :\ 0.0; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}bool\ \textbf{film$\_$hasCategory}(\textbf{const}\ Film*\ \textbf{const}\ film,\ \textbf{const}\ Category\ cat) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!film) \\
+\mbox{}\ \ \ \ \textbf{return}\ false; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{return}\ cat\ \&\ film-\textgreater{}categories; \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

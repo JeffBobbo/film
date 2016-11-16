@@ -1,0 +1,163 @@
+\documentclass{article}
+
+\title{film.h}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#ifndef}\ FILM$\_$H$\_$INCLUDE \\
+\mbox{}\textbf{\#define}\ FILM$\_$H$\_$INCLUDE \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdbool.h\textgreater{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}llist.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{enum}\ rating$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ R$\_$NONE\ =\ 0, \\
+\mbox{}\ \ APPROVED, \\
+\mbox{}\ \ G, \\
+\mbox{}\ \ M, \\
+\mbox{}\ \ N$\_$A, \\
+\mbox{}\ \ NOT$\_$RATED, \\
+\mbox{}\ \ PASSED, \\
+\mbox{}\ \ PG, \\
+\mbox{}\ \ PG$\_$13, \\
+\mbox{}\ \ R, \\
+\mbox{}\ \ TV$\_$14, \\
+\mbox{}\ \ UNRATED, \\
+\mbox{}\ \ NUM$\_$RATINGS \\
+\mbox{}\}\ Rating; \\
+\mbox{}\textbf{typedef}\ \textbf{enum}\ category$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ C$\_$NONE\ \ \ \ =\ 0x000001, \\
+\mbox{}\ \ ACTION\ \ \ \ =\ 0x000002, \\
+\mbox{}\ \ ADVENTURE\ =\ 0x000004, \\
+\mbox{}\ \ ANIMATION\ =\ 0x000008, \\
+\mbox{}\ \ BIOGRAPHY\ =\ 0x000010, \\
+\mbox{}\ \ COMEDY\ \ \ \ =\ 0x000020, \\
+\mbox{}\ \ CRIME\ \ \ \ \ =\ 0x000040, \\
+\mbox{}\ \ DRAMA\ \ \ \ \ =\ 0x000080, \\
+\mbox{}\ \ FAMILY\ \ \ \ =\ 0x000100, \\
+\mbox{}\ \ FANTASY\ \ \ =\ 0x000200, \\
+\mbox{}\ \ FILM$\_$NOIR\ =\ 0x000400, \\
+\mbox{}\ \ HISTORY\ \ \ =\ 0x000800, \\
+\mbox{}\ \ HORROR\ \ \ \ =\ 0x001000, \\
+\mbox{}\ \ MUSIC\ \ \ \ \ =\ 0x002000, \\
+\mbox{}\ \ MUSICAL\ \ \ =\ 0x004000, \\
+\mbox{}\ \ MYSTERY\ \ \ =\ 0x008000, \\
+\mbox{}\ \ ROMANCE\ \ \ =\ 0x010000, \\
+\mbox{}\ \ SCI$\_$FI\ \ \ \ =\ 0x020000, \\
+\mbox{}\ \ SHORT\ \ \ \ \ =\ 0x040000, \\
+\mbox{}\ \ SPORT\ \ \ \ \ =\ 0x080000, \\
+\mbox{}\ \ THRILLER\ \ =\ 0x100000, \\
+\mbox{}\ \ WAR\ \ \ \ \ \ \ =\ 0x200000, \\
+\mbox{}\ \ WESTERN\ \ \ =\ 0x400000, \\
+\mbox{}\ \ NUM$\_$CATEGORIES\ =\ 22 \\
+\mbox{}\}\ Category; \\
+\mbox{}\textbf{typedef}\ uint$\_$least32$\_$t\ CategoryType; \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ string\ representation\ of\ a\ particular\ rating} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ r\ Rating\ to\ represent} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ String\ representation} \\
+\mbox{}\textit{\ */} \\
+\mbox{}\textbf{const}\ char*\ \textbf{rating$\_$toString}(\textbf{const}\ Rating\ r); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Returns\ the\ string\ representation\ of\ a\ particular\ category} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ c\ Category\ to\ represent} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ String\ representation} \\
+\mbox{}\textit{\ */} \\
+\mbox{}\textbf{const}\ char*\ \textbf{category$\_$toString}(\textbf{const}\ Category\ c); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Internal\ Rating\ representation\ of\ a\ rating\ as\ a\ string} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ str\ The\ string\ to\ get\ the\ representation\ for} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ The\ internal\ representation,\ R$\_$NONE\ if\ one\ isn't\ found} \\
+\mbox{}\textit{\ */} \\
+\mbox{}Rating\ \textbf{rating$\_$fromString}(\textbf{const}\ char*\ \textbf{const}\ str); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Internal\ Category\ representation\ of\ a\ rating\ as\ a\ string} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ str\ The\ string\ to\ get\ the\ representation\ fore} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ The\ internal\ representation,\ R$\_$NONE\ if\ one\ isn't\ found} \\
+\mbox{}\textit{\ */} \\
+\mbox{}Category\ \textbf{category$\_$fromString}(\textbf{const}\ char*\ \textbf{const}\ str); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Converts\ a\ forward\ slash\ delimited\ string\ of\ categories\ into} \\
+\mbox{}\textit{\ *\ a\ CategoryType,\ which\ is\ a\ bitfield\ of\ Category} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ str\ Categories\ as\ a\ forward\ slash\ delimited\ list} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ A\ bitfield\ of\ Category} \\
+\mbox{}\textit{\ */} \\
+\mbox{}CategoryType\ \textbf{category$\_$fromStrings}(\textbf{const}\ char*\ \textbf{const}\ str); \\
+\mbox{} \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ film$\_$t\ Film; \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Allocates\ and\ constructs\ a\ new\ film\ type} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ title\ \ \ \ \ \ The\ film's\ title} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ year\ \ \ \ \ \ \ The\ film's\ year\ of\ release} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ rating\ \ \ \ \ The\ film's\ age\ rating\ (MPAA-like)} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ categories\ Bitfield\ of\ the\ film's\ categories} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ runtime\ \ \ \ The\ film's\ duration\ in\ minutes} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ score\ \ \ \ \ \ The\ film's\ ranking\ (presumably\ 0.0..10.0)} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ \ \ \ \ \ \ A\ new\ film,\ or\ NULL\ if\ allocation\ failed} \\
+\mbox{}\textit{\ */} \\
+\mbox{}Film*\ \textbf{film$\_$new}(\textbf{const}\ char*\ title,\ uint16$\_$t\ year,\ Rating\ rating, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CategoryType\ categories,\ uint16$\_$t\ runtime,\ double\ score); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Cleans\ up\ and\ deallocates\ an\ instance\ of\ a\ film\ type.} \\
+\mbox{}\textit{\ *\ The\ pointer\ provided\ is\ invalid\ after\ this\ called} \\
+\mbox{}\textit{\ *\ }@param\textit{\ film\ The\ film\ to\ delete} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{film$\_$delete}(Film*\ film); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Prints\ details\ of\ the\ film\ to\ stdout\ in\ a\ formatted\ manner} \\
+\mbox{}\textit{\ *\ }@param\textit{\ film\ The\ film\ to\ print} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{film$\_$print}(Film*\ film); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieves\ a\ film's\ title,\ or\ empty\ string\ if\ film\ is\ NULL} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ Title\ of\ the\ film\ provided,\ or\ empty\ string} \\
+\mbox{}\textit{\ */} \\
+\mbox{}\textbf{const}\ char*\ \textbf{film$\_$getTitle}(\textbf{const}\ Film*\ \textbf{const}\ film); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieves\ a\ film's\ year\ of\ release,\ or\ 0\ if\ the\ film\ is\ NULL} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ Year\ of\ release,\ or\ 0} \\
+\mbox{}\textit{\ */} \\
+\mbox{}uint16$\_$t\ \textbf{film$\_$getYear}(\textbf{const}\ Film*\ \textbf{const}\ film); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieves\ a\ film's\ rating,\ or\ R$\_$NONE\ if\ the\ film\ is\ NULL} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ Rating\ of\ the\ film,\ or\ R$\_$NONE} \\
+\mbox{}\textit{\ */} \\
+\mbox{}Rating\ \textbf{film$\_$getRating}(\textbf{const}\ Film*\ \textbf{const}\ film); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieves\ a\ film's\ runtime,\ or\ 0\ if\ the\ film\ is\ NULL} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ Runtime\ of\ the\ film,\ or\ 0} \\
+\mbox{}\textit{\ */} \\
+\mbox{}uint16$\_$t\ \textbf{film$\_$getRuntime}(\textbf{const}\ Film*\ \textbf{const}\ film); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Retrieves\ a\ film's\ score,\ or\ 0.0\ if\ the\ film\ is\ NULL} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ Score\ of\ the\ film,\ or\ 0.0} \\
+\mbox{}\textit{\ */} \\
+\mbox{}double\ \textbf{film$\_$getScore}(\textbf{const}\ Film*\ \textbf{const}\ film); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Tests\ if\ a\ film\ has\ a\ particularly\ category} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ film\ The\ film\ to\ test} \\
+\mbox{}\textit{\ *\ }@param\textit{\ \ cat\ \ The\ category\ to\ check\ for} \\
+\mbox{}\textit{\ *\ }@return\textit{\ \ \ \ \ \ True\ if\ the\ film\ is\ of\ this\ category} \\
+\mbox{}\textit{\ */} \\
+\mbox{}bool\ \textbf{film$\_$hasCategory}(\textbf{const}\ Film*\ \textbf{const}\ film,\ \textbf{const}\ Category\ cat); \\
+\mbox{} \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}
+\end{document}

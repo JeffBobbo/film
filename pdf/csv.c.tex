@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\title{csv.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}csv.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdio.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}string.h\textgreater{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}alloc.h"{}} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}llist.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{static}\ char\ DELIMITER\ =\ \texttt{','}; \\
+\mbox{} \\
+\mbox{}LinkedList**\ \textbf{csv$\_$read}(\textbf{const}\ char*\ \textbf{const}\ filename,\ size$\_$t*\ \textbf{const}\ c) \\
+\mbox{}\{ \\
+\mbox{}\ \ *c\ =\ 0; \\
+\mbox{}\ \ FILE*\ f\ =\ \textbf{fopen}(filename,\ \texttt{"{}r"{}}); \\
+\mbox{}\ \ \textbf{if}\ (!f) \\
+\mbox{}\ \ \ \ \textbf{return}\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ char\ line[256]; \\
+\mbox{}\ \ size$\_$t\ lineCount\ =\ 0; \\
+\mbox{}\ \ \textbf{while}\ (\textbf{fgets}(line,\ \textbf{sizeof}(line),\ f)) \\
+\mbox{}\ \ \ \ ++lineCount; \\
+\mbox{} \\
+\mbox{}\ \ LinkedList**\ csv\ =\ (LinkedList**)\textbf{malloc}(\textbf{sizeof}(LinkedList*)\ *\ lineCount); \\
+\mbox{}\ \ \textbf{if}\ (!csv) \\
+\mbox{}\ \ \ \ \textbf{return}\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{rewind}(f);\ \textit{//\ go\ back\ to\ the\ beginning} \\
+\mbox{}\ \ \textbf{while}\ (\textbf{fgets}(line,\ \textbf{sizeof}(line),\ f)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedList*\ entry\ =\ \textbf{ll$\_$new}(); \\
+\mbox{}\ \ \ \ size$\_$t\ p\ =\ 0; \\
+\mbox{}\ \ \ \ \textbf{while}\ (p\ \textless{}\ \textbf{strlen}(line)) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{if}\ (line[p]\ ==\ DELIMITER\ $|$$|$\ line[p]\ ==\ \texttt{'}\texttt{\textbackslash{}n}\texttt{'}) \\
+\mbox{}\ \ \ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \ \ ++p; \\
+\mbox{}\ \ \ \ \ \ \} \\
+\mbox{}\ \ \ \ \ \ \textbf{else} \\
+\mbox{}\ \ \ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \ \ size$\_$t\ len\ =\ 0; \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{if}\ (line[p]\ ==\ \texttt{'"{}'}) \\
+\mbox{}\ \ \ \ \ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ ++p; \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ size$\_$t\ end\ =\ p; \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \textbf{while}\ (line[end]\ !=\ \texttt{'"{}'}) \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ ++end; \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ len\ =\ end\ -\ p; \\
+\mbox{}\ \ \ \ \ \ \ \ \} \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{else} \\
+\mbox{}\ \ \ \ \ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ size$\_$t\ end\ =\ p; \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \textbf{while}\ (line[end]\ !=\ DELIMITER\ \&\&\ line[end]\ !=\ \texttt{'}\texttt{\textbackslash{}n}\texttt{'}) \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ ++end; \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ len\ =\ end\ -\ p; \\
+\mbox{}\ \ \ \ \ \ \ \ \} \\
+\mbox{}\ \ \ \ \ \ \ \ char*\ str\ =\ \textbf{mt$\_$malloc}(\textbf{sizeof}(char)\ *\ (len\ +\ 1)); \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{memcpy}(str,\ line+p,\ \textbf{sizeof}(char)\ *\ len); \\
+\mbox{}\ \ \ \ \ \ \ \ str[len]\ =\ \texttt{'}\texttt{\textbackslash{}0}\texttt{'}; \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{ll$\_$push$\_$back}(entry,\ str); \\
+\mbox{}\ \ \ \ \ \ \ \ p\ +=\ len\ +\ 1; \\
+\mbox{}\ \ \ \ \ \ \} \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{ll$\_$size}(entry)) \\
+\mbox{}\ \ \ \ \ \ csv[(*c)++]\ =\ entry; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{fclose}(f); \\
+\mbox{}\ \ \textbf{return}\ csv; \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

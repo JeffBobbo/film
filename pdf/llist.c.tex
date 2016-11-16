@@ -1,0 +1,323 @@
+\documentclass{article}
+
+\title{llist.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}llist.h"{}} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}alloc.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdlib.h\textgreater{}}\ \textit{//\ size$\_$t} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}assert.h\textgreater{}}\ \textit{//\ assert} \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ linkednode$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{struct}\ linkednode$\_$t*\ prev; \\
+\mbox{}\ \ \textbf{struct}\ linkednode$\_$t*\ next; \\
+\mbox{}\ \ void*\ data; \\
+\mbox{}\}\ LinkedNode; \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ linkedlist$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ size$\_$t\ size; \\
+\mbox{}\ \ LinkedNode*\ head; \\
+\mbox{}\ \ LinkedNode*\ tail; \\
+\mbox{}\}\ LinkedList; \\
+\mbox{} \\
+\mbox{}LinkedList*\ \textbf{ll$\_$new}() \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedList*\ list\ =\ (LinkedList*)\textbf{mt$\_$malloc}(\textbf{sizeof}(LinkedList)); \\
+\mbox{}\ \ \textbf{if}\ (list) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ list-\textgreater{}size\ =\ 0; \\
+\mbox{}\ \ \ \ list-\textgreater{}head\ =\ NULL; \\
+\mbox{}\ \ \ \ list-\textgreater{}tail\ =\ NULL; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ list; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}size$\_$t\ \textbf{ll$\_$size}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textbf{return}\ ll-\textgreater{}size; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}bool\ \textbf{ll$\_$empty}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textbf{return}\ !ll-\textgreater{}size; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}LinkedNode*\ \textbf{ll$\_$node$\_$new}() \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedNode*\ node\ =\ (LinkedNode*)\textbf{mt$\_$malloc}(\textbf{sizeof}(LinkedNode)); \\
+\mbox{}\ \ \textbf{if}\ (!node) \\
+\mbox{}\ \ \ \ \textbf{abort}(); \\
+\mbox{}\ \ node-\textgreater{}prev\ =\ node-\textgreater{}next\ =\ NULL; \\
+\mbox{}\ \ node-\textgreater{}data\ =\ NULL; \\
+\mbox{}\ \ \textbf{return}\ node; \\
+\mbox{}\} \\
+\mbox{}void\ \textbf{ll$\_$node$\_$delete}(LinkedNode*\ node) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{mt$\_$free}(node-\textgreater{}data); \\
+\mbox{}\ \ \textbf{mt$\_$free}(node); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}LinkedNode*\ \textbf{ll$\_$front$\_$node}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textbf{return}\ ll-\textgreater{}head; \\
+\mbox{}\} \\
+\mbox{}LinkedNode*\ \textbf{ll$\_$back$\_$node}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textbf{return}\ ll-\textgreater{}tail; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{ll$\_$front}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedNode*\ head\ =\ \textbf{ll$\_$front$\_$node}(ll); \\
+\mbox{}\ \ \textbf{return}\ head\ ?\ head-\textgreater{}data\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{}void*\ \textbf{ll$\_$back}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedNode*\ tail\ =\ \textbf{ll$\_$back$\_$node}(ll); \\
+\mbox{}\ \ \textbf{return}\ tail\ ?\ tail-\textgreater{}data\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$push$\_$front}(LinkedList*\ \textbf{const}\ ll,\ void*\ p) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textit{//assert(p);} \\
+\mbox{} \\
+\mbox{}\ \ LinkedNode*\ n\ =\ \textbf{ll$\_$node$\_$new}(); \\
+\mbox{}\ \ n-\textgreater{}data\ =\ p; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (ll-\textgreater{}head) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ ll-\textgreater{}head-\textgreater{}prev\ =\ n; \\
+\mbox{}\ \ \ \ n-\textgreater{}next\ =\ ll-\textgreater{}head; \\
+\mbox{} \\
+\mbox{}\ \ \ \ ll-\textgreater{}head\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{else} \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ ll-\textgreater{}head\ =\ n; \\
+\mbox{}\ \ \ \ ll-\textgreater{}tail\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ ++(ll-\textgreater{}size); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$push$\_$back}(LinkedList*\ \textbf{const}\ ll,\ void*\ p) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textit{//assert(p);} \\
+\mbox{} \\
+\mbox{}\ \ LinkedNode*\ n\ =\ \textbf{ll$\_$node$\_$new}(); \\
+\mbox{}\ \ n-\textgreater{}data\ =\ p; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (ll-\textgreater{}tail) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ ll-\textgreater{}tail-\textgreater{}next\ =\ n; \\
+\mbox{}\ \ \ \ n-\textgreater{}prev\ =\ ll-\textgreater{}tail; \\
+\mbox{} \\
+\mbox{}\ \ \ \ ll-\textgreater{}tail\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{else} \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ ll-\textgreater{}tail\ =\ n; \\
+\mbox{}\ \ \ \ ll-\textgreater{}head\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ ++(ll-\textgreater{}size); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$pop$\_$front}(LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{} \\
+\mbox{}\ \ LinkedNode*\ front\ =\ \textbf{ll$\_$front$\_$node}(ll); \\
+\mbox{}\ \ \textbf{if}\ (!front) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ ll-\textgreater{}head\ =\ front-\textgreater{}next; \\
+\mbox{}\ \ \textbf{if}\ (ll-\textgreater{}head) \\
+\mbox{}\ \ \ \ ll-\textgreater{}head-\textgreater{}prev\ =\ NULL; \\
+\mbox{}\ \ \textbf{ll$\_$node$\_$delete}(front); \\
+\mbox{}\ \ -\/-(ll-\textgreater{}size); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$pop$\_$back}(LinkedList*\ \textbf{const}\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{} \\
+\mbox{}\ \ LinkedNode*\ back\ =\ \textbf{ll$\_$back$\_$node}(ll); \\
+\mbox{}\ \ \textbf{if}\ (!back) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ back-\textgreater{}prev-\textgreater{}next\ =\ NULL; \\
+\mbox{}\ \ \textbf{ll$\_$node$\_$delete}(back); \\
+\mbox{}\ \ -\/-(ll-\textgreater{}size); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$insert}(LinkedIterator*\ \textbf{const}\ it,\ void*\ p) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!it) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \textbf{if}\ (!it-\textgreater{}list) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ LinkedNode*\ node\ =\ \textbf{ll$\_$node$\_$new}(); \\
+\mbox{}\ \ node-\textgreater{}data\ =\ p; \\
+\mbox{}\ \ LinkedNode*\ target\ =\ it-\textgreater{}current; \\
+\mbox{}\ \ \textbf{if}\ (target-\textgreater{}prev) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ target-\textgreater{}prev-\textgreater{}next\ =\ node; \\
+\mbox{}\ \ \ \ node-\textgreater{}prev\ =\ target-\textgreater{}prev; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ target-\textgreater{}prev\ =\ node; \\
+\mbox{}\ \ node-\textgreater{}next\ =\ target; \\
+\mbox{}\ \ ++(it-\textgreater{}list-\textgreater{}size); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{ll$\_$erase}(LinkedIterator*\ \textbf{const}\ it) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!it) \\
+\mbox{}\ \ \ \ \textbf{return}\ NULL; \\
+\mbox{}\ \ \textbf{if}\ (!it-\textgreater{}list) \\
+\mbox{}\ \ \ \ \textbf{return}\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ fix\ the\ pointers\ to\ remove\ the\ element} \\
+\mbox{}\ \ \textbf{if}\ (it-\textgreater{}current\ ==\ it-\textgreater{}list-\textgreater{}head)\ \textit{//\ if\ it's\ the\ head,\ then\ head\ becomes\ next} \\
+\mbox{}\ \ \ \ it-\textgreater{}list-\textgreater{}head\ =\ it-\textgreater{}list-\textgreater{}head-\textgreater{}next; \\
+\mbox{}\ \ \textbf{if}\ (it-\textgreater{}current\ ==\ it-\textgreater{}list-\textgreater{}tail)\ \textit{//\ if\ it's\ the\ trail,\ the\ tail\ becomes\ prev} \\
+\mbox{}\ \ \ \ it-\textgreater{}list-\textgreater{}tail\ =\ it-\textgreater{}list-\textgreater{}tail-\textgreater{}prev; \\
+\mbox{}\ \ \textbf{if}\ (it-\textgreater{}current-\textgreater{}prev)\ \textit{//\ if\ we\ have\ a\ prev\ node,\ make\ that\ point\ to\ next} \\
+\mbox{}\ \ \ \ it-\textgreater{}current-\textgreater{}prev-\textgreater{}next\ =\ it-\textgreater{}current-\textgreater{}next; \\
+\mbox{}\ \ \textbf{if}\ (it-\textgreater{}current-\textgreater{}next)\ \textit{//\ if\ we\ have\ a\ next\ node,\ make\ that\ point\ to\ prev} \\
+\mbox{}\ \ \ \ it-\textgreater{}current-\textgreater{}next-\textgreater{}prev\ =\ it-\textgreater{}current-\textgreater{}prev; \\
+\mbox{} \\
+\mbox{}\ \ void*\ p\ =\ it-\textgreater{}current-\textgreater{}data; \\
+\mbox{}\ \ \textbf{mt$\_$free}(it-\textgreater{}current); \\
+\mbox{}\ \ it-\textgreater{}current\ =\ NULL; \\
+\mbox{}\ \ -\/-(it-\textgreater{}list-\textgreater{}size); \\
+\mbox{}\ \ \textbf{return}\ p; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}LinkedNode*\ \textbf{ll$\_$at$\_$node}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll,\ \textbf{const}\ size$\_$t\ n) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ LinkedNode*\ node\ =\ ll-\textgreater{}head; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (n\ \textgreater{}=\ ll-\textgreater{}size) \\
+\mbox{}\ \ \ \ \textbf{return}\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ i\ \textless{}\ n;\ ++i) \\
+\mbox{}\ \ \ \ node\ =\ node-\textgreater{}next; \\
+\mbox{}\ \ \textbf{return}\ node; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$at}(\textbf{const}\ LinkedList*\ \textbf{const}\ ll,\ \textbf{const}\ size$\_$t\ n) \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}((LinkedList*)ll); \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ it.current\ \&\&\ i\ \textless{}\ n;\ ++i) \\
+\mbox{}\ \ \ \ \textbf{ll$\_$it$\_$next}(\&it); \\
+\mbox{}\ \ \textbf{return}\ it; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{swap}(void**\ a,\ void**\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ void*\ p\ =\ *a; \\
+\mbox{}\ \ *a\ =\ *b; \\
+\mbox{}\ \ *b\ =\ p; \\
+\mbox{}\} \\
+\mbox{}void\ \textbf{ll$\_$bsort}(LinkedList*\ \textbf{const}\ ll, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{int32$\_$t}\ (*comparison)(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b)) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{assert}(ll); \\
+\mbox{}\ \ \textbf{if}\ (ll-\textgreater{}size\ \textless{}=\ 1)\ \textit{//\ nothing\ to\ do} \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ bool\ swapped; \\
+\mbox{}\ \ \textbf{do} \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ swapped\ =\ false; \\
+\mbox{}\ \ \ \ LinkedNode*\ node\ =\ \textbf{ll$\_$front$\_$node}(ll); \\
+\mbox{}\ \ \ \ \textbf{while}\ (node\ \&\&\ node-\textgreater{}next) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{if}\ ((*comparison)(node-\textgreater{}data,\ node-\textgreater{}next-\textgreater{}data)\ \textgreater{}\ 0) \\
+\mbox{}\ \ \ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{swap}(\&node-\textgreater{}data,\ \&node-\textgreater{}next-\textgreater{}data); \\
+\mbox{}\ \ \ \ \ \ \ \ swapped\ =\ true; \\
+\mbox{}\ \ \ \ \ \ \} \\
+\mbox{}\ \ \ \ \ \ node\ =\ node-\textgreater{}next; \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{while}\ (swapped); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{ll$\_$clear}(LinkedList*\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{while}\ (ll-\textgreater{}head) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedNode*\ n\ =\ ll-\textgreater{}head-\textgreater{}next; \\
+\mbox{}\ \ \ \ \textbf{mt$\_$free}(ll-\textgreater{}head-\textgreater{}data); \\
+\mbox{}\ \ \ \ \textbf{mt$\_$free}(ll-\textgreater{}head); \\
+\mbox{}\ \ \ \ ll-\textgreater{}head\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ ll-\textgreater{}tail\ =\ NULL; \\
+\mbox{}\ \ ll-\textgreater{}size\ =\ 0; \\
+\mbox{}\} \\
+\mbox{}void\ \textbf{ll$\_$delete}(LinkedList*\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{while}\ (\textbf{ll$\_$front$\_$node}(ll)) \\
+\mbox{}\ \ \ \ \textbf{ll$\_$pop$\_$front}(ll); \\
+\mbox{}\ \ \textbf{mt$\_$free}(ll); \\
+\mbox{}\} \\
+\mbox{}void\ \textbf{ll$\_$purge}(LinkedList*\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{while}\ (ll-\textgreater{}head) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedNode*\ n\ =\ ll-\textgreater{}head-\textgreater{}next; \\
+\mbox{}\ \ \ \ \textbf{mt$\_$free}(ll-\textgreater{}head); \\
+\mbox{}\ \ \ \ ll-\textgreater{}head\ =\ n; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{mt$\_$free}(ll); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$it$\_$begin}(LinkedList*\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedIterator\ it\ =\ \{ll,\ \textbf{ll$\_$front$\_$node}(ll)\}; \\
+\mbox{}\ \ \textbf{return}\ it; \\
+\mbox{}\} \\
+\mbox{}LinkedIterator\ \textbf{ll$\_$it$\_$rbegin}(LinkedList*\ ll) \\
+\mbox{}\{ \\
+\mbox{}\ \ LinkedIterator\ it\ =\ \{ll,\ \textbf{ll$\_$back$\_$node}(ll)\}; \\
+\mbox{}\ \ \textbf{return}\ it; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$next}(LinkedIterator*\ \textbf{const}\ it) \\
+\mbox{}\{ \\
+\mbox{}\ \ it-\textgreater{}current\ =\ it-\textgreater{}current-\textgreater{}next; \\
+\mbox{}\ \ \textbf{return}\ it-\textgreater{}current\ ?\ it-\textgreater{}current-\textgreater{}data\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$rnext}(LinkedIterator*\ \textbf{const}\ it) \\
+\mbox{}\{ \\
+\mbox{}\ \ it-\textgreater{}current\ =\ it-\textgreater{}current-\textgreater{}prev; \\
+\mbox{}\ \ \textbf{return}\ it-\textgreater{}current\ ?\ it-\textgreater{}current-\textgreater{}data\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}bool\ \textbf{ll$\_$it$\_$valid}(\textbf{const}\ LinkedIterator*\ \textbf{const}\ it) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ it\ ?\ it-\textgreater{}current\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{ll$\_$it$\_$data}(\textbf{const}\ LinkedIterator*\ \textbf{const}\ it) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ it\ \&\&\ it-\textgreater{}current\ ?\ it-\textgreater{}current-\textgreater{}data\ :\ NULL; \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

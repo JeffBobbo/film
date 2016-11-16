@@ -1,0 +1,255 @@
+\documentclass{article}
+
+\title{alloc.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}alloc.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdio.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}string.h\textgreater{}}\ \textit{//\ memset} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdlib.h\textgreater{}}\ \textit{//\ atexit,\ [cm]alloc,\ free} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}assert.h\textgreater{}}\ \textit{//\ assert} \\
+\mbox{} \\
+\mbox{}\textbf{\#define}\ MEMTEST \\
+\mbox{} \\
+\mbox{}\textbf{const}\ unsigned\ char\ PADDING\ =\ 255; \\
+\mbox{} \\
+\mbox{}\textbf{static}\ int\ registeredExit\ =\ 0; \\
+\mbox{}\textbf{static}\ size$\_$t\ allocCount\ =\ 0; \\
+\mbox{}\textbf{static}\ size$\_$t\ allocAmount\ =\ 0; \\
+\mbox{}\textbf{static}\ size$\_$t\ freeCount\ =\ 0; \\
+\mbox{} \\
+\mbox{}\textbf{typedef}\ \textbf{struct}\ reserved$\_$t \\
+\mbox{}\{ \\
+\mbox{}\ \ unsigned\ char*\ base;\ \textit{//\ the\ base\ address\ of\ this\ reserved\ memory} \\
+\mbox{}\ \ unsigned\ char*\ data;\ \textit{//\ where\ the\ data\ actually\ is} \\
+\mbox{}\ \ unsigned\ char*\ dend;\ \textit{//\ where\ the\ data\ ends} \\
+\mbox{}\ \ unsigned\ char*\ end;\ \textit{//\ the\ last\ piece\ of\ data\ in\ this\ bit\ of\ reserved\ memory} \\
+\mbox{}\ \ size$\_$t\ num;\ \textit{//\ how\ many\ elements\ is\ this\ memory\ for} \\
+\mbox{}\ \ \textit{//\ n.b.:\ each\ individual\ element\ won't\ be\ padded,} \\
+\mbox{}\ \ \textit{//\ so\ corruption\ could\ occur\ here} \\
+\mbox{}\ \ size$\_$t\ size;\ \textit{//\ what's\ the\ size\ of\ each\ element} \\
+\mbox{}\ \ \textbf{struct}\ reserved$\_$t*\ next; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{const}\ char*\ file; \\
+\mbox{}\ \ size$\_$t\ line; \\
+\mbox{}\}\ Reserved; \\
+\mbox{} \\
+\mbox{}Reserved*\ root\ =\ NULL; \\
+\mbox{} \\
+\mbox{}Reserved*\ \textbf{last}() \\
+\mbox{}\{ \\
+\mbox{}\ \ Reserved*\ node\ =\ root; \\
+\mbox{}\ \ \textbf{while}\ (1) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (!node-\textgreater{}next) \\
+\mbox{}\ \ \ \ \ \ \textbf{break}; \\
+\mbox{}\ \ \ \ node\ =\ node-\textgreater{}next; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ node; \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{mt$\_$malloc$\_$}(\textbf{const}\ size$\_$t\ sz, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{const}\ char*\ file,\ \textbf{const}\ size$\_$t\ line) \\
+\mbox{}\{ \\
+\mbox{}\textbf{\#ifdef}\ MEMTEST \\
+\mbox{}\ \ unsigned\ char*\ p\ =\ \textbf{malloc}(sz*2); \\
+\mbox{}\ \ \textbf{if}\ (p) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Reserved*\ r\ =\ (Reserved*)\textbf{malloc}(\textbf{sizeof}(Reserved)); \\
+\mbox{}\ \ \ \ \textbf{assert}(r); \\
+\mbox{}\ \ \ \ r-\textgreater{}base\ =\ p; \\
+\mbox{}\ \ \ \ r-\textgreater{}data\ =\ (sz\ \textgreater{}\textgreater{}\ 1)\ +\ p; \\
+\mbox{}\ \ \ \ r-\textgreater{}dend\ =\ r-\textgreater{}data\ +\ sz; \\
+\mbox{}\ \ \ \ r-\textgreater{}end\ =\ p\ +\ sz\ *\ 2; \\
+\mbox{}\ \ \ \ r-\textgreater{}num\ =\ 1; \\
+\mbox{}\ \ \ \ r-\textgreater{}size\ =\ sz; \\
+\mbox{}\ \ \ \ r-\textgreater{}next\ =\ NULL; \\
+\mbox{}\ \ \ \ r-\textgreater{}file\ =\ file; \\
+\mbox{}\ \ \ \ r-\textgreater{}line\ =\ line; \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textit{//\ set\ all\ the\ bytes\ except\ those\ in\ our\ data\ to\ be\ 0} \\
+\mbox{}\ \ \ \ \textit{//\ this\ preserves\ the\ junk\ values\ we\ get} \\
+\mbox{}\ \ \ \ \textit{//\ but\ allow\ us\ to\ test\ for\ under\ and\ overflows\ later} \\
+\mbox{}\ \ \ \ \textbf{memset}(r-\textgreater{}base,\ PADDING,\ r-\textgreater{}data\ -\ r-\textgreater{}base); \\
+\mbox{}\ \ \ \ \textbf{memset}(r-\textgreater{}dend,\ PADDING,\ r-\textgreater{}end\ -\ r-\textgreater{}dend); \\
+\mbox{} \\
+\mbox{}\ \ \ \ r-\textgreater{}next\ =\ root; \\
+\mbox{}\ \ \ \ root\ =\ r; \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textbf{if}\ (!registeredExit) \\
+\mbox{}\ \ \ \ \ \ registeredExit\ =\ !\textbf{atexit}(mt$\_$check); \\
+\mbox{}\ \ \ \ ++allocCount; \\
+\mbox{}\ \ \ \ allocAmount\ +=\ sz; \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textbf{return}\ r-\textgreater{}data; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ NULL; \\
+\mbox{}\textbf{\#else} \\
+\mbox{}\ \ \textbf{return}\ \textbf{malloc}(sz); \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void*\ \textbf{mt$\_$calloc$\_$}(\textbf{const}\ size$\_$t\ n,\ \textbf{const}\ size$\_$t\ sz, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{const}\ char*\ file,\ \textbf{const}\ size$\_$t\ line) \\
+\mbox{}\{ \\
+\mbox{}\textbf{\#ifdef}\ MEMTEST \\
+\mbox{}\ \ unsigned\ char*\ p\ =\ \textbf{calloc}(n,\ sz*2);\ \textit{//\ use\ calloc,\ as\ we\ want\ all\ zeroes} \\
+\mbox{}\ \ \textbf{if}\ (p) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Reserved*\ r\ =\ (Reserved*)\textbf{malloc}(\textbf{sizeof}(Reserved)); \\
+\mbox{}\ \ \ \ \textbf{assert}(r); \\
+\mbox{}\ \ \ \ r-\textgreater{}base\ =\ p; \\
+\mbox{}\ \ \ \ r-\textgreater{}data\ =\ ((intptr$\_$t)(n*sz)\ \textgreater{}\textgreater{}\ 1)\ +\ p; \\
+\mbox{}\ \ \ \ r-\textgreater{}dend\ =\ r-\textgreater{}data\ +\ r-\textgreater{}size\ *\ r-\textgreater{}num; \\
+\mbox{}\ \ \ \ r-\textgreater{}end\ =\ p\ +\ n*sz*2; \\
+\mbox{}\ \ \ \ r-\textgreater{}num\ =\ n; \\
+\mbox{}\ \ \ \ r-\textgreater{}size\ =\ sz; \\
+\mbox{}\ \ \ \ r-\textgreater{}next\ =\ NULL; \\
+\mbox{}\ \ \ \ r-\textgreater{}file\ =\ file; \\
+\mbox{}\ \ \ \ r-\textgreater{}line\ =\ line; \\
+\mbox{} \\
+\mbox{}\ \ \ \ r-\textgreater{}next\ =\ root; \\
+\mbox{}\ \ \ \ root\ =\ r; \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textbf{if}\ (!registeredExit) \\
+\mbox{}\ \ \ \ \ \ registeredExit\ =\ !\textbf{atexit}(mt$\_$check); \\
+\mbox{}\ \ \ \ ++allocCount; \\
+\mbox{}\ \ \ \ allocAmount\ +=\ sz\ *\ n; \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textbf{return}\ r-\textgreater{}data; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{return}\ NULL; \\
+\mbox{}\textbf{\#else} \\
+\mbox{}\ \ \textbf{return}\ \textbf{calloc}(n,\ sz); \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{underwrite}(\textbf{const}\ Reserved*\ \textbf{const}\ node) \\
+\mbox{}\{ \\
+\mbox{}\ \ size$\_$t\ badBytes\ =\ 0; \\
+\mbox{}\ \ \textbf{for}\ (unsigned\ char*\ i\ =\ node-\textgreater{}base;\ i\ \textless{}\ node-\textgreater{}data;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (*((unsigned\ char*)i)\ !=\ PADDING) \\
+\mbox{}\ \ \ \ \ \ ++badBytes; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{if}\ (!badBytes) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \textbf{fprintf}(stderr,\ \texttt{"{}Underwrite\ detected:}\texttt{\textbackslash{}n}\texttt{\ \ \ \ "{}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \texttt{"{}From:\ \%s:\%zu,\ base:\ \%p,\ data:\ \%p,\ size:\ \%zu,\ num:\ \%zu}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ node-\textgreater{}file,\ node-\textgreater{}line, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ node-\textgreater{}base,\ node-\textgreater{}data,\ node-\textgreater{}size,\ node-\textgreater{}num); \\
+\mbox{}\ \ \textbf{for}\ (unsigned\ char*\ i\ =\ node-\textgreater{}base;\ i\ \textless{}\ node-\textgreater{}data;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (*((unsigned\ char*)i)\ !=\ PADDING) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}}\texttt{\textbackslash{}t}\texttt{Byte\ \%zu\ has\ value\ \%x}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ (size$\_$t)(i\ -\ node-\textgreater{}data),\ *((unsigned\ char*)i)); \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{overwrite}(\textbf{const}\ Reserved*\ \textbf{const}\ node) \\
+\mbox{}\{ \\
+\mbox{}\ \ size$\_$t\ badBytes\ =\ 0; \\
+\mbox{}\ \ \textbf{for}\ (unsigned\ char*\ i\ =\ node-\textgreater{}dend;\ i\ \textless{}\ node-\textgreater{}end;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (*((unsigned\ char*)i)\ !=\ PADDING) \\
+\mbox{}\ \ \ \ \ \ ++badBytes; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{if}\ (!badBytes) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \textbf{fprintf}(stderr, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \texttt{"{}Overwrite\ detected:}\texttt{\textbackslash{}n}\texttt{\ \ \ \ "{}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \texttt{"{}From:\ \%s:\%zu,\ base:\ \%p,\ data:\ \%p,\ size:\ \%zu,\ num:\ \%zu}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ node-\textgreater{}file,\ node-\textgreater{}line, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ node-\textgreater{}base,\ node-\textgreater{}data,\ node-\textgreater{}size,\ node-\textgreater{}num); \\
+\mbox{}\ \ \textbf{for}\ (unsigned\ char*\ i\ =\ node-\textgreater{}dend;\ i\ \textless{}\ node-\textgreater{}end;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{if}\ (*((unsigned\ char*)i)\ !=\ PADDING) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}}\texttt{\textbackslash{}t}\texttt{Byte\ \%zu\ has\ value\ \%x}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ (size$\_$t)(i\ -\ node-\textgreater{}data),\ *((unsigned\ char*)i)); \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{mt$\_$free}(void*\ p) \\
+\mbox{}\{ \\
+\mbox{}\textbf{\#ifdef}\ MEMTEST \\
+\mbox{}\ \ \textbf{if}\ (!p) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ Reserved*\ prev; \\
+\mbox{}\ \ Reserved*\ node\ =\ root; \\
+\mbox{}\ \ \textbf{if}\ (root\ \&\&\ root-\textgreater{}data\ ==\ p) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ prev\ =\ NULL; \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{else} \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{while}\ (node\ \&\&\ node-\textgreater{}data\ !=\ p) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ prev\ =\ node; \\
+\mbox{}\ \ \ \ \ \ node\ =\ node-\textgreater{}next; \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ if\ it\ wasn't\ allocated\ with\ one\ of\ the\ mt$\_$\ functions,\ just\ free\ it\ normally} \\
+\mbox{}\ \ \textbf{if}\ (!node) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{free}(p); \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ check\ for\ any\ under\ or\ overwrites} \\
+\mbox{}\ \ \textbf{underwrite}(node); \\
+\mbox{}\ \ \textbf{overwrite}(node); \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ free\ our\ base,\ we're\ done\ with\ the\ data} \\
+\mbox{}\ \ \textbf{free}(node-\textgreater{}base); \\
+\mbox{}\ \ \textbf{if}\ (prev) \\
+\mbox{}\ \ \ \ prev-\textgreater{}next\ =\ node-\textgreater{}next;\ \textit{//\ relink\ our\ linked\ list} \\
+\mbox{}\ \ \textbf{else} \\
+\mbox{}\ \ \ \ root\ =\ node-\textgreater{}next; \\
+\mbox{}\ \ ++freeCount; \\
+\mbox{}\ \ \textbf{free}(node);\ \textit{//\ cull\ the\ node} \\
+\mbox{}\textbf{\#else} \\
+\mbox{}\ \ \textbf{free}(p); \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{mt$\_$check}(void) \\
+\mbox{}\{ \\
+\mbox{}\textbf{\#ifndef}\ MEMTEST \\
+\mbox{}\ \ \textbf{return}; \\
+\mbox{}\textbf{\#endif} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (allocCount) \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Made\ \%zu\ allocations\ totalling\ \%zu\ bytes}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ allocCount,\ allocAmount); \\
+\mbox{}\ \ \textbf{if}\ (freeCount) \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Made\ \%zu\ frees}\texttt{\textbackslash{}n}\texttt{"{}},\ freeCount); \\
+\mbox{} \\
+\mbox{}\ \ size$\_$t\ leaks\ =\ 0; \\
+\mbox{}\ \ size$\_$t\ bytes\ =\ 0; \\
+\mbox{}\ \ \textbf{while}\ (root) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ size$\_$t\ l\ =\ root-\textgreater{}num\ *\ root-\textgreater{}size; \\
+\mbox{}\ \ \ \ bytes\ +=\ l; \\
+\mbox{}\ \ \ \ ++leaks; \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Leaked\ from\ \%s:\%zu,\ \%zu\ bytes\ of\ memory\ at\ \%p\ (\%p)}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ root-\textgreater{}file,\ root-\textgreater{}line,\ l,\ root-\textgreater{}base,\ root-\textgreater{}data); \\
+\mbox{}\ \ \ \ \textbf{mt$\_$free}(root-\textgreater{}data); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{if}\ (leaks) \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Found\ a\ total\ of\ \%zu\ leaks,\ leaking\ \%zu\ bytes}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ leaks,\ bytes); \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

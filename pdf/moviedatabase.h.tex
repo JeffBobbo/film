@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\title{moviedatabase.h}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#ifndef}\ MOVIEDATABASE$\_$H$\_$INCLUDE \\
+\mbox{}\textbf{\#define}\ MOVIEDATABASE$\_$H$\_$INCLUDE \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Loads\ the\ movie\ database\ from\ the\ given\ CSV\ file.} \\
+\mbox{}\textit{\ *\ If\ there\ are\ already\ loaded\ films,\ then\ the\ films\ in\ the\ CSV\ file\ are} \\
+\mbox{}\textit{\ *\ appended\ to\ the\ current\ set\ of\ films.} \\
+\mbox{}\textit{\ *\ }@param\textit{\ path\ CSV\ file\ to\ read\ film\ data\ from} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{mdb$\_$loadDB}(\textbf{const}\ char*\ \textbf{const}\ path); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Frees\ all\ the\ memory\ allocated\ by\ the\ movie\ database,\ use\ on\ exit\ to} \\
+\mbox{}\textit{\ *\ clean\ up} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{mdb$\_$freeDB}(); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Prints\ all\ the\ films\ in\ the\ database} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{mdb$\_$printAll}(); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 1\ of\ the\ assignment,\ print\ all\ the\ films\ in\ chronological\ order} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task1}(); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 2\ of\ the\ assignment,\ finds\ the\ 3rd\ longest\ film\ noir\ film} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task2}(); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 3\ of\ the\ assignment,\ finds\ the\ 10th\ highest\ scoring\ scifi\ film} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task3}(); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 4\ of\ the\ assignment,\ finds\ the\ highest\ scoring\ film} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task4}(); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 5\ of\ the\ assignment,\ finds\ the\ film\ with\ the\ shortest\ title} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task5}(); \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ Does\ task\ 6\ of\ the\ assignment,\ removes\ all\ R\ rated\ films\ and\ then\ prints} \\
+\mbox{}\textit{\ *\ the\ number\ of\ films\ remaining} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{task6}(); \\
+\mbox{} \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}
+\end{document}

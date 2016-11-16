@@ -1,0 +1,216 @@
+\documentclass{article}
+
+\title{moviedatabase.c}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#include}\ \texttt{"{}moviedatabase.h"{}} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdio.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}string.h\textgreater{}}\ \textit{//\ strcmp} \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}llist.h"{}} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}csv.h"{}} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}alloc.h"{}} \\
+\mbox{}\textbf{\#include}\ \texttt{"{}film.h"{}} \\
+\mbox{} \\
+\mbox{}LinkedList*\ films\ =\ NULL; \\
+\mbox{} \\
+\mbox{}void\ \textbf{mdb$\_$loadDB}(\textbf{const}\ char*\ \textbf{const}\ path) \\
+\mbox{}\{ \\
+\mbox{}\ \ size$\_$t\ entries; \\
+\mbox{}\ \ LinkedList**\ csv\ =\ \textbf{csv$\_$read}(path,\ \&entries); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (!csv) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Failed\ to\ read\ database\ file}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (!films) \\
+\mbox{}\ \ \ \ films\ =\ \textbf{ll$\_$new}(); \\
+\mbox{}\ \ \textbf{if}\ (!films) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ \textbf{fprintf}(stderr,\ \texttt{"{}Failed\ to\ allocate\ memory\ for\ film\ db}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \ \ \textbf{exit}(EXIT$\_$FAILURE); \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (size$\_$t\ i\ =\ 0;\ i\ \textless{}\ entries;\ ++i) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ LinkedList*\ entry\ =\ csv[i]; \\
+\mbox{}\ \ \ \ LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(entry); \\
+\mbox{}\ \ \ \ char*\ title\ =\ (char*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ uint16$\_$t\ year\ =\ \textbf{atoi}((char*)\textbf{ll$\_$it$\_$next}(\&it)); \\
+\mbox{}\ \ \ \ char*\ rating\ =\ (char*)\textbf{ll$\_$it$\_$next}(\&it); \\
+\mbox{}\ \ \ \ char*\ categories\ =\ (char*)\textbf{ll$\_$it$\_$next}(\&it); \\
+\mbox{}\ \ \ \ uint16$\_$t\ runtime\ =\ \textbf{atoi}((char*)\textbf{ll$\_$it$\_$next}(\&it)); \\
+\mbox{}\ \ \ \ double\ score\ =\ \textbf{atof}((char*)\textbf{ll$\_$it$\_$next}(\&it)); \\
+\mbox{}\ \ \ \ Film*\ film\ =\ \textbf{film$\_$new}(title,\ year,\ \textbf{rating$\_$fromString}(rating), \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{category$\_$fromStrings}(categories),\ runtime,\ score); \\
+\mbox{}\ \ \ \ \textbf{ll$\_$delete}(entry); \\
+\mbox{} \\
+\mbox{}\ \ \ \ \textbf{ll$\_$push$\_$back}(films,\ film); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{mt$\_$free}(csv); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{mdb$\_$freeDB}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!films)\ \textit{//\ No\ films?\ No\ work} \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ \textit{//\ delete\ each\ film\ manually} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{film$\_$delete}(\textbf{ll$\_$it$\_$data}(\&it)); \\
+\mbox{}\ \ \textit{//\ purge\ the\ linked\ list,\ all\ the\ data\ pointers\ are\ invalid\ now} \\
+\mbox{}\ \ \textbf{ll$\_$purge}(films); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{mdb$\_$printAll}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{if}\ (!films) \\
+\mbox{}\ \ \ \ \textbf{return}; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \ \ \textbf{film$\_$print}(\textbf{ll$\_$it$\_$data}(\&it)); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}int32$\_$t\ \textbf{alphanumeric}(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{return}\ \textbf{strcmp}(\textbf{film$\_$getTitle}((Film*)a),\ \textbf{film$\_$getTitle}((Film*)b)); \\
+\mbox{}\} \\
+\mbox{}int32$\_$t\ \textbf{chronological}(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ int32$\_$t\ ya\ =\ \textbf{film$\_$getYear}((Film*)a); \\
+\mbox{}\ \ int32$\_$t\ yb\ =\ \textbf{film$\_$getYear}((Film*)b); \\
+\mbox{}\ \ \textit{//\ if\ equal,\ sort\ by\ title\ for\ consistent\ ordering} \\
+\mbox{}\ \ \textbf{return}\ (yb\ -\ ya\ !=\ 0)\ ?\ (yb\ -\ ya)\ :\ \textbf{alphanumeric}(a,\ b); \\
+\mbox{}\} \\
+\mbox{}int32$\_$t\ \textbf{runtime}(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ int32$\_$t\ ra\ =\ \textbf{film$\_$getRuntime}((Film*)a); \\
+\mbox{}\ \ int32$\_$t\ rb\ =\ \textbf{film$\_$getRuntime}((Film*)b); \\
+\mbox{}\ \ \textit{//\ if\ equal,\ sort\ by\ title\ for\ consistent\ ordering} \\
+\mbox{}\ \ \textbf{return}\ (rb\ -\ ra\ !=\ 0)\ ?\ (rb\ -\ ra)\ :\ \textbf{alphanumeric}(a,\ b); \\
+\mbox{}\} \\
+\mbox{}int32$\_$t\ \textbf{score}(\textbf{const}\ void*\ \textbf{const}\ a,\ \textbf{const}\ void*\ \textbf{const}\ b) \\
+\mbox{}\{ \\
+\mbox{}\ \ double\ sa\ =\ \textbf{film$\_$getScore}((Film*)a); \\
+\mbox{}\ \ double\ sb\ =\ \textbf{film$\_$getScore}((Film*)b); \\
+\mbox{}\ \ \textbf{if}\ (sa\ \textless{}\ sb) \\
+\mbox{}\ \ \ \ \textbf{return}\ 1; \\
+\mbox{}\ \ \textbf{if}\ (sa\ \textgreater{}\ sb) \\
+\mbox{}\ \ \ \ \textbf{return}\ -1; \\
+\mbox{}\ \ \textit{//\ if\ equal,\ sort\ by\ title\ for\ consistent\ ordering} \\
+\mbox{}\ \ \textbf{return}\ \textbf{alphanumeric}(a,\ b); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{task1}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 1\ -\/-\ All\ films\ in\ chronological\ order:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ \textbf{ll$\_$bsort}(films,\ chronological); \\
+\mbox{}\ \ \textbf{mdb$\_$printAll}(); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{} \\
+\mbox{}void\ \textbf{task2}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 2\ -\/-\ 3rd\ longest\ Film-noir\ film:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ LinkedList*\ noir\ =\ \textbf{ll$\_$new}(); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Film*\ f\ =\ (Film*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{film$\_$hasCategory}(f,\ FILM$\_$NOIR)) \\
+\mbox{}\ \ \ \ \ \ \textbf{ll$\_$push$\_$front}(noir,\ f); \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{ll$\_$bsort}(noir,\ runtime); \\
+\mbox{}\ \ LinkedIterator\ third\ =\ \textbf{ll$\_$at}(noir,\ 2); \\
+\mbox{}\ \ \textbf{film$\_$print}((Film*)\textbf{ll$\_$it$\_$data}(\&third)); \\
+\mbox{}\ \ \textbf{ll$\_$purge}(noir); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{task3}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 3\ -\/-\ 10th\ highest\ scoring\ Sci-fi\ film:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ LinkedList*\ scifi\ =\ \textbf{ll$\_$new}(); \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Film*\ f\ =\ (Film*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{film$\_$hasCategory}(f,\ SCI$\_$FI)) \\
+\mbox{}\ \ \ \ \ \ \textbf{ll$\_$push$\_$front}(scifi,\ f); \\
+\mbox{}\ \ \} \\
+\mbox{}\ \ \textbf{ll$\_$bsort}(scifi,\ score); \\
+\mbox{}\ \ LinkedIterator\ tenth\ =\ \textbf{ll$\_$at}(scifi,\ 9); \\
+\mbox{}\ \ \textbf{film$\_$print}(\textbf{ll$\_$it$\_$data}(\&tenth)); \\
+\mbox{}\ \ \textbf{ll$\_$purge}(scifi); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{task4}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 4\ -\/-\ Film\ with\ the\ highest\ score:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ Film*\ highest\ =\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Film*\ f\ =\ (Film*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ \textbf{if}\ (!highest\ $|$$|$\ \textbf{film$\_$getScore}(f)\ \textgreater{}\ \textbf{film$\_$getScore}(highest)) \\
+\mbox{}\ \ \ \ \ \ highest\ =\ f; \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (highest) \\
+\mbox{}\ \ \ \ \textbf{film$\_$print}(highest); \\
+\mbox{}\} \\
+\mbox{}void\ \textbf{task5}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 5\ -\/-\ Film\ with\ the\ shortest\ title:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ Film*\ shortest\ =\ NULL; \\
+\mbox{} \\
+\mbox{}\ \ \textbf{for}\ (LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \ \ \ \ \ \textbf{ll$\_$it$\_$valid}(\&it);\ \textbf{ll$\_$it$\_$next}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Film*\ f\ =\ (Film*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ \textbf{if}\ (!shortest\ $|$$|$\ \textbf{strlen}(\textbf{film$\_$getTitle}(f))\ \textless{}\ \textbf{strlen}(\textbf{film$\_$getTitle}(shortest))) \\
+\mbox{}\ \ \ \ \ \ shortest\ =\ f; \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{if}\ (shortest) \\
+\mbox{}\ \ \ \ \textbf{film$\_$print}(shortest); \\
+\mbox{}\} \\
+\mbox{} \\
+\mbox{}void\ \textbf{task6}() \\
+\mbox{}\{ \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}}\texttt{\textbackslash{}n}\texttt{Task\ 6\ -\/-\ Number\ of\ films\ in\ the\ database\ after\ deleting\ all\ "{}} \\
+\mbox{}\texttt{"{}R\ rated\ films:}\texttt{\textbackslash{}n}\texttt{"{}}); \\
+\mbox{}\ \ LinkedIterator\ it\ =\ \textbf{ll$\_$it$\_$begin}(films); \\
+\mbox{}\ \ \textbf{while}\ (\textbf{ll$\_$it$\_$valid}(\&it)) \\
+\mbox{}\ \ \{ \\
+\mbox{}\ \ \ \ Film*\ f\ =\ (Film*)\textbf{ll$\_$it$\_$data}(\&it); \\
+\mbox{}\ \ \ \ \textbf{if}\ (\textbf{film$\_$getRating}(f)\ ==\ R) \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{ll$\_$erase}(\&it); \\
+\mbox{}\ \ \ \ \ \ \textbf{film$\_$delete}(f); \\
+\mbox{}\ \ \ \ \ \ it\ =\ \textbf{ll$\_$it$\_$begin}(films);\ \textit{//\ erase\ invalidates\ the\ iterator} \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \ \ \textbf{else} \\
+\mbox{}\ \ \ \ \{ \\
+\mbox{}\ \ \ \ \ \ \textbf{ll$\_$it$\_$next}(\&it); \\
+\mbox{}\ \ \ \ \} \\
+\mbox{}\ \ \} \\
+\mbox{} \\
+\mbox{}\ \ \textbf{printf}(\texttt{"{}After\ deleting\ all\ R\ rated\ films,\ there\ are\ \%zu\ films.}\texttt{\textbackslash{}n}\texttt{"{}}, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \textbf{ll$\_$size}(films)); \\
+\mbox{}\} \\
+\mbox{}
+\end{document}

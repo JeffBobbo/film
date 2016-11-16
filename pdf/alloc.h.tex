@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\title{alloc.h}
+\date{}
+\begin{document}
+\maketitle
+
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textbf{\#ifndef}\ ALLOC$\_$H$\_$INCLUDE \\
+\mbox{}\textbf{\#define}\ ALLOC$\_$H$\_$INCLUDE \\
+\mbox{} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdlib.h\textgreater{}}\ \textit{//\ size$\_$t} \\
+\mbox{}\textbf{\#include}\ \texttt{\textless{}stdint.h\textgreater{}}\ \textit{//\ int32$\_$t} \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ memory\ test\ malloc} \\
+\mbox{}\textit{\ *\ This\ function\ shouldn't\ be\ called\ directly,\ but\ rather\ the\ macros\ below\ used} \\
+\mbox{}\textit{\ *\ this\ will\ supply\ them\ with\ tracing\ information} \\
+\mbox{}\textit{\ *\ when\ MEMTEST\ is\ defined,\ mt$\_$malloc\ performs\ an\ allocation\ with\ padding,} \\
+\mbox{}\textit{\ *\ the\ allocation\ is\ stored\ internally\ and\ a\ pointer\ that\ can\ be\ used\ nas} \\
+\mbox{}\textit{\ *\ normal\ is\ returned.} \\
+\mbox{}\textit{\ *\ If\ MEMTEST\ isn't\ defined,\ just\ does\ malloc\ from\ stdlib.h} \\
+\mbox{}\textit{\ *\ }@param\textit{\ sz\ how\ much\ memory\ to\ allocate} \\
+\mbox{}\textit{\ *\ }@param\textit{\ file\ the\ file\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$FILE$\_$$\_$).} \\
+\mbox{}\textit{\ *\ }@param\textit{\ line\ the\ line\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$LINE$\_$$\_$).} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{mt$\_$malloc$\_$}(\textbf{const}\ size$\_$t\ sz, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{const}\ char*\ file,\ \textbf{const}\ size$\_$t\ line); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ memory\ test\ calloc} \\
+\mbox{}\textit{\ *\ This\ function\ shouldn't\ be\ called\ directly,\ but\ rather\ the\ macros\ below\ used} \\
+\mbox{}\textit{\ *\ this\ will\ supply\ them\ with\ tracing\ information} \\
+\mbox{}\textit{\ *\ when\ MEMTEST\ is\ defined,\ mt$\_$calloc\ performs\ an\ allocation\ with\ padding,} \\
+\mbox{}\textit{\ *\ the\ allocation\ is\ stored\ internally\ and\ a\ pointer\ that\ can\ be\ used\ nas} \\
+\mbox{}\textit{\ *\ normal\ is\ returned.} \\
+\mbox{}\textit{\ *\ If\ MEMTEST\ isn't\ defined,\ just\ does\ calloc\ from\ stdlib.h} \\
+\mbox{}\textit{\ *\ The\ allocated\ memory\ has\ it's\ value\ set\ to\ 0,\ just\ like\ calloc} \\
+\mbox{}\textit{\ *\ }@param\textit{\ n\ \ how\ many\ elements\ to\ allocate\ for} \\
+\mbox{}\textit{\ *\ }@param\textit{\ sz\ how\ big\ each\ element\ is} \\
+\mbox{}\textit{\ *\ }@param\textit{\ file\ the\ file\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$FILE$\_$$\_$).} \\
+\mbox{}\textit{\ *\ }@param\textit{\ line\ the\ line\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$LINE$\_$$\_$).} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void*\ \textbf{mt$\_$calloc$\_$}(\textbf{const}\ size$\_$t\ n,\ \textbf{const}\ size$\_$t\ sz, \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{const}\ char*\ file,\ \textbf{const}\ size$\_$t\ line); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ memory\ test\ realloc} \\
+\mbox{}\textit{\ *\ This\ function\ shouldn't\ be\ called\ directly,\ but\ rather\ the\ macros\ below\ used} \\
+\mbox{}\textit{\ *\ this\ will\ supply\ them\ with\ tracing\ information} \\
+\mbox{}\textit{\ *\ When\ MEMTEST\ is\ defined,\ mt$\_$realloc\ performs\ a\ realloc\ with\ padding} \\
+\mbox{}\textit{\ *\ the\ allocation\ is\ stored\ internall\ and\ a\ useable\ pointer\ is\ returned.} \\
+\mbox{}\textit{\ *\ If\ MEMTEST\ isn't\ defined,\ just\ does\ realloc\ from\ stdlib.h} \\
+\mbox{}\textit{\ *\ }@param\textit{\ ptr\ pointer\ to\ the\ memory\ area\ to\ be\ reallocated} \\
+\mbox{}\textit{\ *\ }@param\textit{\ sz\ \ the\ new\ size\ of\ the\ memory\ to\ allocate} \\
+\mbox{}\textit{\ *\ }@param\textit{\ file\ the\ file\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$FILE$\_$$\_$).} \\
+\mbox{}\textit{\ *\ }@param\textit{\ line\ the\ line\ this\ function\ is\ called\ from} \\
+\mbox{}\textit{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ (should\ be\ filled\ with\ $\_$$\_$LINE$\_$$\_$).} \\
+\mbox{}\textit{\ */} \\
+\mbox{}\textit{//void*\ mt$\_$realloc$\_$(void*\ ptr,\ const\ size$\_$t\ sz,} \\
+\mbox{}\textit{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ char*\ file,\ const\ size$\_$t\ line);} \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ memory\ test\ free} \\
+\mbox{}\textit{\ *\ works\ just\ like\ free().\ When\ MEMTEST\ is\ defined\ it\ should\ only\ be\ used\ on} \\
+\mbox{}\textit{\ *\ pointers\ allocated\ with\ the\ memory\ test\ functions,\ calling\ on\ memory\ that} \\
+\mbox{}\textit{\ *\ wasn't\ allocated\ by\ a\ memory\ test\ function\ will\ cause\ an\ abort.} \\
+\mbox{}\textit{\ *\ This\ function\ will\ print\ any\ under\ or\ overwrites\ to\ stderr.} \\
+\mbox{}\textit{\ *\ }@param\textit{\ p\ pointer\ to\ free} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{mt$\_$free}(void*\ p); \\
+\mbox{} \\
+\mbox{}\textit{/**} \\
+\mbox{}\textit{\ *\ An\ internal\ function\ to\ check\ details\ and\ clean\ up\ of\ any\ leaked\ memory.} \\
+\mbox{}\textit{\ *\ It\ is\ called\ automatically\ on\ exit\ via\ atexit()} \\
+\mbox{}\textit{\ *\ When\ MEMTEST\ isn't\ defined,\ has\ no\ effect} \\
+\mbox{}\textit{\ */} \\
+\mbox{}void\ \textbf{mt$\_$check}(); \\
+\mbox{} \\
+\mbox{}\textbf{\#define}\ \textbf{mt$\_$malloc}(x)\ \textbf{mt$\_$malloc$\_$}(x,\ $\_$$\_$FILE$\_$$\_$,\ $\_$$\_$LINE$\_$$\_$) \\
+\mbox{}\textbf{\#define}\ \textbf{mt$\_$calloc}(x)\ \textbf{mt$\_$calloc$\_$}(x,\ $\_$$\_$FILE$\_$$\_$,\ $\_$$\_$LINE$\_$$\_$) \\
+\mbox{}\textbf{\#define}\ \textbf{mt$\_$realloc}(x)\ \textbf{mt$\_$realloc$\_$}(x,\ $\_$$\_$FILE$\_$$\_$,\ $\_$$\_$LINE$\_$$\_$) \\
+\mbox{} \\
+\mbox{}\textbf{\#endif} \\
+\mbox{}
+\end{document}
