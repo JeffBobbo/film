@@ -41,23 +41,6 @@ void* mt_calloc_(const size_t n, const size_t sz,
                  const char* file, const size_t line);
 
 /**
- * memory test realloc
- * This function shouldn't be called directly, but rather the macros below used
- * this will supply them with tracing information
- * When MEMTEST is defined, mt_realloc performs a realloc with padding
- * the allocation is stored internall and a useable pointer is returned.
- * If MEMTEST isn't defined, just does realloc from stdlib.h
- * @param ptr pointer to the memory area to be reallocated
- * @param sz  the new size of the memory to allocate
- * @param file the file this function is called from
- *             (should be filled with __FILE__).
- * @param line the line this function is called from
- *             (should be filled with __LINE__).
- */
-//void* mt_realloc_(void* ptr, const size_t sz,
-//                  const char* file, const size_t line);
-
-/**
  * memory test free
  * works just like free(). When MEMTEST is defined it should only be used on
  * pointers allocated with the memory test functions, calling on memory that
