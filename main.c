@@ -1,10 +1,3 @@
-#include <stdio.h>
-#include <stdint.h>
-
-#include "alloc.h"
-#include "llist.h"
-#include "csv.h"
-#include "film.h"
 #include "moviedatabase.h"
 
 int main()
