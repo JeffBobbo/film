@@ -1,0 +1,2174 @@
+
+Task 1 -- All films in chronological order:
+Deadpool
+	Year: 2016
+	Rating: R
+	Categories:
+	· Action
+	· Adventure
+	· Comedy
+	Run time: 108 minutes
+	Score: 8.0
+Zootopia
+	Year: 2016
+	Rating: PG
+	Categories:
+	· Action
+	· Adventure
+	· Animation
+	Run time: 108 minutes
+	Score: 8.1
+Inside Out
+	Year: 2015
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 95 minutes
+	Score: 8.2
+Mad Max: Fury Road
+	Year: 2015
+	Rating: R
+	Categories:
+	· Action
+	· Adventure
+	· Sci-Fi
+	Run time: 120 minutes
+	Score: 8.1
+Room
+	Year: 2015
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 118 minutes
+	Score: 8.2
+Spotlight
+	Year: 2015
+	Rating: R
+	Categories:
+	· Biography
+	· Crime
+	· Drama
+	Run time: 128 minutes
+	Score: 8.1
+Star Wars: The Force Awakens
+	Year: 2015
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 138 minutes
+	Score: 8.1
+The Martian
+	Year: 2015
+	Rating: PG-13
+	Categories:
+	· Adventure
+	· Drama
+	· Sci-Fi
+	Run time: 144 minutes
+	Score: 8.0
+The Revenant
+	Year: 2015
+	Rating: R
+	Categories:
+	· Adventure
+	· Drama
+	· Thriller
+	Run time: 156 minutes
+	Score: 8.0
+Gone Girl
+	Year: 2014
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 149 minutes
+	Score: 8.1
+Guardians of the Galaxy
+	Year: 2014
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Sci-Fi
+	Run time: 121 minutes
+	Score: 8.0
+Interstellar
+	Year: 2014
+	Rating: PG-13
+	Categories:
+	· Adventure
+	· Drama
+	· Sci-Fi
+	Run time: 169 minutes
+	Score: 8.5
+Song of the Sea
+	Year: 2014
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 93 minutes
+	Score: 8.0
+The Grand Budapest Hotel
+	Year: 2014
+	Rating: R
+	Categories:
+	· Adventure
+	· Comedy
+	· Crime
+	Run time: 99 minutes
+	Score: 8.1
+The Imitation Game
+	Year: 2014
+	Rating: PG-13
+	Categories:
+	· Biography
+	· Drama
+	· Thriller
+	Run time: 114 minutes
+	Score: 8.0
+Whiplash
+	Year: 2014
+	Rating: R
+	Categories:
+	· Drama
+	· Music
+	Run time: 107 minutes
+	Score: 8.5
+Wild Tales
+	Year: 2014
+	Rating: R
+	Categories:
+	· Comedy
+	· Drama
+	· Thriller
+	Run time: 122 minutes
+	Score: 8.1
+12 Years a Slave
+	Year: 2013
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 134 minutes
+	Score: 8.1
+Prisoners
+	Year: 2013
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 153 minutes
+	Score: 8.0
+Rush
+	Year: 2013
+	Rating: R
+	Categories:
+	· Action
+	· Biography
+	· Drama
+	Run time: 123 minutes
+	Score: 8.1
+Sharknado
+	Year: 2013
+	Rating: TV-14
+	Categories:
+	· Horror
+	Run time: 86 minutes
+	Score: 9.3
+The Wolf of Wall Street
+	Year: 2013
+	Rating: R
+	Categories:
+	· Biography
+	· Comedy
+	· Crime
+	Run time: 180 minutes
+	Score: 8.2
+Django Unchained
+	Year: 2012
+	Rating: R
+	Categories:
+	· None
+	· Drama
+	Run time: 165 minutes
+	Score: 8.4
+Gangs of Wasseypur
+	Year: 2012
+	Rating: N/A
+	Categories:
+	· Action
+	· Crime
+	· Drama
+	Run time: 320 minutes
+	Score: 8.0
+The Avengers
+	Year: 2012
+	Rating: PG-13
+	Categories:
+	· Action
+	· Sci-Fi
+	· Thriller
+	Run time: 143 minutes
+	Score: 8.0
+The Dark Knight Rises
+	Year: 2012
+	Rating: PG-13
+	Categories:
+	· Action
+	· Thriller
+	Run time: 164 minutes
+	Score: 8.4
+The Hunt
+	Year: 2012
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 115 minutes
+	Score: 8.2
+A Separation
+	Year: 2011
+	Rating: PG-13
+	Categories:
+	· Drama
+	· Mystery
+	Run time: 123 minutes
+	Score: 8.2
+Harry Potter and the Deathly Hallows: Part 2
+	Year: 2011
+	Rating: PG-13
+	Categories:
+	· Adventure
+	· Drama
+	· Fantasy
+	Run time: 130 minutes
+	Score: 8.0
+The Help
+	Year: 2011
+	Rating: PG-13
+	Categories:
+	· Drama
+	Run time: 146 minutes
+	Score: 8.0
+Untouchable
+	Year: 2011
+	Rating: N/A
+	Categories:
+	· Comedy
+	· Drama
+	· Short
+	Run time: 14 minutes
+	Score: 8.5
+Warrior
+	Year: 2011
+	Rating: PG-13
+	Categories:
+	· Drama
+	· Sport
+	Run time: 140 minutes
+	Score: 8.2
+How to Train Your Dragon
+	Year: 2010
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 98 minutes
+	Score: 8.1
+Incendies
+	Year: 2010
+	Rating: R
+	Categories:
+	· Drama
+	· Mystery
+	· War
+	Run time: 139 minutes
+	Score: 8.1
+Inception
+	Year: 2010
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Sci-Fi
+	Run time: 148 minutes
+	Score: 8.7
+Shutter Island
+	Year: 2010
+	Rating: R
+	Categories:
+	· Mystery
+	· Thriller
+	Run time: 138 minutes
+	Score: 8.1
+The King's Speech
+	Year: 2010
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 118 minutes
+	Score: 8.0
+Toy Story 3
+	Year: 2010
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 103 minutes
+	Score: 8.3
+3 Idiots
+	Year: 2009
+	Rating: PG-13
+	Categories:
+	· Comedy
+	· Drama
+	Run time: 170 minutes
+	Score: 8.3
+Hachi: A Dog's Tale
+	Year: 2009
+	Rating: G
+	Categories:
+	· Drama
+	· Family
+	Run time: 93 minutes
+	Score: 8.1
+Inglourious Basterds
+	Year: 2009
+	Rating: R
+	Categories:
+	· Adventure
+	· Drama
+	· War
+	Run time: 153 minutes
+	Score: 8.3
+Mary and Max
+	Year: 2009
+	Rating: NOT RATED
+	Categories:
+	· Animation
+	· Comedy
+	· Drama
+	Run time: 92 minutes
+	Score: 8.1
+The Secret in Their Eyes
+	Year: 2009
+	Rating: R
+	Categories:
+	· Drama
+	· Mystery
+	· Thriller
+	Run time: 129 minutes
+	Score: 8.2
+Up
+	Year: 2009
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 96 minutes
+	Score: 8.2
+Gran Torino
+	Year: 2008
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 116 minutes
+	Score: 8.1
+Ip Man
+	Year: 2008
+	Rating: R
+	Categories:
+	· Action
+	· Biography
+	· Drama
+	Run time: 106 minutes
+	Score: 8.0
+The Dark Knight
+	Year: 2008
+	Rating: PG-13
+	Categories:
+	· Action
+	· Crime
+	· Drama
+	Run time: 152 minutes
+	Score: 8.9
+WALL-E
+	Year: 2008
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 98 minutes
+	Score: 8.4
+Into the Wild
+	Year: 2007
+	Rating: R
+	Categories:
+	· Adventure
+	· Biography
+	· Drama
+	Run time: 148 minutes
+	Score: 8.1
+No Country for Old Men
+	Year: 2007
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 122 minutes
+	Score: 8.1
+The Bourne Ultimatum
+	Year: 2007
+	Rating: PG-13
+	Categories:
+	· Action
+	· Mystery
+	· Thriller
+	Run time: 115 minutes
+	Score: 8.0
+There Will Be Blood
+	Year: 2007
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 158 minutes
+	Score: 8.1
+Pan's Labyrinth
+	Year: 2006
+	Rating: R
+	Categories:
+	· Drama
+	· Fantasy
+	· War
+	Run time: 118 minutes
+	Score: 8.2
+The Departed
+	Year: 2006
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 151 minutes
+	Score: 8.5
+The Lives of Others
+	Year: 2006
+	Rating: R
+	Categories:
+	· Drama
+	· Thriller
+	Run time: 137 minutes
+	Score: 8.4
+The Prestige
+	Year: 2006
+	Rating: PG-13
+	Categories:
+	· Drama
+	· Mystery
+	· Sci-Fi
+	Run time: 130 minutes
+	Score: 8.5
+Batman Begins
+	Year: 2005
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	Run time: 140 minutes
+	Score: 8.2
+Sin City
+	Year: 2005
+	Rating: R
+	Categories:
+	· Crime
+	· Thriller
+	Run time: 124 minutes
+	Score: 8.0
+V for Vendetta
+	Year: 2005
+	Rating: R
+	Categories:
+	· Action
+	· Drama
+	· Thriller
+	Run time: 132 minutes
+	Score: 8.1
+Downfall
+	Year: 2004
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 156 minutes
+	Score: 8.2
+Eternal Sunshine of the Spotless Mind
+	Year: 2004
+	Rating: R
+	Categories:
+	· Drama
+	· Fantasy
+	· Romance
+	Run time: 108 minutes
+	Score: 8.3
+Hotel Rwanda
+	Year: 2004
+	Rating: PG-13
+	Categories:
+	· Drama
+	· History
+	· War
+	Run time: 121 minutes
+	Score: 8.1
+Howl's Moving Castle
+	Year: 2004
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 119 minutes
+	Score: 8.2
+Million Dollar Baby
+	Year: 2004
+	Rating: PG-13
+	Categories:
+	· Drama
+	· Sport
+	Run time: 132 minutes
+	Score: 8.1
+Finding Nemo
+	Year: 2003
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 100 minutes
+	Score: 8.1
+Kill Bill: Vol. 1
+	Year: 2003
+	Rating: R
+	Categories:
+	· Action
+	· Crime
+	· Thriller
+	Run time: 111 minutes
+	Score: 8.1
+Memories of Murder
+	Year: 2003
+	Rating: UNRATED
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 132 minutes
+	Score: 8.0
+Oldboy
+	Year: 2003
+	Rating: R
+	Categories:
+	· Drama
+	· Mystery
+	· Thriller
+	Run time: 120 minutes
+	Score: 8.4
+Pirates of the Caribbean: The Curse of the Black Pearl
+	Year: 2003
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 143 minutes
+	Score: 8.0
+The Lord of the Rings: The Return of the King
+	Year: 2003
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Drama
+	Run time: 201 minutes
+	Score: 8.9
+Catch Me If You Can
+	Year: 2002
+	Rating: PG-13
+	Categories:
+	· Biography
+	· Crime
+	· Drama
+	Run time: 141 minutes
+	Score: 8.0
+City of God
+	Year: 2002
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 130 minutes
+	Score: 8.6
+Infernal Affairs
+	Year: 2002
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 101 minutes
+	Score: 8.0
+The Lord of the Rings: The Two Towers
+	Year: 2002
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Drama
+	Run time: 179 minutes
+	Score: 8.7
+The Pianist
+	Year: 2002
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· War
+	Run time: 150 minutes
+	Score: 8.5
+A Beautiful Mind
+	Year: 2001
+	Rating: PG-13
+	Categories:
+	· Biography
+	· Drama
+	Run time: 135 minutes
+	Score: 8.2
+Amelie
+	Year: 2001
+	Rating: R
+	Categories:
+	· Comedy
+	· Romance
+	Run time: 122 minutes
+	Score: 8.3
+Donnie Darko
+	Year: 2001
+	Rating: R
+	Categories:
+	· Drama
+	· Sci-Fi
+	· Thriller
+	Run time: 113 minutes
+	Score: 8.0
+Lagaan: Once Upon a Time in India
+	Year: 2001
+	Rating: PG
+	Categories:
+	· Adventure
+	· Drama
+	· Musical
+	Run time: 224 minutes
+	Score: 8.0
+Monsters, Inc.
+	Year: 2001
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 92 minutes
+	Score: 8.0
+Spirited Away
+	Year: 2001
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 125 minutes
+	Score: 8.5
+The Lord of the Rings: The Fellowship of the Ring
+	Year: 2001
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Drama
+	Run time: 178 minutes
+	Score: 8.8
+Amores Perros
+	Year: 2000
+	Rating: R
+	Categories:
+	· Drama
+	· Thriller
+	Run time: 154 minutes
+	Score: 8.1
+Gladiator
+	Year: 2000
+	Rating: R
+	Categories:
+	· Action
+	· Adventure
+	· Drama
+	Run time: 155 minutes
+	Score: 8.5
+Memento
+	Year: 2000
+	Rating: R
+	Categories:
+	· Mystery
+	· Thriller
+	Run time: 113 minutes
+	Score: 8.5
+Requiem for a Dream
+	Year: 2000
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 102 minutes
+	Score: 8.3
+Snatch
+	Year: 2000
+	Rating: R
+	Categories:
+	· Comedy
+	· Crime
+	Run time: 102 minutes
+	Score: 8.3
+American Beauty
+	Year: 1999
+	Rating: R
+	Categories:
+	· Drama
+	· Romance
+	Run time: 122 minutes
+	Score: 8.4
+Fight Club
+	Year: 1999
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 139 minutes
+	Score: 8.8
+The Green Mile
+	Year: 1999
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Fantasy
+	Run time: 189 minutes
+	Score: 8.5
+The Matrix
+	Year: 1999
+	Rating: R
+	Categories:
+	· Action
+	· Sci-Fi
+	Run time: 136 minutes
+	Score: 8.7
+The Sixth Sense
+	Year: 1999
+	Rating: PG-13
+	Categories:
+	· Drama
+	· Mystery
+	· Thriller
+	Run time: 107 minutes
+	Score: 8.1
+American History X
+	Year: 1998
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 119 minutes
+	Score: 8.5
+Lock, Stock and Two Smoking Barrels
+	Year: 1998
+	Rating: R
+	Categories:
+	· Comedy
+	· Crime
+	Run time: 107 minutes
+	Score: 8.2
+Saving Private Ryan
+	Year: 1998
+	Rating: R
+	Categories:
+	· Action
+	· Drama
+	· War
+	Run time: 169 minutes
+	Score: 8.5
+The Big Lebowski
+	Year: 1998
+	Rating: R
+	Categories:
+	· Comedy
+	· Crime
+	Run time: 117 minutes
+	Score: 8.1
+The Truman Show
+	Year: 1998
+	Rating: PG
+	Categories:
+	· Comedy
+	· Drama
+	· Sci-Fi
+	Run time: 103 minutes
+	Score: 8.0
+Children of Heaven
+	Year: 1997
+	Rating: PG
+	Categories:
+	· Drama
+	· Family
+	Run time: 89 minutes
+	Score: 8.2
+Good Will Hunting
+	Year: 1997
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 126 minutes
+	Score: 8.2
+L.A. Confidential
+	Year: 1997
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 138 minutes
+	Score: 8.3
+Life Is Beautiful
+	Year: 1997
+	Rating: PG-13
+	Categories:
+	· Comedy
+	· Drama
+	· War
+	Run time: 116 minutes
+	Score: 8.6
+Princess Mononoke
+	Year: 1997
+	Rating: PG-13
+	Categories:
+	· Adventure
+	· Animation
+	· Fantasy
+	Run time: 134 minutes
+	Score: 8.4
+Fargo
+	Year: 1996
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 98 minutes
+	Score: 8.1
+Trainspotting
+	Year: 1996
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 94 minutes
+	Score: 8.1
+Before Sunrise
+	Year: 1995
+	Rating: R
+	Categories:
+	· Drama
+	· Romance
+	Run time: 105 minutes
+	Score: 8.0
+Braveheart
+	Year: 1995
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 178 minutes
+	Score: 8.3
+Casino
+	Year: 1995
+	Rating: R
+	Categories:
+	· Biography
+	· Crime
+	· Drama
+	Run time: 178 minutes
+	Score: 8.2
+Heat
+	Year: 1995
+	Rating: R
+	Categories:
+	· Action
+	· Crime
+	· Drama
+	Run time: 170 minutes
+	Score: 8.2
+La Haine
+	Year: 1995
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	Run time: 98 minutes
+	Score: 8.0
+Se7en
+	Year: 1995
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 127 minutes
+	Score: 8.6
+The Usual Suspects
+	Year: 1995
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 106 minutes
+	Score: 8.6
+Toy Story
+	Year: 1995
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Comedy
+	Run time: 81 minutes
+	Score: 8.3
+Twelve Monkeys
+	Year: 1995
+	Rating: R
+	Categories:
+	· Mystery
+	· Sci-Fi
+	· Thriller
+	Run time: 129 minutes
+	Score: 8.0
+Forrest Gump
+	Year: 1994
+	Rating: PG-13
+	Categories:
+	· Comedy
+	· Drama
+	Run time: 142 minutes
+	Score: 8.7
+Leon
+	Year: 1994
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 110 minutes
+	Score: 8.5
+Pulp Fiction
+	Year: 1994
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 154 minutes
+	Score: 8.9
+The Lion King
+	Year: 1994
+	Rating: G
+	Categories:
+	· Adventure
+	· Animation
+	· Drama
+	Run time: 89 minutes
+	Score: 8.5
+The Shawshank Redemption
+	Year: 1994
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 142 minutes
+	Score: 9.2
+Groundhog Day
+	Year: 1993
+	Rating: PG
+	Categories:
+	· Comedy
+	· Fantasy
+	· Romance
+	Run time: 101 minutes
+	Score: 8.0
+In the Name of the Father
+	Year: 1993
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 133 minutes
+	Score: 8.1
+Jurassic Park
+	Year: 1993
+	Rating: PG-13
+	Categories:
+	· Adventure
+	· Sci-Fi
+	· Thriller
+	Run time: 127 minutes
+	Score: 8.1
+Schindler's List
+	Year: 1993
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 195 minutes
+	Score: 8.9
+Reservoir Dogs
+	Year: 1992
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 99 minutes
+	Score: 8.3
+Unforgiven
+	Year: 1992
+	Rating: R
+	Categories:
+	· None
+	· Drama
+	Run time: 131 minutes
+	Score: 8.2
+Beauty and the Beast
+	Year: 1991
+	Rating: G
+	Categories:
+	· Animation
+	· Family
+	· Fantasy
+	Run time: 84 minutes
+	Score: 8.0
+Terminator 2: Judgment Day
+	Year: 1991
+	Rating: R
+	Categories:
+	· Action
+	· Sci-Fi
+	Run time: 137 minutes
+	Score: 8.5
+The Silence of the Lambs
+	Year: 1991
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	· Thriller
+	Run time: 118 minutes
+	Score: 8.6
+Goodfellas
+	Year: 1990
+	Rating: R
+	Categories:
+	· Biography
+	· Crime
+	· Drama
+	Run time: 146 minutes
+	Score: 8.7
+Indiana Jones and the Last Crusade
+	Year: 1989
+	Rating: PG-13
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 127 minutes
+	Score: 8.3
+Cinema Paradiso
+	Year: 1988
+	Rating: R
+	Categories:
+	· Drama
+	· Romance
+	Run time: 155 minutes
+	Score: 8.4
+Die Hard
+	Year: 1988
+	Rating: R
+	Categories:
+	· Action
+	· Thriller
+	Run time: 131 minutes
+	Score: 8.2
+Grave of the Fireflies
+	Year: 1988
+	Rating: UNRATED
+	Categories:
+	· Animation
+	· Drama
+	· War
+	Run time: 89 minutes
+	Score: 8.4
+My Neighbor Totoro
+	Year: 1988
+	Rating: G
+	Categories:
+	· Animation
+	· Family
+	· Fantasy
+	Run time: 86 minutes
+	Score: 8.2
+Full Metal Jacket
+	Year: 1987
+	Rating: R
+	Categories:
+	· Drama
+	· War
+	Run time: 116 minutes
+	Score: 8.3
+The Princess Bride
+	Year: 1987
+	Rating: PG
+	Categories:
+	· Adventure
+	· Family
+	· Fantasy
+	Run time: 98 minutes
+	Score: 8.1
+Aliens
+	Year: 1986
+	Rating: R
+	Categories:
+	· Action
+	· Adventure
+	· Sci-Fi
+	Run time: 137 minutes
+	Score: 8.4
+Castle in the Sky
+	Year: 1986
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Family
+	Run time: 125 minutes
+	Score: 8.0
+Platoon
+	Year: 1986
+	Rating: R
+	Categories:
+	· Drama
+	· War
+	Run time: 120 minutes
+	Score: 8.1
+Stand by Me
+	Year: 1986
+	Rating: R
+	Categories:
+	· Adventure
+	· Drama
+	Run time: 89 minutes
+	Score: 8.1
+Back to the Future
+	Year: 1985
+	Rating: PG
+	Categories:
+	· Adventure
+	· Comedy
+	· Sci-Fi
+	Run time: 116 minutes
+	Score: 8.5
+Come and See
+	Year: 1985
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· War
+	Run time: 140 minutes
+	Score: 8.1
+Ran
+	Year: 1985
+	Rating: R
+	Categories:
+	· Action
+	· Drama
+	Run time: 162 minutes
+	Score: 8.2
+Amadeus
+	Year: 1984
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 160 minutes
+	Score: 8.3
+Nausicaa of the Valley of the Wind
+	Year: 1984
+	Rating: PG
+	Categories:
+	· Adventure
+	· Animation
+	· Fantasy
+	Run time: 117 minutes
+	Score: 8.1
+Once Upon a Time in America
+	Year: 1984
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 229 minutes
+	Score: 8.4
+The Terminator
+	Year: 1984
+	Rating: R
+	Categories:
+	· Action
+	· Sci-Fi
+	Run time: 107 minutes
+	Score: 8.0
+Scarface
+	Year: 1983
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 170 minutes
+	Score: 8.3
+Star Wars: Episode VI - Return of the Jedi
+	Year: 1983
+	Rating: PG
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 131 minutes
+	Score: 8.3
+Blade Runner
+	Year: 1982
+	Rating: R
+	Categories:
+	· Sci-Fi
+	· Thriller
+	Run time: 117 minutes
+	Score: 8.2
+Fanny and Alexander
+	Year: 1982
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 188 minutes
+	Score: 8.0
+Gandhi
+	Year: 1982
+	Rating: PG
+	Categories:
+	· Biography
+	· Drama
+	Run time: 191 minutes
+	Score: 8.0
+The Thing
+	Year: 1982
+	Rating: R
+	Categories:
+	· Horror
+	· Mystery
+	· Sci-Fi
+	Run time: 109 minutes
+	Score: 8.1
+Das Boot
+	Year: 1981
+	Rating: R
+	Categories:
+	· Adventure
+	· Drama
+	· Thriller
+	Run time: 149 minutes
+	Score: 8.3
+Raiders of the Lost Ark
+	Year: 1981
+	Rating: PG
+	Categories:
+	· Action
+	· Adventure
+	Run time: 115 minutes
+	Score: 8.5
+Raging Bull
+	Year: 1980
+	Rating: R
+	Categories:
+	· Biography
+	· Drama
+	· Sport
+	Run time: 129 minutes
+	Score: 8.2
+Star Wars: Episode V - The Empire Strikes Back
+	Year: 1980
+	Rating: PG
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 124 minutes
+	Score: 8.7
+The Elephant Man
+	Year: 1980
+	Rating: PG
+	Categories:
+	· Biography
+	· Drama
+	Run time: 124 minutes
+	Score: 8.2
+The Shining
+	Year: 1980
+	Rating: R
+	Categories:
+	· Drama
+	· Horror
+	Run time: 146 minutes
+	Score: 8.4
+Alien
+	Year: 1979
+	Rating: R
+	Categories:
+	· Horror
+	· Sci-Fi
+	Run time: 117 minutes
+	Score: 8.4
+Apocalypse Now
+	Year: 1979
+	Rating: R
+	Categories:
+	· Drama
+	· War
+	Run time: 153 minutes
+	Score: 8.5
+Life of Brian
+	Year: 1979
+	Rating: R
+	Categories:
+	· Comedy
+	Run time: 94 minutes
+	Score: 8.1
+Stalker
+	Year: 1979
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Sci-Fi
+	Run time: 163 minutes
+	Score: 8.0
+The Deer Hunter
+	Year: 1978
+	Rating: R
+	Categories:
+	· Drama
+	· War
+	Run time: 183 minutes
+	Score: 8.1
+Annie Hall
+	Year: 1977
+	Rating: PG
+	Categories:
+	· Comedy
+	· Romance
+	Run time: 93 minutes
+	Score: 8.0
+Star Wars: Episode IV - A New Hope
+	Year: 1977
+	Rating: PG
+	Categories:
+	· Action
+	· Adventure
+	· Fantasy
+	Run time: 121 minutes
+	Score: 8.6
+Network
+	Year: 1976
+	Rating: R
+	Categories:
+	· Drama
+	· Romance
+	Run time: 121 minutes
+	Score: 8.1
+Rocky
+	Year: 1976
+	Rating: PG
+	Categories:
+	· Drama
+	· Sport
+	Run time: 120 minutes
+	Score: 8.0
+Taxi Driver
+	Year: 1976
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 113 minutes
+	Score: 8.3
+The Message
+	Year: 1976
+	Rating: PG
+	Categories:
+	· Adventure
+	· Biography
+	· Drama
+	Run time: 177 minutes
+	Score: 8.1
+Barry Lyndon
+	Year: 1975
+	Rating: PG
+	Categories:
+	· Adventure
+	· Drama
+	· History
+	Run time: 184 minutes
+	Score: 8.0
+Dog Day Afternoon
+	Year: 1975
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 125 minutes
+	Score: 8.0
+Jaws
+	Year: 1975
+	Rating: PG
+	Categories:
+	· Adventure
+	· Drama
+	· Thriller
+	Run time: 124 minutes
+	Score: 8.0
+Monty Python and the Holy Grail
+	Year: 1975
+	Rating: PG
+	Categories:
+	· Adventure
+	· Comedy
+	· Fantasy
+	Run time: 91 minutes
+	Score: 8.3
+One Flew Over the Cuckoo's Nest
+	Year: 1975
+	Rating: R
+	Categories:
+	· Drama
+	Run time: 133 minutes
+	Score: 8.7
+Chinatown
+	Year: 1974
+	Rating: R
+	Categories:
+	· Drama
+	· Mystery
+	· Thriller
+	Run time: 130 minutes
+	Score: 8.2
+The Godfather: Part II
+	Year: 1974
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 202 minutes
+	Score: 9.0
+The Sting
+	Year: 1973
+	Rating: PG
+	Categories:
+	· Comedy
+	· Crime
+	· Drama
+	Run time: 129 minutes
+	Score: 8.3
+The Godfather
+	Year: 1972
+	Rating: R
+	Categories:
+	· Crime
+	· Drama
+	Run time: 175 minutes
+	Score: 9.2
+A Clockwork Orange
+	Year: 1971
+	Rating: NONE
+	Categories:
+	· Crime
+	· Drama
+	· Sci-Fi
+	Run time: 136 minutes
+	Score: 8.3
+Butch Cassidy and the Sundance Kid
+	Year: 1969
+	Rating: M
+	Categories:
+	· Biography
+	· Crime
+	· Drama
+	Run time: 110 minutes
+	Score: 8.1
+2001: A Space Odyssey
+	Year: 1968
+	Rating: G
+	Categories:
+	· Adventure
+	· Mystery
+	· Sci-Fi
+	Run time: 149 minutes
+	Score: 8.3
+Once Upon a Time in the West
+	Year: 1968
+	Rating: PG-13
+	Categories:
+	· None
+	· Romance
+	Run time: 175 minutes
+	Score: 8.5
+Cool Hand Luke
+	Year: 1967
+	Rating: PG
+	Categories:
+	· Drama
+	Run time: 126 minutes
+	Score: 8.1
+Persona
+	Year: 1966
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Thriller
+	Run time: 83 minutes
+	Score: 8.1
+The Battle of Algiers
+	Year: 1966
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· War
+	Run time: 121 minutes
+	Score: 8.0
+The Good, the Bad and the Ugly
+	Year: 1966
+	Rating: APPROVED
+	Categories:
+	· None
+	Run time: 161 minutes
+	Score: 8.9
+For a Few Dollars More
+	Year: 1965
+	Rating: APPROVED
+	Categories:
+	· None
+	Run time: 132 minutes
+	Score: 8.3
+A Fistful of Dollars
+	Year: 1964
+	Rating: R
+	Categories:
+	· None
+	· Action
+	· Drama
+	Run time: 99 minutes
+	Score: 8.0
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb
+	Year: 1964
+	Rating: PG
+	Categories:
+	· Comedy
+	Run time: 95 minutes
+	Score: 8.4
+The Great Escape
+	Year: 1963
+	Rating: APPROVED
+	Categories:
+	· Adventure
+	· Drama
+	· History
+	Run time: 172 minutes
+	Score: 8.2
+Lawrence of Arabia
+	Year: 1962
+	Rating: PG
+	Categories:
+	· Adventure
+	· Biography
+	· Drama
+	Run time: 216 minutes
+	Score: 8.3
+To Kill a Mockingbird
+	Year: 1962
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	Run time: 129 minutes
+	Score: 8.3
+Judgment at Nuremberg
+	Year: 1961
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· War
+	Run time: 186 minutes
+	Score: 8.2
+Yojimbo
+	Year: 1961
+	Rating: UNRATED
+	Categories:
+	· Action
+	· Drama
+	· Thriller
+	Run time: 110 minutes
+	Score: 8.2
+Psycho
+	Year: 1960
+	Rating: R
+	Categories:
+	· Horror
+	· Mystery
+	· Thriller
+	Run time: 109 minutes
+	Score: 8.5
+The Apartment
+	Year: 1960
+	Rating: APPROVED
+	Categories:
+	· Comedy
+	· Drama
+	· Romance
+	Run time: 125 minutes
+	Score: 8.3
+Ben-Hur
+	Year: 1959
+	Rating: G
+	Categories:
+	· Adventure
+	· Drama
+	· History
+	Run time: 212 minutes
+	Score: 8.1
+North by Northwest
+	Year: 1959
+	Rating: APPROVED
+	Categories:
+	· Action
+	· Adventure
+	· Crime
+	Run time: 136 minutes
+	Score: 8.3
+Some Like It Hot
+	Year: 1959
+	Rating: NOT RATED
+	Categories:
+	· Comedy
+	· Music
+	· Romance
+	Run time: 120 minutes
+	Score: 8.2
+The 400 Blows
+	Year: 1959
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	Run time: 99 minutes
+	Score: 8.1
+Touch of Evil
+	Year: 1958
+	Rating: PG-13
+	Categories:
+	· Crime
+	· Drama
+	· Film-Noir
+	Run time: 95 minutes
+	Score: 8.1
+Vertigo
+	Year: 1958
+	Rating: PG
+	Categories:
+	· Mystery
+	· Romance
+	· Thriller
+	Run time: 128 minutes
+	Score: 8.3
+12 Angry Men
+	Year: 1957
+	Rating: APPROVED
+	Categories:
+	· Crime
+	· Drama
+	Run time: 96 minutes
+	Score: 8.9
+Nights of Cabiria
+	Year: 1957
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	Run time: 110 minutes
+	Score: 8.1
+Paths of Glory
+	Year: 1957
+	Rating: APPROVED
+	Categories:
+	· Drama
+	· War
+	Run time: 88 minutes
+	Score: 8.4
+The Bridge on the River Kwai
+	Year: 1957
+	Rating: PG
+	Categories:
+	· Adventure
+	· Drama
+	· War
+	Run time: 161 minutes
+	Score: 8.2
+The Seventh Seal
+	Year: 1957
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Fantasy
+	Run time: 96 minutes
+	Score: 8.2
+Throne of Blood
+	Year: 1957
+	Rating: UNRATED
+	Categories:
+	· Drama
+	Run time: 110 minutes
+	Score: 8.0
+Wild Strawberries
+	Year: 1957
+	Rating: UNRATED
+	Categories:
+	· Drama
+	· Romance
+	Run time: 91 minutes
+	Score: 8.2
+Witness for the Prosecution
+	Year: 1957
+	Rating: APPROVED
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 116 minutes
+	Score: 8.3
+Diabolique
+	Year: 1955
+	Rating: UNRATED
+	Categories:
+	· Drama
+	· Horror
+	· Mystery
+	Run time: 116 minutes
+	Score: 8.0
+Dial M for Murder
+	Year: 1954
+	Rating: PG
+	Categories:
+	· Crime
+	· Film-Noir
+	· Romance
+	Run time: 105 minutes
+	Score: 8.1
+On the Waterfront
+	Year: 1954
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	· Romance
+	Run time: 108 minutes
+	Score: 8.2
+Rear Window
+	Year: 1954
+	Rating: APPROVED
+	Categories:
+	· Mystery
+	· Thriller
+	Run time: 112 minutes
+	Score: 8.5
+Seven Samurai
+	Year: 1954
+	Rating: UNRATED
+	Categories:
+	· Action
+	· Adventure
+	· Drama
+	Run time: 207 minutes
+	Score: 8.6
+Roman Holiday
+	Year: 1953
+	Rating: NOT RATED
+	Categories:
+	· Comedy
+	· Romance
+	Run time: 118 minutes
+	Score: 8.0
+The Wages of Fear
+	Year: 1953
+	Rating: NOT RATED
+	Categories:
+	· Adventure
+	· Drama
+	· Thriller
+	Run time: 131 minutes
+	Score: 8.1
+Tokyo Story
+	Year: 1953
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	Run time: 136 minutes
+	Score: 8.1
+Ikiru
+	Year: 1952
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	Run time: 143 minutes
+	Score: 8.2
+Singin' in the Rain
+	Year: 1952
+	Rating: APPROVED
+	Categories:
+	· Comedy
+	· Musical
+	· Romance
+	Run time: 103 minutes
+	Score: 8.3
+Strangers on a Train
+	Year: 1951
+	Rating: PG
+	Categories:
+	· Crime
+	· Film-Noir
+	· Romance
+	Run time: 101 minutes
+	Score: 8.0
+All About Eve
+	Year: 1950
+	Rating: APPROVED
+	Categories:
+	· Drama
+	Run time: 138 minutes
+	Score: 8.2
+Rashomon
+	Year: 1950
+	Rating: UNRATED
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 88 minutes
+	Score: 8.3
+Sunset Boulevard
+	Year: 1950
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Film-Noir
+	· Romance
+	Run time: 110 minutes
+	Score: 8.4
+Kind Hearts and Coronets
+	Year: 1949
+	Rating: NOT RATED
+	Categories:
+	· Comedy
+	· Crime
+	Run time: 106 minutes
+	Score: 8.0
+The Third Man
+	Year: 1949
+	Rating: NOT RATED
+	Categories:
+	· Film-Noir
+	· Mystery
+	· Thriller
+	Run time: 93 minutes
+	Score: 8.2
+Bicycle Thieves
+	Year: 1948
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	Run time: 89 minutes
+	Score: 8.3
+The Treasure of the Sierra Madre
+	Year: 1948
+	Rating: NOT RATED
+	Categories:
+	· None
+	· Adventure
+	· Drama
+	Run time: 126 minutes
+	Score: 8.2
+It's a Wonderful Life
+	Year: 1946
+	Rating: PG
+	Categories:
+	· Drama
+	· Family
+	· Fantasy
+	Run time: 130 minutes
+	Score: 8.6
+The Best Years of Our Lives
+	Year: 1946
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Romance
+	· War
+	Run time: 172 minutes
+	Score: 8.0
+Double Indemnity
+	Year: 1944
+	Rating: PASSED
+	Categories:
+	· Crime
+	· Drama
+	· Film-Noir
+	Run time: 107 minutes
+	Score: 8.3
+Casablanca
+	Year: 1942
+	Rating: PG
+	Categories:
+	· Drama
+	· Romance
+	· War
+	Run time: 102 minutes
+	Score: 8.5
+Citizen Kane
+	Year: 1941
+	Rating: APPROVED
+	Categories:
+	· Drama
+	· Mystery
+	Run time: 119 minutes
+	Score: 8.4
+The Maltese Falcon
+	Year: 1941
+	Rating: NOT RATED
+	Categories:
+	· Film-Noir
+	· Mystery
+	Run time: 100 minutes
+	Score: 8.1
+Rebecca
+	Year: 1940
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Film-Noir
+	· Mystery
+	Run time: 130 minutes
+	Score: 8.1
+The Grapes of Wrath
+	Year: 1940
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· History
+	Run time: 129 minutes
+	Score: 8.1
+The Great Dictator
+	Year: 1940
+	Rating: APPROVED
+	Categories:
+	· Comedy
+	· Drama
+	· War
+	Run time: 125 minutes
+	Score: 8.4
+Gone with the Wind
+	Year: 1939
+	Rating: G
+	Categories:
+	· Drama
+	· History
+	· Romance
+	Run time: 238 minutes
+	Score: 8.1
+Mr. Smith Goes to Washington
+	Year: 1939
+	Rating: NOT RATED
+	Categories:
+	· Comedy
+	· Drama
+	Run time: 129 minutes
+	Score: 8.2
+The Wizard of Oz
+	Year: 1939
+	Rating: PASSED
+	Categories:
+	· Adventure
+	· Family
+	· Fantasy
+	Run time: 102 minutes
+	Score: 8.0
+Modern Times
+	Year: 1936
+	Rating: G
+	Categories:
+	· Comedy
+	· Drama
+	· Family
+	Run time: 87 minutes
+	Score: 8.5
+It Happened One Night
+	Year: 1934
+	Rating: UNRATED
+	Categories:
+	· Comedy
+	· Romance
+	Run time: 105 minutes
+	Score: 8.1
+City Lights
+	Year: 1931
+	Rating: PASSED
+	Categories:
+	· Comedy
+	· Drama
+	· Romance
+	Run time: 87 minutes
+	Score: 8.5
+M
+	Year: 1931
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 99 minutes
+	Score: 8.3
+The Passion of Joan of Arc
+	Year: 1928
+	Rating: NOT RATED
+	Categories:
+	· Biography
+	· Drama
+	· History
+	Run time: 114 minutes
+	Score: 8.2
+Metropolis
+	Year: 1927
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Sci-Fi
+	Run time: 153 minutes
+	Score: 8.2
+Sunrise
+	Year: 1927
+	Rating: NOT RATED
+	Categories:
+	· Drama
+	· Romance
+	Run time: 94 minutes
+	Score: 8.2
+The General
+	Year: 1926
+	Rating: UNRATED
+	Categories:
+	· Action
+	· Adventure
+	· Comedy
+	Run time: 67 minutes
+	Score: 8.2
+The Gold Rush
+	Year: 1925
+	Rating: NOT RATED
+	Categories:
+	· Adventure
+	· Comedy
+	· Drama
+	Run time: 95 minutes
+	Score: 8.2
+The Kid
+	Year: 1921
+	Rating: NOT RATED
+	Categories:
+	· Comedy
+	· Drama
+	· Family
+	Run time: 68 minutes
+	Score: 8.3
+
+Task 2 -- 3rd longest Film-noir film:
+Double Indemnity
+	Year: 1944
+	Rating: PASSED
+	Categories:
+	· Crime
+	· Drama
+	· Film-Noir
+	Run time: 107 minutes
+	Score: 8.3
+
+Task 3 -- 10th highest scoring Sci-fi film:
+A Clockwork Orange
+	Year: 1971
+	Rating: NONE
+	Categories:
+	· Crime
+	· Drama
+	· Sci-Fi
+	Run time: 136 minutes
+	Score: 8.3
+
+Task 4 -- Film with the highest score:
+Sharknado
+	Year: 2013
+	Rating: TV-14
+	Categories:
+	· Horror
+	Run time: 86 minutes
+	Score: 9.3
+
+Task 5 -- Film with the shortest title:
+M
+	Year: 1931
+	Rating: NOT RATED
+	Categories:
+	· Crime
+	· Drama
+	· Mystery
+	Run time: 99 minutes
+	Score: 8.3
+
+Task 6 -- Number of films in the database after deleting all R rated films:
+After deleting all R rated films, there are 147 films.
