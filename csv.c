@@ -15,7 +15,7 @@ LinkedList** csv_read(const char* const filename, size_t* const c)
   if (!f)
     return NULL;
 
-  char line[256];
+  char line[512];
   size_t lineCount = 0;
   while (fgets(line, sizeof(line), f))
     ++lineCount;
